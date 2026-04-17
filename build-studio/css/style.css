@@ -592,3 +592,172 @@ td:first-child { font-weight: 600; color: var(--navy); white-space: nowrap; }
   .event-card { flex-direction: column; gap: 16px; }
   .footer__inner { grid-template-columns: 1fr; }
 }
+
+/* =============================================
+   PODCAST PAGE STYLES
+   ============================================= */
+
+/* ---- Episode Format Table ---- */
+.episode-format-table { width: 100%; border-collapse: collapse; }
+.episode-format-table thead th {
+  background: var(--navy);
+  color: var(--white);
+  padding: 14px 20px;
+  text-align: left;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.episode-format-table tbody tr { border-bottom: 1px solid var(--border); transition: background var(--transition); }
+.episode-format-table tbody tr:last-child { border-bottom: none; }
+.episode-format-table tbody tr:hover { background: var(--teal-light); }
+.episode-format-table td { padding: 18px 20px; vertical-align: top; font-size: 15px; }
+.episode-format-table td:first-child { font-weight: 700; color: var(--navy); white-space: nowrap; }
+.segment-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 100px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.segment-tag--students { background: #e3f2fd; color: #1565c0; }
+.segment-tag--hosts    { background: #fce4ec; color: #880e4f; }
+.segment-tag--guest    { background: #e8f5e9; color: #2e7d32; }
+
+/* ---- Guest Type Cards ---- */
+.guest-type-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+.guest-type-card {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+.guest-type-card__header {
+  padding: 32px 32px 24px;
+  background: var(--navy);
+  color: var(--white);
+}
+.guest-type-card__header .icon { font-size: 36px; margin-bottom: 14px; }
+.guest-type-card__header h3 { color: var(--white); font-size: 20px; margin-bottom: 8px; }
+.guest-type-card__header p  { color: rgba(255,255,255,0.7); font-size: 14px; line-height: 1.6; }
+.guest-type-card--external .guest-type-card__header { background: var(--red); }
+.guest-type-card__body { background: var(--white); padding: 24px 32px; }
+.guest-type-card__body ul { list-style: none; }
+.guest-type-card__body li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+  color: var(--text);
+}
+.guest-type-card__body li:last-child { border-bottom: none; }
+.guest-type-card__body li::before { content: '→'; color: var(--teal); font-weight: 700; flex-shrink: 0; }
+
+/* ---- Integration Diagram ---- */
+.integration-diagram {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  position: relative;
+  background: var(--white);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.integration-node {
+  padding: 28px 20px;
+  text-align: center;
+  border-right: 1px solid var(--border);
+  position: relative;
+}
+.integration-node:last-child { border-right: none; }
+.integration-node__icon { font-size: 32px; margin-bottom: 12px; }
+.integration-node__title { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+.integration-node__body  { font-size: 12px; color: var(--muted); line-height: 1.5; }
+.integration-node--podcast { background: var(--navy); }
+.integration-node--podcast .integration-node__title { color: var(--white); }
+.integration-node--podcast .integration-node__body  { color: rgba(255,255,255,0.65); }
+.integration-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 0;
+  background: var(--teal-light);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--teal);
+  font-weight: 600;
+  gap: 8px;
+  grid-column: 1 / -1;
+}
+
+/* ---- Season Arc ---- */
+.season-arc { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); }
+.act-card { padding: 32px 28px; }
+.act-card:nth-child(1) { background: var(--navy); }
+.act-card:nth-child(2) { background: #1f2f55; }
+.act-card:nth-child(3) { background: #243665; }
+.act-card__label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 8px; }
+.act-card__title { font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+.act-card__eps   { font-size: 12px; color: var(--teal); font-weight: 600; margin-bottom: 16px; }
+.act-card__items { list-style: none; }
+.act-card__items li { font-size: 13px; color: rgba(255,255,255,0.7); padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.08); display: flex; gap: 8px; align-items: flex-start; }
+.act-card__items li:last-child { border-bottom: none; }
+.act-card__items li::before { content: '›'; color: var(--teal); font-weight: 700; flex-shrink: 0; }
+
+/* ---- Season Themes Table ---- */
+.themes-table { width: 100%; border-collapse: collapse; }
+.themes-table thead th {
+  background: var(--navy);
+  color: var(--white);
+  padding: 12px 20px;
+  text-align: left;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.themes-table tbody tr { border-bottom: 1px solid var(--border); }
+.themes-table tbody tr:last-child { border-bottom: none; }
+.themes-table tbody tr:hover { background: var(--teal-light); }
+.themes-table td { padding: 16px 20px; font-size: 15px; }
+.themes-table td:first-child { font-weight: 700; color: var(--teal); white-space: nowrap; width: 100px; }
+.themes-table td:nth-child(2) { font-weight: 600; color: var(--navy); }
+
+/* ---- Subscribe Platforms ---- */
+.platform-row { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+.platform-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 22px;
+  border-radius: 8px;
+  border: 1.5px solid var(--border);
+  background: var(--white);
+  color: var(--navy);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: default;
+  opacity: 0.6;
+  font-family: 'Inter', sans-serif;
+}
+.platform-btn .platform-icon { font-size: 20px; }
+.coming-soon-note { font-size: 13px; color: var(--muted); margin-top: 16px; }
+
+@media (max-width: 960px) {
+  .guest-type-grid     { grid-template-columns: 1fr; }
+  .integration-diagram { grid-template-columns: repeat(2, 1fr); }
+  .integration-node { border-bottom: 1px solid var(--border); }
+  .season-arc          { grid-template-columns: 1fr; }
+}
+@media (max-width: 680px) {
+  .integration-diagram { grid-template-columns: 1fr; }
+}
