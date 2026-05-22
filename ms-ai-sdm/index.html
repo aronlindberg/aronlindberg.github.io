@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MS AI Systems Deployment & Management — Stevens</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0e1117;--cream:#faf8f3;--rule:#d8d3c8;--tag:#666;--red:#c0392b;--blue:#1a3a6b;--summer-c:#3a7a4a;--summer-bg:#f0f7ee;--tech-c:#3a5fa0;--tech-bg:#e8f0fb;--biz-c:#c0682b;--biz-bg:#fdf0e8;--studio-bg:#1a3a6b;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);padding:44px 40px;max-width:1120px;margin:0 auto;}
+.hdr{border-top:3px solid var(--ink);border-bottom:1px solid var(--rule);padding:20px 0 18px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;}
+.prog-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--red);margin-bottom:6px;}
+.hdr h1{font-family:'DM Serif Display',serif;font-size:28px;line-height:1.15;}
+.meta{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--tag);line-height:1.9;text-align:right;}
+.meta strong{color:var(--ink);font-weight:500;}
+/* PROGRAM OVERVIEW */
+.prog-ov{border:1px solid var(--rule);border-radius:3px;background:#fff;margin:18px 0 28px;overflow:hidden;}
+.pov-title{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;background:var(--ink);color:#fff;padding:8px 16px;}
+.pov-body{display:grid;grid-template-columns:1fr 1fr 1fr;}
+.pov-col{padding:18px 20px;border-right:1px solid var(--rule);}
+.pov-col:last-child{border-right:none;}
+.pov-lbl{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--tag);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--rule);}
+.pov-col ol,.pov-col ul{list-style:none;padding:0;counter-reset:c;}
+.pov-col li{font-size:12px;line-height:1.6;color:#333;padding:5px 0 5px 20px;border-bottom:1px solid rgba(0,0,0,.04);position:relative;}
+.pov-col li:last-child{border-bottom:none;}
+.pov-col ol li::before{content:counter(c);counter-increment:c;font-family:'DM Mono',monospace;font-size:9px;color:var(--tag);position:absolute;left:0;top:7px;}
+.pov-col ul li::before{content:'—';font-family:'DM Mono',monospace;font-size:9px;color:var(--tag);position:absolute;left:0;top:7px;}
+.pov-col p{font-size:12px;line-height:1.65;color:#333;margin-bottom:8px;}
+.pov-col p:last-child{margin-bottom:0;}
+.atag{display:inline-block;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.08em;padding:2px 8px;border:1px solid var(--rule);border-radius:2px;color:var(--tag);margin:4px 3px 0 0;}
+/* THESIS */
+.thesis{padding:0 0 22px;border-bottom:1px solid var(--rule);margin-bottom:28px;display:flex;gap:40px;align-items:flex-start;}
+.tstmt{font-family:'DM Serif Display',serif;font-style:italic;font-size:15.5px;line-height:1.55;flex:1.4;max-width:540px;}
+.pills{flex:1;display:flex;gap:8px;flex-wrap:wrap;padding-top:2px;}
+.pill{font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border:1px solid var(--rule);border-radius:2px;color:var(--tag);white-space:nowrap;}
+.pill.hi{background:var(--ink);color:#fff;border-color:var(--ink);}
+/* ARC */
+.arc-meta{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#aaa;margin-bottom:8px;}
+.arc-row{display:flex;margin-bottom:24px;border:1px solid var(--rule);border-radius:3px;overflow:hidden;}
+.arc-step{flex:1;display:flex;align-items:center;gap:12px;padding:11px 16px;background:#fff;border-right:1px solid var(--rule);}
+.arc-step:last-child{border-right:none;}
+.arc-n{font-family:'DM Serif Display',serif;font-size:26px;color:var(--rule);line-height:1;flex-shrink:0;}
+.arc-t strong{font-size:12px;font-weight:600;display:block;margin-bottom:2px;}
+.arc-t span{font-size:10.5px;color:#666;line-height:1.4;}
+/* PERIOD LABELS */
+.per-labels{display:grid;grid-template-columns:1fr 16px 1fr 16px 1fr;margin-bottom:8px;}
+.per-lbl{font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;padding:6px 0 6px 2px;border-bottom:2px solid;}
+.per-lbl.s{border-color:var(--summer-c);color:var(--summer-c);}
+.per-lbl.f{border-color:var(--tech-c);color:var(--tech-c);}
+.per-lbl.sp{border-color:var(--biz-c);color:var(--biz-c);}
+.per-sp{border-bottom:2px solid var(--rule);}
+/* MAIN GRID */
+.main-layout{display:grid;grid-template-columns:1fr 16px 1fr 16px 1fr;grid-template-rows:auto auto;row-gap:10px;}
+.sc{grid-column:1;}.fc{grid-column:3;}.spc{grid-column:5;}.srow{grid-column:1/6;grid-row:2;}
+/* TRACK BLOCKS */
+.track{border-radius:3px;overflow:hidden;border:1px solid;}
+.t-lbl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;padding:7px 12px;font-weight:500;}
+.cc{padding:11px 13px;border-bottom:1px solid rgba(0,0,0,.06);position:relative;transition:background .15s;cursor:pointer;}
+.cc:last-child{border-bottom:none;}
+.cc:hover{background:rgba(0,0,0,.03);}
+.cc::after{content:'VIEW \2192';font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.08em;position:absolute;bottom:8px;right:11px;opacity:0;transition:opacity .15s;color:var(--blue);}
+.cc:hover::after{opacity:1;}
+.cc.active{outline:2px solid var(--blue);outline-offset:-2px;background:rgba(58,95,160,.05);}
+.cn{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.08em;color:var(--tag);margin-bottom:3px;}
+.ct{font-size:13px;font-weight:600;line-height:1.3;margin-bottom:4px;}
+.cd{font-size:10.5px;line-height:1.5;color:#555;}
+.cbadge{display:inline-block;font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.08em;padding:2px 6px;border-radius:2px;margin-top:6px;}
+.summer-b{border-color:var(--summer-c);background:var(--summer-bg);}
+.summer-b .t-lbl{background:var(--summer-c);color:#fff;}
+.summer-b .cbadge{background:#d4f0db;color:#2a6a3a;}
+.tech-b{border-color:var(--tech-c);background:var(--tech-bg);}
+.tech-b .t-lbl{background:var(--tech-c);color:#fff;}
+.tech-b .cbadge{background:#c8d8f8;color:#1a3a6b;}
+.biz-b{border-color:var(--biz-c);background:var(--biz-bg);}
+.biz-b .t-lbl{background:var(--biz-c);color:#fff;}
+.biz-b .cbadge{background:#fde0cc;color:#7a3010;}
+/* STUDIO SPINE */
+.spine{border:1.5px solid #0d2650;border-radius:3px;overflow:hidden;background:var(--studio-bg);}
+.spine-hdr{display:flex;align-items:center;justify-content:space-between;padding:8px 16px;background:rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.1);}
+.spine-hdr-t{font-family:'DM Serif Display',serif;font-size:15px;color:#fff;}
+.spine-hdr-s{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.4);}
+.phases{display:grid;grid-template-columns:1fr 1fr 1fr;}
+.phase{padding:14px 16px;border-right:1px solid rgba(255,255,255,.1);cursor:pointer;transition:background .15s;position:relative;}
+.phase:last-child{border-right:none;}
+.phase:hover{background:rgba(255,255,255,.06);}
+.phase::after{content:'VIEW \2192';font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.08em;position:absolute;bottom:10px;right:14px;opacity:0;transition:opacity .15s;color:rgba(255,255,255,.45);}
+.phase:hover::after{opacity:1;}
+.phase.active{background:rgba(255,255,255,.1);outline:2px solid rgba(255,255,255,.35);outline-offset:-2px;}
+.ph-tag{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:5px;}
+.ph-num{font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,.3);margin-bottom:3px;}
+.ph-title{font-size:13.5px;font-weight:600;color:#fff;margin-bottom:5px;line-height:1.25;}
+.ph-desc{font-size:10.5px;line-height:1.5;color:rgba(255,255,255,.6);}
+.ph-badge{display:inline-block;font-family:'DM Mono',monospace;font-size:8.5px;padding:2px 7px;border-radius:2px;margin-top:7px;background:rgba(255,255,255,.12);color:rgba(255,255,255,.7);}
+.phase.p0{border-top:2px solid var(--summer-c);}
+.phase.p1{border-top:2px solid var(--tech-c);}
+.phase.p2{border-top:2px solid var(--biz-c);}
+/* TOTALS */
+.totals{display:grid;grid-template-columns:1fr 16px 1fr 16px 1fr;margin-top:14px;border-top:1px solid var(--rule);padding-top:14px;}
+.tot{text-align:center;}
+.tot-n{font-family:'DM Serif Display',serif;font-size:38px;line-height:1;}
+.tot-l{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--tag);margin-top:3px;}
+.tot.s .tot-n{color:var(--summer-c);}
+.tot.f .tot-n{color:var(--tech-c);}
+.tot.sp .tot-n{color:var(--biz-c);}
+.tot-sp{border-right:1px solid var(--rule);margin:0 8px;}
+.totals-note{text-align:right;margin-top:8px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#888;}
+/* FOOTER */
+.footer{margin-top:30px;padding-top:18px;border-top:1px solid var(--rule);display:flex;gap:28px;align-items:flex-start;}
+.f-lbl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--tag);flex-shrink:0;padding-top:4px;width:90px;}
+.outcomes{display:flex;flex-wrap:wrap;gap:7px;}
+.otag{font-size:11px;font-weight:500;padding:5px 12px;border:1px solid var(--rule);border-radius:2px;color:var(--ink);background:#fff;}
+/* SYLLABUS PANEL */
+.syl-section{margin-top:40px;border-top:3px solid var(--ink);overflow:hidden;max-height:0;transition:max-height .4s ease,opacity .3s ease;opacity:0;}
+.syl-section.open{max-height:99999px;opacity:1;}
+.syl-hdr{display:flex;align-items:baseline;justify-content:space-between;padding:18px 0 14px;border-bottom:1px solid var(--rule);margin-bottom:28px;}
+.syl-hdr-lbl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--red);}
+.syl-close{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;color:var(--tag);border:1px solid var(--rule);background:#fff;padding:4px 10px;border-radius:2px;}
+.syl-close:hover{background:var(--ink);color:#fff;border-color:var(--ink);}
+.syl-body{display:grid;grid-template-columns:1fr 1.6fr;gap:48px;padding-bottom:48px;align-items:start;}
+/* LEFT col */
+.syl-left{position:sticky;top:24px;max-height:calc(100vh - 80px);overflow-y:auto;padding-right:4px;}
+.syl-left::-webkit-scrollbar{width:3px;}
+.syl-left::-webkit-scrollbar-thumb{background:var(--rule);}
+.syl-cnum{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--tag);margin-bottom:4px;}
+.syl-title{font-family:'DM Serif Display',serif;font-size:21px;line-height:1.2;margin-bottom:4px;}
+.syl-credits{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#888;margin-bottom:18px;display:block;}
+.sec-lbl{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--tag);border-bottom:1px solid var(--rule);padding-bottom:4px;margin-bottom:10px;margin-top:18px;}
+.syl-txt{font-size:12.5px;line-height:1.65;color:#333;}
+.syl-ol{list-style:none;padding:0;counter-reset:c;}
+.syl-ol li{font-size:12px;line-height:1.6;color:#333;padding:5px 0 5px 20px;border-bottom:1px solid rgba(0,0,0,.04);position:relative;}
+.syl-ol li:last-child{border-bottom:none;}
+.syl-ol li::before{content:counter(c);counter-increment:c;font-family:'DM Mono',monospace;font-size:9px;color:var(--tag);position:absolute;left:0;top:7px;}
+.grading{margin-top:14px;border:1px solid var(--rule);border-radius:3px;overflow:hidden;}
+.g-hdr{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;background:var(--ink);color:#fff;padding:6px 10px;}
+.g-row{display:flex;justify-content:space-between;padding:6px 10px;border-bottom:1px solid rgba(0,0,0,.05);font-size:11.5px;gap:8px;}
+.g-row:last-child{border-bottom:none;}
+.g-row span:last-child{font-family:'DM Mono',monospace;font-size:10px;font-weight:500;flex-shrink:0;}
+.course-divider{border:none;border-top:1px solid var(--rule);margin:16px 0 0;}
+.csub-lbl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;margin:12px 0 4px;display:flex;align-items:center;gap:8px;}
+.cnbadge{background:var(--ink);color:#fff;padding:2px 7px;border-radius:2px;font-size:8px;}
+/* RIGHT col */
+.phase-hdr{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;padding:8px 12px;font-weight:500;color:#fff;}
+.phase-hdr.s-hdr{background:var(--summer-c);}
+.phase-hdr.f-hdr{background:var(--tech-c);}
+.phase-hdr.sp-hdr{background:var(--biz-c);}
+.phase-hdr.dk-hdr{background:var(--ink);}
+.ccr{border:1px solid var(--rule);border-top:none;margin-bottom:22px;overflow:hidden;}
+.ccr-meta{padding:10px 12px;background:#fff;border-bottom:1px solid rgba(0,0,0,.05);}
+.ccr-desc{font-size:11.5px;line-height:1.6;color:#444;margin-bottom:5px;}
+.ccr-obj{font-size:11.5px;line-height:1.6;color:#444;font-style:italic;}
+.syl-tbl{width:100%;border-collapse:collapse;font-size:11.5px;}
+.syl-tbl th{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--tag);text-align:left;padding:6px 8px;border-bottom:1px solid var(--rule);background:rgba(0,0,0,.02);}
+.syl-tbl td{padding:6px 8px;border-bottom:1px solid rgba(0,0,0,.04);vertical-align:top;line-height:1.45;color:#333;}
+.syl-tbl tr:last-child td{border-bottom:none;}
+.syl-tbl td:first-child{font-family:'DM Mono',monospace;font-size:9px;color:var(--tag);white-space:nowrap;font-weight:500;}
+.syl-tbl tr.sprint td{background:rgba(26,58,107,.05);font-weight:500;}
+.syl-tbl tr.sprint td:first-child{color:var(--blue);}
+</style>
+</head>
+<body>
+<div class="hdr">
+  <div>
+    <div class="prog-label">Stevens Institute of Technology &middot; School of Business</div>
+    <h1>MS in AI Systems Deployment<br>&amp; Management</h1>
+  </div>
+  <div><div class="meta"><strong>30 credits</strong> &middot; 12 months on-campus<br><strong>3 semesters</strong> &middot; Summer &middot; Fall &middot; Spring<br><strong>2 embedded certificates</strong> &middot; Tech + Business<br><strong>Build Studio</strong> &middot; full-year sponsor project spine</div></div>
+</div>
+
+<div class="prog-ov">
+  <div class="pov-title">Program Overview</div>
+  <div class="pov-body">
+    <div class="pov-col">
+      <div class="pov-lbl">Program Educational Objectives</div>
+      <p style="font-size:11px;color:var(--tag);margin-bottom:10px;font-style:italic;">What graduates will achieve 3&ndash;5 years after graduation:</p>
+      <ol>
+        <li>Lead AI deployment engagements &mdash; from use case identification to production &mdash; at enterprises, consulting firms, or technology organizations of varying scale.</li>
+        <li>Apply sound technical and organizational judgment to deployment decisions, bridging what AI can do and what organizations actually need done.</li>
+        <li>Advance responsible AI deployment in organizational contexts, contributing to governance, accountability, and ethical practice in the field.</li>
+        <li>Progress into senior roles &mdash; Forward Deployed Engineering lead, Chief AI Officer, AI Strategy director, or entrepreneurial positions &mdash; within five years of graduation.</li>
+      </ol>
+    </div>
+    <div class="pov-col">
+      <div class="pov-lbl">Program Educational Outcomes</div>
+      <p style="font-size:11px;color:var(--tag);margin-bottom:10px;font-style:italic;">What students will be able to do upon graduation:</p>
+      <ol>
+        <li>Design and architect AI systems that connect frontier models to enterprise data, APIs, and organizational infrastructure.</li>
+        <li>Execute the full AI deployment lifecycle &mdash; from problem framing through production deployment and impact measurement.</li>
+        <li>Apply change management and stakeholder engagement skills to ensure AI deployments are adopted and sustained.</li>
+        <li>Govern AI deployments responsibly, applying risk, compliance, and accountability frameworks appropriate to the context.</li>
+        <li>Communicate AI system design, deployment decisions, and business impact to technical and non-technical audiences.</li>
+        <li>Demonstrate professional practice through a year-long Build Studio engagement resulting in a deployed, production AI system for a real sponsor organization.</li>
+      </ol>
+    </div>
+    <div class="pov-col">
+      <div class="pov-lbl">Intended Audience</div>
+      <p>The MS in AI Systems Deployment &amp; Management is designed for professionals seeking roles at the intersection of AI technology and organizational transformation.</p>
+      <p>Particularly well-suited for:</p>
+      <ul>
+        <li>Recent BS graduates in information systems, computer science, business analytics, or related fields seeking technical depth with organizational impact.</li>
+        <li>Early-career professionals (1&ndash;4 years) in IT, consulting, product management, or business operations repositioning for AI-focused roles.</li>
+        <li>Technical practitioners who want the organizational and strategic fluency to lead AI deployments &mdash; not just build them.</li>
+      </ul>
+      <p style="margin-top:10px;font-size:11px;color:var(--tag);">Basic programming fluency and quantitative reasoning are assumed. Prior AI experience is not required.</p>
+      <div style="margin-top:10px;">
+        <span class="atag">IS / CS Graduates</span><span class="atag">Early-Career IT</span>
+        <span class="atag">Consultants</span><span class="atag">Product Managers</span><span class="atag">Career Changers</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="thesis">
+  <div class="tstmt">&ldquo;The next stage of enterprise AI will be defined by how effectively businesses can deploy this technology into real-world use cases &mdash; and how well they can find people who help them do it.&rdquo;</div>
+  <div class="pills">
+    <span class="pill hi">AI Deployment</span><span class="pill hi">Enterprise Integration</span><span class="pill hi">Agentic Systems</span>
+    <span class="pill">Governance &amp; Risk</span><span class="pill">Workflow Redesign</span><span class="pill">Org Transformation</span>
+    <span class="pill">Data Engineering</span><span class="pill">Forward-Deployed Practice</span>
+  </div>
+</div>
+
+<div class="arc-meta">Program Arc &mdash; The AI Deployment Lifecycle</div>
+<div class="arc-row">
+  <div class="arc-step"><div class="arc-n">01</div><div class="arc-t"><strong>Foundations</strong><span>Technical + organizational fluency to navigate the full AI deployment stack</span></div></div>
+  <div class="arc-step"><div class="arc-n">02</div><div class="arc-t"><strong>Architect &amp; Discover</strong><span>Design AI systems; connect models to enterprise data, processes, and people</span></div></div>
+  <div class="arc-step"><div class="arc-n">03</div><div class="arc-t"><strong>Deploy &amp; Govern</strong><span>Launch production systems; manage change, compliance, and measurable impact</span></div></div>
+</div>
+
+<div class="per-labels">
+  <div class="per-lbl s">Summer &middot; Bootcamp &middot; 6 cr</div><div class="per-sp"></div>
+  <div class="per-lbl f">Fall &middot; Technical Certificate &middot; 12 cr</div><div class="per-sp"></div>
+  <div class="per-lbl sp">Spring &middot; Business Certificate &middot; 12 cr</div>
+</div>
+
+<div class="main-layout">
+  <div class="sc">
+    <div class="track summer-b">
+      <div class="t-lbl">Dual Bootcamp</div>
+      <div class="cc" data-group="bootcamp" onclick="openGroup('bootcamp',this)">
+        <div class="cn">MIS 601</div><div class="ct">The AI Stack: Architecture to Deployment</div>
+        <div class="cd">LLMs, agents, APIs, RAG pipelines, vector stores, evaluations, and the production stack &mdash; hands-on with frontier models.</div>
+        <span class="cbadge">1.5 credits</span>
+      </div>
+      <div class="cc" data-group="bootcamp" onclick="openGroup('bootcamp',this)">
+        <div class="cn">MIS 602</div><div class="ct">Organizations &amp; AI: A Business Primer</div>
+        <div class="cd">Process mapping, stakeholder analysis, value chain diagnostics, and change readiness &mdash; the organizational layer every deployment must navigate.</div>
+        <span class="cbadge">1.5 credits</span>
+      </div>
+    </div>
+  </div>
+  <div class="fc">
+    <div class="track tech-b">
+      <div class="t-lbl">Technical Certificate &mdash; AI Systems Architecture &amp; Deployment</div>
+      <div class="cc" data-group="tech-cert" onclick="openGroup('tech-cert',this)">
+        <div class="cn">MIS 670</div><div class="ct">AI Systems Architecture &amp; Enterprise Integration</div>
+        <div class="cd">Connecting models to enterprise data, APIs, identity layers, and legacy infrastructure &mdash; with security and compliance as first-class constraints.</div>
+        <span class="cbadge">3 credits</span>
+      </div>
+      <div class="cc" data-group="tech-cert" onclick="openGroup('tech-cert',this)">
+        <div class="cn">MIS 671</div><div class="ct">Data Engineering for AI</div>
+        <div class="cd">Pipelines, RAG infrastructure, observability, evaluation frameworks, and production data quality at enterprise scale.</div>
+        <span class="cbadge">3 credits</span>
+      </div>
+      <div class="cc" data-group="tech-cert" onclick="openGroup('tech-cert',this)">
+        <div class="cn">MIS 672</div><div class="ct">Agentic Systems &amp; Workflow Automation</div>
+        <div class="cd">Multi-agent architectures, tool use, human-in-the-loop design, orchestration patterns, and governance of autonomous systems.</div>
+        <span class="cbadge">3 credits</span>
+      </div>
+    </div>
+  </div>
+  <div class="spc">
+    <div class="track biz-b">
+      <div class="t-lbl">Business Certificate &mdash; AI Strategy &amp; Organizational Transformation</div>
+      <div class="cc" data-group="biz-cert" onclick="openGroup('biz-cert',this)">
+        <div class="cn">MIS 680</div><div class="ct">AI Strategy &amp; Digital Transformation</div>
+        <div class="cd">Investment logic, transformation roadmaps, competitive positioning, and the business case for AI deployment &mdash; for executives and those advising them.</div>
+        <span class="cbadge">3 credits</span>
+      </div>
+      <div class="cc" data-group="biz-cert" onclick="openGroup('biz-cert',this)">
+        <div class="cn">MIS 681</div><div class="ct">Governing AI Systems: Compliance, Security & Trustworthy Deployment</div>
+        <div class="cd">Risk frameworks, audit and red-teaming design, AI security governance, regulatory compliance, and governance structures for trustworthy AI deployment at scale.</div>
+        <span class="cbadge">3 credits</span>
+      </div>
+      <div class="cc" data-group="biz-cert" onclick="openGroup('biz-cert',this)">
+        <div class="cn">MIS 682</div><div class="ct">Organizing with AI: Internal &amp; Customer Perspectives</div>
+        <div class="cd">Redesigning internal workflows and customer-facing systems around AI. Change management, workforce transformation, and measuring operational impact.</div>
+        <span class="cbadge">3 credits</span>
+      </div>
+    </div>
+  </div>
+  <div class="srow">
+    <div class="spine">
+      <div class="spine-hdr">
+        <div class="spine-hdr-t">Build Studio &mdash; Full-Year Sponsor Project</div>
+        <div class="spine-hdr-s">MIS 676 &middot; MIS 677 &middot; MIS 678 &middot; 9 credits &middot; click any phase</div>
+      </div>
+      <div class="phases">
+        <div class="phase p0" data-group="studio" onclick="openGroup('studio',this)">
+          <div class="ph-tag">Summer &middot; Phase 0</div><div class="ph-num">MIS 676</div>
+          <div class="ph-title">Orientation &amp; Problem Framing</div>
+          <div class="ph-desc">Meet the sponsor. Map the problem space, surface AI deployment opportunities, and define the project brief.</div>
+          <span class="ph-badge">3 credits</span>
+        </div>
+        <div class="phase p1" data-group="studio" onclick="openGroup('studio',this)">
+          <div class="ph-tag">Fall &middot; Phase I</div><div class="ph-num">MIS 677</div>
+          <div class="ph-title">Discovery, Architecture &amp; Prototype</div>
+          <div class="ph-desc">Use case validation, system architecture, data pipeline design, and working prototype &mdash; the forward-deployed engineer&rsquo;s first engagement cycle.</div>
+          <span class="ph-badge">3 credits</span>
+        </div>
+        <div class="phase p2" data-group="studio" onclick="openGroup('studio',this)">
+          <div class="ph-tag">Spring &middot; Phase II</div><div class="ph-num">MIS 678</div>
+          <div class="ph-title">Deployment, Governance &amp; Impact</div>
+          <div class="ph-desc">Production deployment, governance handoff, impact measurement, and final stakeholder presentation. A shipped system, not a slide deck.</div>
+          <span class="ph-badge">3 credits</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="totals">
+  <div class="tot s"><div class="tot-n">6</div><div class="tot-l">Summer credits</div></div>
+  <div class="tot-sp"></div>
+  <div class="tot f"><div class="tot-n">12</div><div class="tot-l">Fall credits</div></div>
+  <div class="tot-sp"></div>
+  <div class="tot sp"><div class="tot-n">12</div><div class="tot-l">Spring credits</div></div>
+</div>
+<div class="totals-note">30 total credits &middot; degree + 2 embedded certificates + full-year build studio</div>
+
+<div class="footer">
+  <div class="f-lbl">Career targets</div>
+  <div class="outcomes">
+    <span class="otag">Forward Deployed Engineer</span><span class="otag">AI Product Manager</span>
+    <span class="otag">AI Implementation Lead</span><span class="otag">Chief AI Officer (track)</span>
+    <span class="otag">Enterprise AI Consultant</span><span class="otag">AI Governance Analyst</span>
+    <span class="otag">AI Systems Architect</span><span class="otag">Digital Transformation Lead</span>
+  </div>
+</div>
+
+<div class="syl-section" id="syl-panel">
+  <div class="syl-hdr">
+    <div class="syl-hdr-lbl" id="syl-lbl">Course Syllabus</div>
+    <button class="syl-close" onclick="closeGroup()">&#10005; Close</button>
+  </div>
+  <div class="syl-body" id="syl-body"></div>
+</div>
+
+<script>
+const G={
+bootcamp:{label:'Dual Bootcamp',tagline:'Summer \u00b7 6 Credits (1.5 cr each)',accent:'summer',
+description:'The bootcamp establishes the dual fluency that defines this program and the forward-deployed engineer role. MIS 601 builds technical command of the AI deployment stack. MIS 602 builds the organizational and business literacy to deploy that stack inside real organizations. Neither course stands alone: the goal is a graduate who can walk into an enterprise, understand how it works, identify where AI creates value, and start building.',
+certOutcomes:['Navigate the AI deployment stack with technical confidence, understanding architectural tradeoffs and tool selection decisions.','Analyze an organization\'s readiness for AI deployment, identifying high-value opportunities and key adoption barriers.','Engage sponsor organizations productively from day one of Build Studio, bringing both technical and organizational vocabulary to every conversation.'],
+courses:['mis601','mis602']},
+'tech-cert':{label:'Technical Certificate: AI Systems Architecture & Deployment',tagline:'Fall \u00b7 9 Credits (3 cr each)',accent:'tech',
+description:'The Technical Certificate develops the engineering depth required to build production AI systems in enterprise environments. MIS 670 covers connecting AI models to enterprise infrastructure. MIS 671 builds the data layer those models depend on. MIS 672 extends both into agentic, autonomous operation. The three courses progress from integration to data to action \u2014 the same progression a real deployment follows.',
+certOutcomes:['Design and architect enterprise-grade AI systems that connect frontier models to organizational data, APIs, infrastructure, and governance requirements.','Apply specialized knowledge in systems architecture, data engineering, and agentic design to make informed technical decisions in high-stakes deployment contexts.','Produce governance-ready technical artifacts \u2014 architecture diagrams, data pipeline documentation, agent design specs \u2014 that satisfy both engineering and organizational accountability requirements.'],
+courses:['mis670','mis671','mis672']},
+'biz-cert':{label:'Business Certificate: AI Strategy & Organizational Transformation',tagline:'Spring \u00b7 9 Credits (3 cr each)',accent:'biz',
+description:'The Business Certificate develops the strategic, governance, and organizational capacity to deploy AI sustainably inside real organizations. MIS 680 addresses where to invest and how to position. MIS 681 addresses how to govern responsibly. MIS 682 addresses how to make the organizational changes deployment actually requires. Together they make the case that successful AI deployment is as much an organizational challenge as a technical one.',
+certOutcomes:['Advise organizations on AI strategy, governance, and organizational transformation, grounding recommendations in evidence and practical implementation constraints.','Design and execute the organizational change required for AI deployments to be adopted, used, and sustained by real employees and customers.','Govern AI deployments responsibly, producing the risk frameworks, audit protocols, and impact measurement systems that organizations need to sustain AI at scale.'],
+courses:['mis680','mis681','mis682']},
+studio:{label:'Build Studio \u2014 Full-Year Sponsor Project',tagline:'Summer + Fall + Spring \u00b7 9 Credits (MIS 676 / 677 / 678)',accent:'studio',
+description:'Build Studio is the connective spine of the MS in AI Systems Deployment & Management. Running across all three semesters, it embeds student teams inside real partner organizations working on real AI deployment challenges. Phase 0 establishes the sponsor relationship and defines the problem space. Phase I applies technical depth from the Technical Certificate to design and prototype a solution. Phase II applies the Business Certificate to deploy, govern, and measure impact. At every phase, students operate as forward-deployed engineers: accountable to real stakeholders, building toward measurable outcomes.',
+certOutcomes:['Execute the full arc of enterprise AI deployment \u2014 from ambiguous problem to production system \u2014 across a real 12-month sponsor engagement.','Produce a deployed, governance-documented AI system that a real organization can sustain after program completion.','Build the professional practices \u2014 stakeholder communication, sprint discipline, governance documentation, impact measurement \u2014 of a working forward-deployed engineer.'],
+courses:['studio']}};
+
+const C={
+mis601:{num:'MIS 601',title:'The AI Stack: Architecture to Deployment',credits:'1.5 credits \u00b7 Summer Bootcamp',
+description:'An intensive introduction to the AI technology stack: architectural components, tools, and design patterns that define modern AI deployment. Students gain hands-on experience with frontier language models, prompting frameworks, model customization strategies (fine-tuning vs. RAG vs. prompt engineering), agent frameworks, RAG pipelines, vector databases, and production evaluation techniques \u2014 building technical intuition through direct experimentation rather than theoretical coverage.',
+objectives:'Establishes the technical foundation the rest of the program builds on. By the end, students navigate the AI stack confidently, understand the design decisions that shape deployed systems, and have hands-on experience with the tools their Build Studio projects will rely on.',
+outcomes:['Explain the components of a modern AI deployment stack and the design decisions that connect them.','Evaluate and prompt frontier language models across a range of enterprise task types.','Implement a basic RAG pipeline connecting a document corpus to a language model query interface.','Use agent frameworks to orchestrate multi-step AI workflows with tool access.','Apply evaluation frameworks to assess AI system behavior, including automated evals and human evaluation protocols.','Identify architectural tradeoffs in AI system design relevant to cost, latency, reliability, and maintainability.'],
+grading:[['Weekly hands-on labs','30%'],['RAG mini-project','25%'],['Agent workflow prototype','25%'],['Build Studio technical brief (W8)','20%']],
+schedule:[['W1','AI Stack Overview','Mental models, components, terminology. What separates a production system from a prototype.','Architecture map sketch'],['W2','Prompting Frameworks & Model Customization','Zero-shot, few-shot, and chain-of-thought prompting; system prompt architecture; and when to fine-tune vs. RAG vs. prompt engineering. Hands-on with prompting frameworks across frontier model families.','Prompting framework memo; fine-tuning decision log'],['W3','RAG Architecture','Embeddings, vector stores, chunking, retrieval pipelines. Build a working RAG system end-to-end.','RAG prototype (v1)'],['W4','Agent Frameworks','Tool use, orchestration, multi-step reasoning, failure modes. Hands-on with LangGraph and similar.','Agent workflow demo'],['W5','AI Evaluation','Automated evals, human evaluation design, red-teaming basics, benchmarking traps.','Evaluation framework'],['W6','Production Considerations','APIs, rate limits, cost management, observability basics, deployment environments.','Cost & reliability analysis'],['W7','Build Project','Individual project: build a complete mini AI application using the full learned stack.','Mini application (complete)'],['W8 \u2605 BUILD STUDIO','Build Studio Coordination','Apply stack knowledge to Phase 0 sponsor project. Present technical approach to team.','Technical brief (Build Studio Phase 0)']]},
+
+mis602:{num:'MIS 602',title:'Organizations & AI: A Business Primer',credits:'1.5 credits \u00b7 Summer Bootcamp',
+description:'An accelerated introduction to the organizational and business contexts in which AI systems are deployed. Students develop frameworks for analyzing organizations as systems, mapping processes, identifying stakeholders, and assessing change readiness. Parallel to Build Studio Phase 0, every session is directly applicable to the sponsor engagement.',
+objectives:'Provides the organizational lens that complements the technical AI Stack course. Students leave able to enter an organization, quickly understand how it operates, identify where AI deployment creates value and risk, and engage stakeholders effectively.',
+outcomes:['Map an organization\'s key processes, stakeholders, and information flows using standard IS and business analysis frameworks.','Assess an organization\'s change readiness for AI deployment using structured diagnostic tools.','Identify high-value and high-risk AI deployment opportunities within a given organizational context.','Conduct structured stakeholder interviews and synthesize findings into actionable deployment insights.','Articulate the business case for a proposed AI deployment to executive and operational audiences.','Apply foundational ethics and responsibility frameworks to organizational AI deployment decisions.'],
+grading:[['Weekly frameworks application exercises','30%'],['Process analysis (sponsor org)','25%'],['Change readiness assessment','25%'],['Build Studio problem brief + personas (W8)','20%']],
+schedule:[['W1','Organizations as Systems','Processes, roles, information flows, and boundaries. IS frameworks for organizational analysis.','Org map (draft)'],['W2','Stakeholder Analysis','Power/interest mapping, adoption readiness frameworks, identifying champions and resistors.','Stakeholder map (v1)'],['W3','Process Analysis for AI','Value chain mapping, bottleneck identification, workflow analysis for AI opportunity scoping.','Process analysis (Build Studio sponsor)'],['W4','Change Readiness Assessment','Technology adoption models, structured change readiness diagnostics, failure mode identification.','Change readiness assessment'],['W5','The AI Business Case','ROI framing, investment logic, and executive communication of AI deployment value.','Business case framework'],['W6','Responsible AI in Organizations','Ethics, accountability, and governance basics for practitioners. Responsible deployment principles.','Responsible AI checklist (draft)'],['W7','Stakeholder Interview Practice','Structured simulated interviews with sponsor-style briefs. Peer feedback and reflection.','Interview log + reflection'],['W8 \u2605 BUILD STUDIO','Build Studio Coordination','Apply organizational frameworks to Phase 0 sponsor engagement. Finalize personas and problem brief.','Problem brief + personas (Build Studio Phase 0)']]},
+
+mis670:{num:'MIS 670',title:'AI Systems Architecture & Enterprise Integration',credits:'3 credits \u00b7 Fall \u2014 Technical Certificate',
+description:'Covers the design and deployment of AI systems within complex enterprise environments. Students learn to architect solutions that connect frontier AI models to organizational data, APIs, identity and permissions infrastructure, and legacy systems \u2014 with security, adversarial threat mitigation, compliance, and operational reliability as first-class design constraints.',
+objectives:'Develops the architectural judgment required to deploy AI systems in real organizations \u2014 where clean data, clear permissions, and greenfield infrastructure are the exception. Emphasis on the decisions that separate a working prototype from a production system an organization can trust. Assignments coordinate directly with Build Studio Phase I.',
+outcomes:['Design a multi-component AI system architecture connecting frontier models to enterprise data, APIs, and organizational infrastructure.','Select appropriate integration patterns for a given enterprise context, including REST, event-driven, and RAG-based approaches.','Implement identity, permissions, and access control layers for AI systems operating within organizational security boundaries.','Apply model evaluation frameworks to select, benchmark, and monitor AI models for specific enterprise use cases.','Identify and mitigate key risks in enterprise AI integration: data leakage, latency, failure modes, and vendor lock-in.','Produce architecture documentation sufficient for governance review and engineering handoff.'],
+grading:[['System architecture diagram (Build Studio coordination)','30%'],['Weekly technical memos','20%'],['Midterm: enterprise integration case analysis','20%'],['Final: architecture presentation to faculty panel','25%'],['Participation & technical critique','5%']],
+schedule:[['W1','The Enterprise AI Deployment Stack','Components, layers, and failure points. What makes a production AI system different from a prototype. Reading: Amershi et al. (2019).','--'],['W2','Enterprise Integration Patterns','REST, webhooks, event-driven, RAG-based integration. Latency, reliability, and failure tolerance tradeoffs.','Integration pattern memo'],['W3','Data Architecture for AI','What models actually need from enterprise data. Schema mapping, quality, chunking strategies, common failure modes.','Data architecture sketch (Build Studio)'],['W4','Identity, Permissions & Access Control','Authentication and authorization for AI agents. Scoped permissions, audit logging, credential management.','Permissions layer design'],['W5','Model Selection & Evaluation','Benchmarking for specific use cases. Custom evals, cost/latency/quality tradeoffs.','Model evaluation brief'],['W6','RAG Architecture (Advanced)','Advanced RAG patterns, hybrid search, reranking. Teams begin RAG scoping for Build Studio.','RAG design (Build Studio draft)'],['W7','Adversarial Threats & AI Security Architecture','Adversarial ML attacks, prompt injection at the infrastructure level, model poisoning, data poisoning, and AI-specific threat modeling. What the attack surface of a deployed AI system actually looks like and how to design against it.','AI threat model (Build Studio project)'],['W8 \u2605 BUILD STUDIO','Architecture Review (Sprint 1)','Build Studio Sprint 1 architecture review. Faculty and peer critique of system architecture diagrams.','System architecture diagram (v1, final)'],['W9','Production Pipeline Design','CI/CD for AI systems. Staged rollouts, blue-green deployments. Versioning model and data artifacts.','Deployment pipeline memo'],['W10','Monitoring, Observability & Reliability','Logging AI system behavior. Detecting drift, degradation, failure. Alerting and incident response.','--'],['W11','Legacy System Integration','Working with ERP, CRM, document management. API wrapping legacy systems. Data transformation layers.','Legacy integration case analysis'],['W12','Agent Infrastructure','Tool use, permissions for agents, sandboxing, audit trails. Multi-agent coordination patterns.','--'],['W13','Secure Deployment & Vendor Trust','Red-teaming AI systems before production release. Security requirements for vendor evaluation: audit capabilities, data handling, portability, and lock-in risk assessed through a security lens.','Vendor security assessment (Build Studio); secure deployment checklist'],['W14','Architecture Documentation, Vendor Selection & Governance Review','Writing architecture decision records (ADRs). Finalizing vendor selection matrix. Preparing full documentation package for governance review, security audit, and engineering handoff.','Architecture documentation package; vendor selection matrix (final)'],['W15 \u2605 FINAL','Final Architecture Presentations','Teams present final system architecture for Build Studio project to faculty panel and invited practitioners.','Final architecture presentation + documentation']]},
+
+mis671:{num:'MIS 671',title:'Data Engineering for AI',credits:'3 credits \u00b7 Fall \u2014 Technical Certificate',
+description:'Covers the data infrastructure required to support production AI deployments in organizational environments. Topics include data pipeline design and orchestration, RAG infrastructure, vector stores, embedding strategies, data quality and validation for AI, observability and monitoring of data flows, and privacy-preserving data handling.',
+objectives:'AI systems are only as good as the data they can access. Develops students\' ability to design, build, and maintain the data infrastructure that production AI systems depend on \u2014 from raw organizational data sources through to the retrieval layer that serves model queries. Emphasis on engineering judgment for data characteristics, organizational constraints, and reliability requirements.',
+outcomes:['Design a data pipeline architecture connecting organizational data sources to an AI system\'s retrieval layer.','Implement a production-ready RAG infrastructure including chunking, embedding selection, vector store configuration, and reranking.','Apply data quality validation frameworks appropriate to AI use cases, including completeness checks and semantic consistency evaluation.','Instrument data pipelines with observability tooling to detect drift, failures, and quality degradation in production.','Design data architectures complying with privacy regulations (GDPR, CCPA) and organizational data governance policies.','Evaluate and select appropriate data infrastructure tools for a given organizational context, including managed vs. open-source tradeoffs.'],
+grading:[['Data architecture for Build Studio project (2 milestones)','35%'],['Weekly lab exercises','25%'],['Midterm: pipeline architecture case analysis','20%'],['Final: data infrastructure presentation','20%']],
+schedule:[['W1','The Data Problem in Enterprise AI','Why data infrastructure fails AI deployments. Survey of failure modes and common antipatterns.','--'],['W2','Data Pipeline Architecture','Orchestration patterns, batch vs. streaming, reliability and failure recovery strategies.','Pipeline design memo'],['W3','Document Processing for AI','Chunking strategies, format handling, metadata extraction for retrieval.','Chunking strategy analysis'],['W4','Embedding Models','Selection criteria, fine-tuning considerations, cost/quality tradeoffs across embedding model families.','Embedding model brief'],['W5','Vector Stores','Architecture, indexing strategies, ANN algorithms, managed vs. open source comparison.','Vector store comparison (Build Studio)'],['W6','RAG Pipeline Design (Advanced)','Query processing, hybrid search, reranking. Production-grade RAG design patterns.','RAG architecture (Build Studio)'],['W7','Data Quality for AI','Validation frameworks, completeness, semantic consistency checks, quality monitoring in production.','Data quality plan (Build Studio)'],['W8 \u2605 BUILD STUDIO','Data Architecture Review','Teams present data architecture for Build Studio sponsor project to faculty panel.','Data architecture diagram (v1, final)'],['W9','Production Pipeline Tooling','Airflow, dbt, Dagster: selection criteria, tradeoffs, when to use each.','Pipeline tool selection rationale'],['W10','Observability for Data Pipelines','Logging, monitoring, alerting, drift detection for production AI data infrastructure.','Observability plan'],['W11','Privacy-Preserving AI Data Handling','PII detection, anonymization, access control, audit logging, compliance integration.','Privacy audit (Build Studio)'],['W12','Multimodal Data for AI','Image, audio, structured data integration with language models.','--'],['W13','Data Governance in Organizations','Policies, stewardship roles, compliance integration, data lineage.','Data governance memo (Build Studio)'],['W14','Evaluation Datasets','Building eval sets, annotation design, benchmark maintenance, avoiding data leakage.','Evaluation dataset plan'],['W15 \u2605 FINAL','Final Data Architecture Presentations','Production-ready data infrastructure for Build Studio sponsor projects.','Full data architecture + documentation package']]},
+
+mis672:{num:'MIS 672',title:'Agentic Systems & Workflow Automation',credits:'3 credits \u00b7 Fall \u2014 Technical Certificate',
+description:'Covers the design, implementation, and governance of agentic AI systems \u2014 AI that takes autonomous action in organizational environments. Topics include multi-agent architecture patterns, tool use and function calling, human-in-the-loop design, orchestration frameworks, failure mode analysis, and the governance of autonomous systems.',
+objectives:'Agentic AI is the fastest-growing enterprise AI capability and the least understood from a governance perspective. Prepares students to design agentic systems that work reliably in real organizational environments where the stakes of autonomous action are high. Emphasis on the intersection of technical architecture and governance: building systems that can act while maintaining appropriate human control.',
+outcomes:['Design multi-agent system architectures appropriate for enterprise use cases, including coordination patterns, memory management, and failure recovery.','Implement tool use and function calling patterns that enable agents to act within organizational systems while respecting permissions and access constraints.','Design human-in-the-loop checkpoints appropriate to the risk level and organizational context of a given agentic deployment.','Analyze failure modes of agentic systems and design mitigation strategies including sandboxing, audit trails, and circuit breakers.','Develop governance frameworks for agentic AI deployments, including accountability assignment, override mechanisms, and incident response protocols.','Evaluate the organizational readiness and risk profile of a proposed agentic deployment.'],
+grading:[['Agentic component design + governance plan (Build Studio)','35%'],['Weekly design exercises','25%'],['Failure mode analysis report','20%'],['Final agentic system presentation','20%']],
+schedule:[['W1','The Autonomy Spectrum','What makes AI agentic. The organizational implications of autonomous AI action. Reading: Karpathy autonomy slider.','--'],['W2','Multi-Agent Architecture Patterns','Orchestrator-worker, peer-to-peer, hierarchical, market-based patterns. When and why to use each.','Architecture pattern brief'],['W3','Tool Use & Function Calling','Design patterns, error handling, permission scoping, retry logic, graceful failure.','Tool design memo'],['W4','Memory Management in Agents','Episodic, semantic, procedural memory approaches. Enterprise context and scope tradeoffs.','Memory architecture sketch'],['W5','Orchestration Frameworks','LangGraph, CrewAI, AutoGen, custom implementations. Selection criteria and tradeoffs.','Framework comparison brief'],['W6','Human-in-the-Loop Design','Checkpoint placement, escalation logic, override mechanisms. HITL patterns for enterprise contexts.','HITL design spec (Build Studio)'],['W7','Failure Mode Analysis','Taxonomy of agentic failures. Mitigation strategies: sandboxing, circuit breakers, rollback.','Failure mode analysis (Build Studio)'],['W8 \u2605 BUILD STUDIO','Agentic Scoping Review','Teams present agentic component design for Build Studio sponsor project.','Agent design spec (v1)'],['W9','Sandboxing & Access Control','Scoped permissions, capability restrictions, audit trails for agents in enterprise environments.','Sandboxing plan'],['W10','Testing Agentic Systems','Simulation environments, adversarial testing, behavioral evaluation, regression suites.','Testing protocol (Build Studio)'],['W11','Governance Frameworks for Agents','Accountability, incident response, monitoring protocols for autonomous systems.','Governance brief (Build Studio)'],['W12','Agentic AI in Regulated Industries','Financial services, healthcare, legal: compliance implications of autonomous AI action.','Regulatory compliance analysis'],['W13','Organizational Dimensions of Agentic AI','How agentic systems reshape roles, workflows, and accountability structures.','Org impact analysis'],['W14','Scaling Agentic Systems','From prototype to production. Observability, reliability, and performance at scale.','Scaling plan (Build Studio)'],['W15 \u2605 FINAL','Final Agentic System Presentations','Full agentic component design + governance plan for Build Studio projects.','Final design + governance package']]},
+
+mis680:{num:'MIS 680',title:'AI Strategy & Digital Transformation',credits:'3 credits \u00b7 Spring \u2014 Business Certificate',
+description:'Examines how organizations develop and execute AI strategies that create durable competitive advantage. Topics include AI investment frameworks, portfolio management, competitive dynamics in AI-enabled markets, digital transformation roadmap design, and the organizational capabilities required to sustain AI-driven competitive position.',
+objectives:'AI strategy is not a technology question \u2014 it is a business question. Develops students\' ability to advise organizations on where to invest in AI, how to sequence deployments, and how to build the organizational capabilities that transform AI capability into competitive position.',
+outcomes:['Evaluate an organization\'s AI investment portfolio using structured frameworks, identifying gaps, redundancies, and sequencing opportunities.','Develop a multi-horizon AI transformation roadmap accounting for organizational capability constraints, competitive dynamics, and technology trajectory.','Analyze the competitive implications of AI deployment in a given industry, identifying sources of sustainable advantage and commoditization risk.','Articulate the business case for AI investment to a board-level audience, including ROI frameworks, risk assessment, and strategic positioning rationale.','Identify the organizational capabilities \u2014 talent, data, governance, and culture \u2014 required to execute an AI strategy and develop plans to build them.','Apply strategic frameworks (platform theory, ecosystem dynamics, capability-based competition) to AI strategy decisions.'],
+grading:[['AI strategy rationale (Build Studio sponsor)','30%'],['Case study analyses (2)','25%'],['Midterm: transformation roadmap','20%'],['Final: strategy presentation','20%'],['Participation','5%']],
+schedule:[['W1','AI Strategy as a Distinct Discipline','Why standard strategy frameworks need adaptation for AI. Speed, uncertainty, and capability-building dimensions.','--'],['W2','AI Investment Frameworks','Portfolio logic, sequencing, quick wins vs. capability building. Structuring an AI investment portfolio.','Investment framework analysis'],['W3','Competitive Dynamics in AI Markets','First-mover advantages, commoditization, ecosystem lock-in. Where AI creates defensible advantage.','Competitive analysis (Build Studio sector)'],['W4','Organizational Capabilities for AI Strategy','Talent, data, culture, governance: the capability stack. Assessment for Build Studio sponsor.','Capability assessment'],['W5','Digital Transformation Roadmap Design','Current state assessment, future state vision, sequencing decisions, milestone design.','Transformation roadmap (draft)'],['W6 \u2605 CASE','Case Study: BBVA','AI as a core banking operating model. 120,000 employees, 25 countries. What made it work?','Case analysis memo'],['W7','Platform & Ecosystem Strategy in AI','Two-sided markets, API economy, AI-native business models. Platform theory applied to AI deployment.','Platform strategy analysis'],['W8 \u2605 BUILD STUDIO','Strategy Alignment Review','Teams develop AI strategy rationale and transformation roadmap for Build Studio sponsor project.','Strategy rationale (Build Studio, v1)'],['W9','AI Investment Decision-Making','Build vs. buy vs. partner. ROI modeling, portfolio risk management, option value of AI investments.','Investment decision memo'],['W10','The Chief AI Officer','Organizational structure, decision rights, cross-functional coordination. CAIO role design.','CAIO role analysis'],['W11 \u2605 CASE','Case Study: John Deere & AI in Operations','AI in precision agriculture. Workflow redesign, AI-native product development, farmer-facing deployment.','Case analysis memo'],['W12','Responsible AI as Strategic Asset','Governance, ethics, and trust as competitive differentiators. Responsible AI program design.','Responsible AI strategy brief'],['W13','AI Strategy in Regulated Industries','Financial services, healthcare, legal, government: constraints and opportunities.','Regulatory strategy memo'],['W14','Communicating AI Strategy to Boards','Risk framing, governance accountability, executive presentation design.','Board communication brief'],['W15 \u2605 FINAL','Final AI Strategy Presentations','AI strategy recommendation for Build Studio sponsor. External practitioners in Q&A.','Final strategy presentation + report']]},
+
+mis681:{num:'MIS 681',title:'Governing AI Systems: Compliance, Security & Trustworthy Deployment',credits:'3 credits \u00b7 Spring \u2014 Business Certificate',
+description:'Covers the frameworks, structures, and practices required to deploy and sustain AI systems responsibly in organizational and regulatory contexts. Topics include AI risk frameworks (including adversarial and security-specific risks), audit and red-teaming design, algorithmic accountability, regulatory compliance (EU AI Act, US executive orders, sector-specific requirements), AI security governance, responsible AI program design, and the governance structures required to sustain trustworthy AI deployment at scale.',
+objectives:'AI governance is no longer a compliance afterthought \u2014 it is a deployment prerequisite in regulated industries and increasingly in broader enterprise contexts. Prepares students to design and implement governance structures that enable AI deployment while managing both compliance and security risk. Emphasis on practical governance artifacts: risk registers, audit and red-teaming protocols, responsible AI checklists, security incident response frameworks, and trustworthy systems documentation.',
+outcomes:['Design a risk framework for an AI deployment, identifying technical, organizational, regulatory, and ethical risks and appropriate mitigations.','Develop an audit protocol for an AI system, including data audits, model behavior audits, and organizational accountability reviews.','Map a proposed AI deployment to applicable regulatory requirements, including the EU AI Act, US AI executive orders, and sector-specific regulations.','Design a responsible AI program appropriate to an organization\'s size, sector, and risk profile.','Develop incident response protocols for AI system failures, including escalation paths, stakeholder communication, and remediation processes.','Evaluate the governance implications of agentic and autonomous AI systems and develop appropriate oversight structures.','Design AI security governance programs that address adversarial threats, model poisoning, supply chain risks, and security incident response \\u2014 treating trustworthiness as a governance obligation, not a technical afterthought.','Design AI security governance programs that address adversarial threats, model poisoning, supply chain risks, and security incident response — treating trustworthiness as a governance obligation, not a technical afterthought.'],
+grading:[['Risk framework (Build Studio deployment)','30%'],['Regulatory compliance analysis','20%'],['Governance documentation package (Build Studio)','25%'],['Midterm: audit protocol design','20%'],['Participation','5%']],
+schedule:[['W1','Why AI Governance Matters Now','From compliance checkbox to deployment prerequisite. The regulatory and organizational drivers.','--'],['W2','AI Risk Taxonomy: Safety, Security & Systemic Threats','Technical, organizational, ethical, and regulatory risks \\u2014 plus adversarial and security-specific risks: model poisoning, data poisoning, prompt injection as a governance concern, and infrastructure compromise. A practitioner\'s complete risk classification framework.','Risk taxonomy (draft)'],['W3','Risk Framework Design','Identification, assessment, prioritization, and mitigation planning for AI deployment risks.','Risk framework (Build Studio)'],['W4','The EU AI Act','Risk tiers, compliance obligations, prohibited uses, and implications for US-based organizations.','EU AI Act compliance analysis'],['W5','US AI Governance Landscape','Executive orders, NIST AI RMF, sector-specific requirements (financial, healthcare, legal).','US compliance map'],['W6','AI Auditing & Security Review','Data audits, model behavior audits, and organizational accountability reviews — plus red-teaming protocols, adversarial testing, and security penetration testing for AI systems. Designing audit programs that cover both governance accountability and trustworthiness under attack.','Audit + security review protocol (Build Studio)'],['W7','Algorithmic Accountability','Bias, fairness, transparency, and redress mechanisms. Accountability analysis for Build Studio system.','Accountability analysis (Build Studio)'],['W8 \u2605 BUILD STUDIO','Governance Review (Sprint 3)','Teams present risk framework and governance plan for Build Studio sponsor deployment.','Risk framework (v1, final)'],['W9','Responsible AI Program Design','Governance committees, accountability assignments, review cadences. Program design for org contexts.','Responsible AI program brief'],['W10','Incident Response for AI Systems','Failure classification, escalation, communication, remediation. Incident response protocol design.','Incident response protocol (Build Studio)'],['W11','Governing Agentic AI','Oversight structures, override mechanisms, audit trails for autonomous AI action.','Agentic governance brief'],['W12','Vendor Security, Supply Chain Risk & Third-Party AI Governance','AI supply chain security: model provenance, training data integrity, and third-party model risks. Due diligence frameworks that include security requirements. Contractual security obligations, data handling standards, and audit rights for AI vendors.','Vendor security governance checklist (Build Studio)'],['W13','AI Security Incidents & Trustworthy Systems','Case studies in AI security failures: adversarial attacks in production, model poisoning incidents, and data breaches via AI systems. What governance structures failed and why. Designing trustworthy AI systems that hold up under adversarial conditions.','Security incident case analysis; trustworthy AI governance checklist'],['W14','Governance Documentation & Handoff','Building the governance package for production deployment. What the handoff must contain.','Governance handoff package (Build Studio)'],['W15 \u2605 FINAL','Final Governance Presentations','Full governance framework for Build Studio sponsor deployment. External governance practitioners in Q&A.','Final governance package + presentation']]},
+
+mis682:{num:'MIS 682',title:'Organizing with AI: Internal & Customer Perspectives',credits:'3 credits \u00b7 Spring \u2014 Business Certificate',
+description:'Examines how AI systems transform workflows, roles, and relationships inside enterprises and between enterprises and their customers. Students analyze the internal (employee-facing) and external (customer-facing) dimensions of AI deployment, with attention to change management, workforce redesign, AI product management, customer experience, and measurement of operational impact.',
+objectives:'Successful AI deployment is not just a technical problem \u2014 it is an organizational one. Develops students\' ability to design and manage the organizational changes that AI deployments require: from identifying which workflows to transform, to engaging frontline employees, to building customer-facing AI experiences that create rather than destroy trust.',
+outcomes:['Analyze an organization\'s workflow portfolio to identify high-value AI deployment opportunities and workforce transformation risks.','Design a change management plan for an AI deployment, including stakeholder communication strategy, training design, and adoption monitoring.','Evaluate the impact of AI on workforce roles and develop reskilling and role-redesign interventions appropriate to the organizational context.','Design customer-facing AI experiences that build trust, communicate AI-generated outputs appropriately, and preserve brand integrity.','Develop a measurement framework for organizational AI impact, including productivity, satisfaction, revenue, and governance metrics.','Apply regulatory and ethical considerations \u2014 algorithmic accountability, worker protection, customer rights \u2014 to organizational AI deployment decisions.','Develop and communicate an AI product roadmap, prioritize AI features in an organizational context, and structure cross-functional AI teams to execute a deployment strategy.'],
+grading:[['Workflow & change readiness analysis (Build Studio)','25%'],['Case study analyses (2)','20%'],['Midterm: change management plan (Build Studio)','20%'],['Final: impact measurement presentation to sponsor','25%'],['Discussion leadership & participation','10%']],
+schedule:[['W1','Why AI Deployments Fail','The organizational challenge behind the technical one. Survey of failure modes: poor change management, adoption gaps, measurement absence.','--'],['W2','Workflow Analysis for AI Transformation','Mapping processes for AI intervention. High-value vs. high-risk workflows. Process-as-prescribed vs. process-as-performed dynamics.','Workflow audit (Build Studio sponsor)'],['W3','Stakeholder Mapping & Change Readiness','Stakeholder analysis tools. Change readiness assessment frameworks. Champions, skeptics, critical adoption barriers.','Stakeholder map + readiness assessment'],['W4','Change Management Frameworks','Kotter\'s 8-step, ADKAR, and AI-specific change models. What translates when AI is the driver of change.','--'],['W5','The Internal View: AI & Employee Work','How AI transforms employee roles, routines, and expertise. Automation vs. augmentation. The frontier worker gap.','Internal impact analysis (Build Studio)'],['W6 \u2605 CASE','Workforce Redesign & Reskilling','Evidence on AI-driven workforce transformation. Role redesign, reskilling investments, adoption intensity research.','Case study analysis #1'],['W7','Human-AI Collaboration Design','When to automate, when to augment, when to keep humans in the loop. Designing handoffs and override mechanisms.','--'],['W8 \u2605 CASE','Enterprise AI at Scale: BBVA, John Deere, Virgin Atlantic','What made large-scale AI transformations succeed. Analysis of organizational, technical, and governance factors.','Case study analysis #2'],['W9','The Customer View: AI in Service Delivery','AI in customer service, experience design, and support. When AI improves vs. degrades the customer relationship.','--'],['W10','Trust, Explainability & Customer-Facing AI','How customers form and lose trust in AI systems. Communicating uncertainty. Explainability as a design requirement.','Customer-facing AI design critique (Build Studio)'],['W11','Measuring Organizational AI Impact','KPI frameworks, ROI models, and the limits of measurement. Productivity, satisfaction, and revenue attribution.','Impact measurement framework (Build Studio)'],['W12 \u2605 BUILD STUDIO','Build Studio Integration','Class coordinated with Sprint 3. Students present organizational change and impact measurement plans for live deployment.','Change management + impact plan (final draft)'],['W13','Algorithmic Accountability & Worker Protection','Regulatory landscape: AI Act, worker rights, customer rights, accountability mechanisms.','--'],['W14','AI Product Management & Team Design','AI product lifecycle management, roadmapping, and feature prioritization. Building cross-functional AI teams: who you need (ML engineers, data engineers, AI PMs, domain experts) and how to structure them. PM–engineering communication patterns and aligning AI product roadmaps with organizational transformation goals.','AI product roadmap (Build Studio project); AI team design recommendation'],['W15 \u2605 FINAL','Final Impact Presentations','Organizational transformation plans + impact measurement results for Build Studio sponsor. External practitioners in Q&A.','Final presentation + full impact report']]},
+
+studio:{num:'MIS 676 / MIS 677 / MIS 678',title:'Build Studio',credits:'9 credits total \u00b7 3 per semester \u00b7 Summer, Fall & Spring',
+description:'A year-long, sponsor-embedded project course in which cross-disciplinary graduate teams respond to real AI deployment challenges submitted by partner organizations. Students move from problem framing (Phase 0) through architecture and prototype (Phase I) to production deployment and impact measurement (Phase II). Teams apply IS frameworks \u2014 design science, data strategy, agentic system design, and organizational change management \u2014 to build and ship real AI systems for real organizations.',
+objectives:'Trains students to execute the full arc of enterprise AI deployment \u2014 from ambiguous problem to production system. Phase 0 establishes the sponsor relationship and defines the problem space. Phase I applies the Technical Certificate to design, architect, and prototype a system. Phase II applies the Business Certificate to govern, deploy, and measure. At every phase, students operate as forward-deployed engineers: accountable to real stakeholders, building toward measurable impact.',
+outcomes:['Translate an ambiguous organizational challenge into a scoped AI deployment opportunity using design science methodology.','Conduct structured stakeholder and user research; synthesize findings into system requirements and deployment constraints.','Design and build progressively higher-fidelity AI systems \u2014 from architecture diagram to working prototype to production deployment \u2014 across three phases.','Apply technical frameworks (AI systems architecture, data engineering, agentic design) and organizational frameworks (change management, governance, impact measurement) to deployment decisions.','Validate a deployed AI system with real users and articulate evidence-based learnings and ROI metrics to executive stakeholders.','Present a product narrative, working demo, and governance handoff package to technical and non-technical audiences.','Collaborate effectively in a cross-functional team across a 12-month sponsor engagement.'],
+grading:[['Phase 0 presentation + artifacts (Summer)','15%'],['Phase I Sprint 1 \u2014 Architecture review (Fall)','15%'],['Phase I Sprint 2 \u2014 Working demo (Fall)','20%'],['Phase II Sprint 3 \u2014 Deployment review (Spring)','15%'],['Phase II Final \u2014 Capstone presentation + live system (Spring)','25%'],['Weekly progress logs & advisor meetings','5%'],['Peer evaluation (end of each phase)','5%']],
+phases:[
+{label:'Phase 0 \u2014 Orientation & Problem Framing (Summer \u00b7 MIS 676)',cls:'s-hdr',rows:[['W S1','Sponsor Reveal','Challenge presentation from partner org. Build system diagram: users, data flows, existing processes, system boundaries.','System diagram (v1); stakeholder map'],['W S2','Stakeholder & User Research','Structured interviews with sponsor stakeholders and end users (min. 5). Affinity mapping. Build initial personas.','Interview log (n\u22655); Personas (v1)'],['W S3','AI Opportunity Scoping','Individual opportunity sketches (10/person), team convergence. AI feature scoping: genuine value vs. noise.','Opportunity sketches; AI rationale memo'],['W S4','Problem Brief & Project Charter','Converge on core problem definition, success metrics, governance plan, and sponsor communication cadence.','Project charter; success metrics framework'],['W S5','Architecture Preview','Early system architecture informed by AI Stack bootcamp. Data sources, integration points, key risks.','Architecture sketch (v0); risk register (v1)'],['W S6 \u2605 SPRINT 0','Phase 0 Presentation','Present problem framing, personas, and charter to sponsor organization and faculty panel.','Phase 0 deck + sponsor sign-off; updated charter']]},
+{label:'Phase I \u2014 Discovery, Architecture & Prototype (Fall \u00b7 MIS 677)',cls:'f-hdr',rows:[['W F1','Kickoff & Sprint Planning','Reestablish sponsor relationship. Set sprint cadence for Fall. Align project with MIS 670 architecture concepts.','Fall sprint plan; updated stakeholder map'],['W F2','Data Audit & Pipeline Design','Inventory sponsor\'s data assets. Map to system requirements. Identify gaps and integration risks.','Data audit report; pipeline sketch'],['W F3','System Architecture (v1)','Full architecture diagram: models, APIs, data flows, permissions, security layers. Parallel to MIS 670 content.','System architecture diagram (v1)'],['W F4','Lo-Fi Prototype','First working prototype demonstrating core AI behavior. Narrative-complete product (NCP).','Working prototype (v0); user stories'],['W F5 \u2605 SPRINT 1','Architecture Review','Present system architecture to sponsor and faculty panel. Walk through data flows, AI rationale, risk register.','Sprint 1 deck + architecture walkthrough'],['W F6','RAG & Data Infrastructure','Implement retrieval pipeline (parallel to MIS 671). Data quality checks, chunking, embedding strategy.','RAG pipeline implementation; data quality log'],['W F7','Prototype Build Week','First AI-integrated build week. Cursor / Vercel AI SDK / relevant toolchain.','Prototype (v1) with live AI feature'],['W F8','User Testing Round 1','Structured testing with min. 5 users from sponsor org.','User findings log (n\u22655)'],['W F9','Agentic Feature Design','Scope and design agentic component (parallel to MIS 672). HITL decisions, orchestration plan.','Agent design spec; HITL protocol'],['W F10 \u2605 SPRINT 2','Working Demo','Present working demo to sponsor. No slides during demo. User testing results, data architecture, AI implementation rationale.','Sprint 2 deck + demo; findings log (n\u226510)'],['W F11','Tech Talk & Architecture Final','IS students lead 4-min architecture walkthrough. Finalize stack decisions, integration approach.','Tech Talk (recorded); architecture diagram (final)'],['W F12','Interface & Interaction Design','Human+AI interface design: communicating AI outputs, uncertainty, explainability, trust.','Updated prototype with UI polish'],['W F13','Validation Sprint','Final validation with min. 5 additional users. NCP must be feature-complete. Crit with practitioners.','NCP (feature-complete); crit feedback summary'],['W F14','Phase I Wrap & Handoff Prep','Document Phase I learnings. Prepare governance and deployment brief for Phase II.','Phase I retrospective; deployment brief (v1)']]},
+{label:'Phase II \u2014 Deployment, Governance & Impact (Spring \u00b7 MIS 678)',cls:'sp-hdr',rows:[['W Sp1','Deployment Planning','Establish production deployment plan. Identify governance requirements, compliance constraints, change mgmt needs.','Deployment plan; governance requirements doc'],['W Sp2','Governance Framework Design','Apply MIS 681 frameworks: risk audit, responsible deployment checklist, compliance mapping.','Governance framework (v1); risk register (final)'],['W Sp3','Change Management Planning','Stakeholder communication plan. Training materials. Internal + external user onboarding strategy.','Change management plan; onboarding materials'],['W Sp4','Production Deployment Sprint','Deploy AI system to sponsor\'s production environment. First real users. Monitor and document issues.','Production deployment log; issue tracker'],['W Sp5 \u2605 SPRINT 3','Deployment Review','Present live system to sponsor. Governance framework, user onboarding, known issues, remediation plan.','Sprint 3 deck + live demo; governance doc'],['W Sp6','Impact Measurement Design','Define KPIs aligned with Phase 0 charter. Build measurement dashboard. Connect to MIS 682 frameworks.','KPI framework; measurement dashboard (v1)'],['W Sp7','Iteration & Refinement','Incorporate first-wave user feedback from production. Prioritize refinements. Run second validation sprint.','Iteration log; user findings (production cohort)'],['W Sp8','Organizational Integration','Work with sponsor on embedding system into daily workflows. Document process changes, training outcomes.','Process integration report'],['W Sp9','Scaling & Generalization','Identify deployment patterns that could generalize to other use cases within the sponsor org.','Generalization memo; expansion opportunity map'],['W Sp10 \u2605 SPRINT 4','Impact Presentation','Impact metrics and ROI narrative to sponsor leadership. No slides during live system walkthrough.','Sprint 4 deck + live system demo; KPI dashboard'],['W Sp11','Governance Handoff Preparation','Prepare full governance handoff: documentation, monitoring protocols, HITL procedures.','Governance handoff package (v1)'],['W Sp12','Final Validation & User Research','Final structured user research with production cohort (n\u226515 cumulative). Full validation arc.','Full user findings log; validation summary'],['W Sp13','Reflection & Practitioner Crit','Crit session with external practitioners. Individual reflection articles due.','Reflection article (individual); crit summary'],['W Sp14 \u2605 CAPSTONE','Final Presentation','8-min presentation to sponsor + faculty: deployed system demo, impact metrics, governance handoff, lessons learned.','Final deck + live demo; full governance package; team retrospective']]}
+]}};
+
+let activeGroupId=null;
+function openGroup(gid,el){
+  if(activeGroupId===gid&&document.getElementById('syl-panel').classList.contains('open')){closeGroup();return;}
+  document.querySelectorAll('.cc.active,.phase.active').forEach(e=>e.classList.remove('active'));
+  document.querySelectorAll('[data-group="'+gid+'"]').forEach(e=>e.classList.add('active'));
+  activeGroupId=gid;
+  renderGroup(gid);
+  const p=document.getElementById('syl-panel');
+  p.classList.add('open');
+  setTimeout(()=>p.scrollIntoView({behavior:'smooth',block:'start'}),80);
+}
+function closeGroup(){
+  document.getElementById('syl-panel').classList.remove('open');
+  document.querySelectorAll('.cc.active,.phase.active').forEach(e=>e.classList.remove('active'));
+  activeGroupId=null;
+}
+function renderGroup(gid){
+  const g=G[gid];
+  document.getElementById('syl-lbl').textContent=g.label;
+  let left='',right='';
+  if(gid==='studio'){left=studioLeft();right=studioRight();}
+  else{left=groupLeft(g);right=groupRight(g);}
+  document.getElementById('syl-body').innerHTML='<div class="syl-left">'+left+'</div><div class="syl-right">'+right+'</div>';
+}
+function studioLeft(){
+  const c=C.studio;
+  return '<div class="syl-cnum">'+c.num+'</div><h2 class="syl-title">'+c.title+'</h2><span class="syl-credits">'+c.credits+'</span>'+
+  '<div class="sec-lbl">Program Role</div><p class="syl-txt">'+c.description+'</p>'+
+  '<div class="sec-lbl">Course Objectives</div><p class="syl-txt">'+c.objectives+'</p>'+
+  '<div class="sec-lbl">Course Outcomes</div><ol class="syl-ol">'+c.outcomes.map(o=>'<li>'+o+'</li>').join('')+'</ol>'+
+  '<div class="sec-lbl">Assessment</div><div class="grading"><div class="g-hdr">Assessment Breakdown</div>'+
+  c.grading.map(([l,p])=>'<div class="g-row"><span>'+l+'</span><span>'+p+'</span></div>').join('')+'</div>';
+}
+function studioRight(){
+  return C.studio.phases.map(ph=>'<div class="phase-hdr '+ph.cls+'">'+ph.label+'</div><div class="ccr">'+tbl(ph.rows)+'</div>').join('');
+}
+function groupLeft(g){
+  const ac=g.accent==='summer'?'var(--summer-c)':g.accent==='tech'?'var(--tech-c)':'var(--biz-c)';
+  const perCourse=g.courses.map((cid,i)=>{
+    const c=C[cid];
+    return (i>0?'<hr class="course-divider">':'')+
+    '<div class="cert-outcomes-block"><div class="csub-lbl"><span class="cnbadge">'+c.num+'</span>'+c.title+'</div>'+
+    '<ol class="syl-ol">'+c.outcomes.map(o=>'<li>'+o+'</li>').join('')+'</ol></div>';
+  }).join('');
+  const gradRows=g.courses.map(cid=>{
+    const c=C[cid];
+    return '<div class="g-row" style="font-weight:600"><span>'+c.num+'</span><span style="font-family:\'DM Mono\',monospace;font-size:9px;color:#888">'+c.credits.split('\u00b7')[0].trim()+'</span></div>'+
+    c.grading.map(([l,p])=>'<div class="g-row" style="padding-left:14px"><span>'+l+'</span><span>'+p+'</span></div>').join('');
+  }).join('<div style="height:1px;background:var(--rule);margin:3px 0"></div>');
+  return '<div class="syl-cnum" style="color:'+ac+'">'+g.tagline+'</div>'+
+  '<h2 class="syl-title">'+g.label+'</h2><span class="syl-credits">&nbsp;</span>'+
+  '<div class="sec-lbl">Certificate Overview</div><p class="syl-txt">'+g.description+'</p>'+
+  '<div class="sec-lbl">Certificate-Level Outcomes</div><ol class="syl-ol">'+g.certOutcomes.map(o=>'<li>'+o+'</li>').join('')+'</ol>'+
+  '<div class="sec-lbl">Per-Course Outcomes</div>'+perCourse+
+  '<div class="sec-lbl">Assessment</div><div class="grading"><div class="g-hdr">Assessment by Course</div>'+gradRows+'</div>';
+}
+function groupRight(g){
+  const hdr=g.accent==='summer'?'s-hdr':g.accent==='tech'?'f-hdr':'sp-hdr';
+  return g.courses.map(cid=>{
+    const c=C[cid];
+    return '<div class="phase-hdr '+hdr+'">'+c.num+' \u00b7 '+c.title+' \u00b7 '+c.credits.split('\u00b7')[0].trim()+'</div>'+
+    '<div class="ccr"><div class="ccr-meta"><div class="ccr-desc">'+c.description+'</div><div class="ccr-obj"><strong>Objectives:</strong> '+c.objectives+'</div></div>'+
+    tbl(c.schedule)+'</div>';
+  }).join('');
+}
+function tbl(rows){
+  return '<table class="syl-tbl"><thead><tr><th>Week</th><th>Topic</th><th>Activity / Reading</th><th>Deliverables</th></tr></thead><tbody>'+
+  rows.map(([w,t,a,d])=>'<tr class="'+(w.includes('\u2605')?'sprint':'')+'"><td>'+w+'</td><td><strong>'+t+'</strong></td><td>'+a+'</td><td>'+d+'</td></tr>').join('')+
+  '</tbody></table>';
+}
+</script>
+</body>
+</html>
