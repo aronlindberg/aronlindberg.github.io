@@ -198,6 +198,23 @@ nav a.active {
   max-width: 44ch;
 }
 
+.hero-hot-takes {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 52ch;
+}
+
+.hot-take {
+  font-size: 0.9rem;
+  color: var(--text-muted, #666);
+  border-left: 2px solid var(--accent);
+  padding-left: 1rem;
+  margin: 0;
+  font-style: italic;
+}
+
 .hero-ctas {
   display: flex;
   align-items: center;
