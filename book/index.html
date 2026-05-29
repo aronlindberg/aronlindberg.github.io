@@ -172,6 +172,23 @@ body{font-family:var(--font-sans);background:var(--cream);color:var(--ink);paddi
 .post-beats li::before{content:counter(b);counter-increment:b;font-family:var(--font-mono);font-size:8.5px;color:var(--gold);position:absolute;left:0;top:6px;}
 .posts-sec-lbl{font-family:var(--font-mono);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:#888;border-bottom:1px solid var(--rule);padding-bottom:4px;margin-bottom:10px;margin-top:0;}
 
+/* FULL POST PANEL */
+.fullpost-wrap{margin-top:32px;border-top:2px solid var(--rule);padding-top:24px;}
+.fullpost-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.fullpost-lbl{font-family:var(--font-mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);}
+.fullpost-copy{font-family:var(--font-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border:1px solid var(--rule);background:#fff;padding:5px 12px;border-radius:2px;color:var(--navy);}
+.fullpost-copy:hover{background:var(--navy);color:#fff;border-color:var(--navy);}
+.fullpost-copy.copied{background:#2a6a3a;color:#fff;border-color:#2a6a3a;}
+.fullpost-box{background:#fff;border:1px solid var(--rule);border-radius:3px;padding:28px 32px;font-family:var(--font-sans);font-size:13.5px;line-height:1.75;color:var(--ink);white-space:pre-wrap;max-height:600px;overflow-y:auto;}
+.fullpost-box::-webkit-scrollbar{width:4px;}
+.fullpost-box::-webkit-scrollbar-thumb{background:var(--rule);}
+.fullpost-box h2{font-family:var(--font-serif);font-size:20px;margin:24px 0 8px;line-height:1.2;}
+.fullpost-box p{margin-bottom:14px;}
+.fullpost-box p:last-child{margin-bottom:0;}
+.fullpost-box .fp-rule{border:none;border-top:1px solid var(--rule);margin:22px 0;}
+.fullpost-box .fp-meta{font-family:var(--font-mono);font-size:10px;color:#888;margin-bottom:20px;}
+.fullpost-box .fp-cite{font-size:11.5px;color:#777;font-style:italic;}
+
 /* FOOTER */
 .footer{margin-top:30px;padding-top:16px;border-top:1px solid var(--rule);display:flex;gap:40px;font-size:11px;color:#888;}
 .footer a{color:var(--navy);text-decoration:none;}
@@ -276,7 +293,7 @@ body{font-family:var(--font-sans);background:var(--cream);color:var(--ink);paddi
         <div class="ch-part">Introduction</div>
         <div class="ch-num">00</div>
         <div class="ch-title">A Summer at the Edge</div>
-        <div class="ch-sub">Four teams. Nine weeks. Building with machines.</div>
+        <div class="ch-sub">Four teams. Nine weeks. A beta test.</div>
         <div class="ch-cases"><span class="case-dot">A</span><span class="case-dot">B</span><span class="case-dot">C</span></div>
       </div>
       <div class="ch" data-key="ch-1" onclick="openPanel('ch-1',this)">
@@ -380,14 +397,14 @@ body{font-family:var(--font-sans);background:var(--cream);color:var(--ink);paddi
 // Substack post outlines: 12 chapters × 4 posts
 const POSTS = {
 'ch-intro': [
-  { n:'Post 1', title:'Build Studio: The Brief', hook:'Four teams. Nine weeks. Build something real for real users — with AI as a full design partner. This is what we\'re doing and why.',
-    beats:['What Build Studio is: not a course with a syllabus but a studio with a culture — building constantly, entrepreneurial mindset, centering humans, embracing experimentation','The four teams and their challenges: a safety drone, an off-road autonomous vehicle, an AI research agent, and a fourth project pushing into new territory','What "build something real" actually means: working prototypes, real users, real constraints — not slide decks or demos','Why this summer is the right moment to do this: the tools are powerful enough to build with, unpredictable enough to require judgment, and the field hasn\'t caught up yet'] },
+  { n:'Post 1', title:'Build Studio: The Beta Test', hook:'This summer is a beta test — for a new kind of studio, a new kind of process, and a new set of ideas about what it means to build with machines while centering humans.',
+    beats:['What Build Studio is: not a course with a syllabus but a studio with a culture — building constantly, entrepreneurial mindset, centering humans, embracing experimentation','The four teams: a voice-commanded safety drone, an off-road autonomous vehicle, an AI research agent, and a video documentary on how young people experience AI and imagine their futures','Why "beta test": the methods, the culture, and the framework are all being developed alongside the projects — nothing here is settled','What all four teams share: real users, real constraints, AI as a genuine collaborator at every stage — not a shortcut bolted on at the end'] },
   { n:'Post 2', title:'The Jagged Edge of Performance', hook:'These tools are extraordinary. They are also wrong in ways you can\'t predict, and sometimes they restrict the very creativity you brought them in to amplify.',
-    beats:['What the jagged edge is: not a smooth capability curve but a surface with peaks and sudden drops — extraordinary in some places, broken or limiting in others','Where the tools exceed expectation: synthesis speed, variation generation, pattern recognition across domains','Where the tools fail or constrain: confidently wrong outputs, narrowing toward plausible-but-generic solutions, creative restriction when you need genuine divergence','The discipline this requires: you can\'t trust the tool as a reliable instrument — you have to know the terrain'] },
+    beats:['What the jagged edge is: not a smooth capability curve but a surface with sharp peaks and sudden drops — extraordinary in some places, unreliable or limiting in others','Where the tools genuinely exceed human capacity: synthesis speed, variation generation, pattern recognition across domains, tireless iteration','The four pitfalls this book is built around: hallucination (confidently wrong), creativity reduction (narrowing toward generic), cognitive offloading (turning off your own thinking), confident misdirection (leading you the wrong way with conviction)','Why you can\'t just be cautious: the power is real and the work requires it — the discipline is learning to leverage it while staying alert to where it fails'] },
   { n:'Post 3', title:'The Gap No One Has Closed', hook:'We\'ve learned to center the human in design. We have no idea how to build together with machines. That\'s what this summer is for.',
-    beats:['What current design, build, and engineering processes do well: they have good frameworks for centering users, iterating on feedback, and shipping working products','What they don\'t do: integrate AI as a genuine collaborator at every stage — they treat it as a tool, a shortcut, or an add-on','The specific gap: not "how do I use AI" but "how do we build together" — shared judgment, shared authorship, shared accountability','Why this gap hasn\'t been closed: the tools moved faster than the practice, and the people who build practices (designers, engineers, educators) are still catching up'] },
+    beats:['What current design, build, and engineering processes do well: centering users, iterating on feedback, shipping working products — these frameworks are real and they work','What they don\'t do: integrate AI as a genuine collaborator at every stage — they treat it as a tool, a shortcut, or a feature to add at the end','The specific gap: not "how do I use AI" but "how do we build together" — shared judgment, shared authorship, accountability for what the system produces','Why this gap hasn\'t been closed yet: the tools moved faster than the practice, and nobody has written the practitioner playbook — this book is an attempt'] },
   { n:'Post 4', title:'A Book Both Planned and Emergent', hook:'This book comes from an interaction between what I think I know, what the teams discover this summer, and what happens when I work through it all with AI. It will not be exactly what I planned.',
-    beats:['The planned part: a framework for building with machines while centering humans — five stages, each rebuilt for the co-creation era','The emergent part: the summer will surface things I haven\'t anticipated, and those things will reshape the argument','The role of AI in writing the book itself: working with AI to structure, test, and develop the argument — making the book a demonstration of its own thesis','The forward-looking commitment: these posts are written prospectively, not as a recap — the argument is being made in real time, and readers are part of the process'] }
+    beats:['The planned part: a framework for leveraging AI\'s power while avoiding its pitfalls — structured around five design stages, each rebuilt for the co-creation era','The emergent part: the summer will surface things I haven\'t anticipated, and the best of those will reshape the argument','The role of AI in writing the book itself: working with AI to structure, challenge, and develop the argument — making the book a live demonstration of its own thesis','The forward-looking stance: these posts are written prospectively, not as a recap — the argument is being made in real time alongside the work, and the pitfalls are real ones we\'re navigating as we go'] }
 ],
 'ch-1': [
   { n:'Post 1', title:'The Frontier Is Not a Line', hook:'AI capability doesn\'t improve evenly. The map keeps shifting. That\'s the design problem.',
@@ -501,6 +518,144 @@ const POSTS = {
 ]
 };
 
+const FULLPOSTS = {
+'ch-intro': {
+plain: `A SUMMER AT THE EDGE
+Build Studio, Summer 2026. A beta test for building with machines while centering humans.
+
+---
+
+In June 2026, four teams walked into a studio at Stevens Institute of Technology with a single instruction: build something real for real users, with AI as a full partner in the process. No templates. No prescribed methods. Build culture, not course culture — which means four things: build constantly, bring an entrepreneurial mindset, keep humans at the center of every decision, and embrace experimentation as a way of thinking, not just a technique.
+
+By August, all four teams will have something working.
+
+The first team is building a voice-commanded safety drone: a quadcopter you can talk to, describe a workplace hazard, and send to investigate — designed for environments too dangerous for the humans who need information from them. The second is building an autonomous off-road vehicle that navigates without maps, lanes, or predictable surfaces, for disaster response, agriculture, and environments where infrastructure doesn't exist. The third is building an AI research agent: an autonomous thinking partner for academic work, designed to surface the assumptions researchers can't see in their own reasoning and make the logic of knowledge construction more transparent.
+
+The fourth team is doing something different. They're making a documentary — a video project about how young people today actually experience AI: how it shows up in their daily lives, how it shapes their sense of what's possible, and how they imagine their futures in a world being reshaped around them. No prototype, no system architecture. Just cameras, interviews, and the most important design question of all: what do real people — people who didn't choose to be at the frontier — actually think is happening to them?
+
+All four projects are cases. All four will run as evidence through this book.
+
+---
+
+THE PROBLEM THIS BOOK IS SOLVING
+
+There is a large and growing library of books about AI and work. Ethan Mollick's Co-Intelligence (2024) is among the most useful — genuinely observant and honest about what working with AI actually feels like. Mollick introduces the idea of the "jagged frontier" of AI capability: not a smooth curve of improvement but an uneven surface where AI is startlingly capable in some places and unexpectedly broken in others, and where the terrain shifts faster than our mental maps can update.
+
+But there is a specific question the growing library doesn't answer: what happens to the design and build process — the actual practice of making things for people — when AI becomes a genuine collaborator at every stage?
+
+We have excellent answers to the question of how to center humans in design. The IDEO Field Guide to Human-Centered Design lays out three phases — Inspiration, Ideation, Implementation — and the specific practices that make each one work. The Luma Institute's Innovating for People gives practitioners 36 methods organized around three modes: looking, understanding, making. The HBR collection on design thinking assembles the best arguments for why these practices belong in every organization. These are serious, practical frameworks. They work.
+
+What they were not designed for is a process in which AI participates at every stage: pre-field synthesis before discovery, competing framings generated in seconds, a hundred ideas before breakfast, a working prototype by afternoon. The economics of design have changed. The speed has changed. And the accountability structure — who is responsible for what got made — has changed in ways that none of these frameworks address.
+
+That is the gap. This book is an attempt to close it.
+
+---
+
+THE CRAFTSMAN PROBLEM
+
+Richard Sennett opens The Craftsman (2008) with a deceptively simple claim: craftsmanship means doing something well for its own sake. The carpenter who planes a door until it fits perfectly — not because the client will notice, but because imprecision is a form of dishonesty to the material — represents something important about what it means to be skilled. Sennett traces this ethic through history and arrives at a question that has become newly urgent: what happens to craftsmanship when the relationship between hand and mind is disrupted?
+
+AI disrupts that relationship in a specific way. It can generate, very quickly, outputs that look like the product of sustained craft — a well-structured argument, a working piece of code, a plausible design solution — without the understanding that normally underlies those outputs. The output arrives without the learning. The danger, for the person using the tool, is that they begin to mistake received fluency for developed judgment.
+
+This is what I mean by cognitive offloading: not laziness, but the gradual erosion of the thinking you used to do yourself because the tool does a version of it faster. Mollick warns about this in Co-Intelligence: the risk isn't that AI will replace your thinking, but that you'll stop thinking because AI makes it easy not to. Sennett would recognize the pattern. It is what happens to any craftsperson who starts depending on a tool they don't fully understand.
+
+The other pitfall the craftsman analogy illuminates is creativity reduction. AI systems trained on existing work tend toward the plausible center — toward outputs that fit patterns rather than break them. This is useful for synthesis and harmful for genuine innovation. When you're trying to discover something genuinely new about how a user experiences a problem, you need to be surprised. AI, most of the time, is not in the business of surprise. It is in the business of coherent extrapolation from what already exists.
+
+The teams this summer will encounter both of these failure modes. The question is not whether they'll hit the jagged edge. They will. The question is whether they'll recognize it when they do, and whether they'll have the discipline to work through it rather than accept whatever output is in front of them.
+
+---
+
+THE FOUR PITFALLS
+
+This book is organized around a framework for leveraging AI's power while actively resisting its failure modes. There are four of them, and they appear at every stage of the design and build process:
+
+Hallucination. AI systems generate confident outputs that are factually wrong — not obviously wrong, but wrong in the way that passes a quick read and only reveals itself under scrutiny. Teams that move fast and don't verify will build on false foundations.
+
+Creativity reduction. AI narrows the option space toward the probable. When you ask it to generate ideas, it generates ideas that fit existing patterns. The discipline required is structured divergence: using AI to expand range while insisting on human judgment about what is genuinely new versus what is merely coherent.
+
+Cognitive offloading. The more you rely on AI to think, the less you think yourself. This is not a metaphor — it is a documented effect. The teams that struggle this summer will be the ones who use AI to avoid hard thinking, not the ones who use it to do hard thinking faster.
+
+Confident misdirection. The most dangerous failure mode. AI leads you convincingly in the wrong direction — a persuasive framing that misses the real problem, a well-reasoned rationale for a solution nobody needs. The danger is proportional to how fluently the output is written. The better AI gets at generating text, the more important it becomes to evaluate the argument, not just the prose.
+
+These are not reasons to avoid AI. They are reasons to use it with discipline. Guarding creativity is not the same as refusing the tools. It is knowing where the tools fail and building your process around that knowledge.
+
+---
+
+WHY A BETA TEST
+
+This summer is a beta test in the literal sense: we are running the process to see what breaks, so we can fix it before we hand it to others.
+
+Build Studio is a new kind of studio — not a design consultancy, not a university course, not a startup incubator, but something that takes the best of all three. The four teams are operating without a safety net: real users, real stakes, real AI tools at the frontier of what is currently possible. The methods in this book are being tested against their work in real time. What the teams discover will shape what the book argues.
+
+This means the book is both planned and emergent. The planned part is the framework: five stages of the design and build process, each one examined for what AI changes about what it requires of humans. The emergent part is the evidence: what the teams actually encounter, where the framework holds and where it breaks, what needs to be added that I didn't anticipate.
+
+I am also working on this book with AI. That is not a disclosure — it is a design decision. If the argument is that you can leverage AI's power while maintaining human judgment and creativity, then writing the book without AI would be a failure of nerve. The book should demonstrate what it argues.
+
+---
+
+WHAT COMES NEXT
+
+Each chapter maps to one or more stages of the design and build process, and asks the same question at a different point: where does AI help, where does it hurt, and what does the human need to do to stay in control of both?
+
+The chapters draw on all four cases as longitudinal evidence. The same teams, the same projects, nine weeks of real work against real constraints. The drone and the vehicle and the research agent push into the technical frontier of what AI can currently build. The documentary asks the question underneath all of it: what do the people most affected by AI futures actually think about them?
+
+The first two chapters are about stance and culture — the mental model and the organizational environment that make the rest possible. The middle seven are about the process itself, stage by stage. The final two are about what happens after: when the thing ships, and what the profession of building looks like when machines can do most of what we used to train people to do.
+
+The epilogue is about the thing AI can't do. It can discover. It can frame. It can generate, build, and validate. It cannot care.
+
+That, in the end, is what this summer is about.
+
+---
+
+References: Mollick, E. (2024). Co-Intelligence. Portfolio/Penguin. | IDEO (2015). The Field Guide to Human-Centered Design. IDEO.org. | Luma Institute (2012). Innovating for People. Luma Institute. | HBR's 10 Must-Reads on Design Thinking. Harvard Business Review Press. | Sennett, R. (2008). The Craftsman. Yale University Press.
+
+This post is part of the Co-Creation series. Each chapter of the book begins as a Substack post, written prospectively — before the argument is settled, while the evidence is still being gathered. Subscribe to follow the work as it develops.`,
+
+html: `<p class="fp-meta">Build Studio, Summer 2026 &middot; Introduction</p>
+<p>In June 2026, four teams walked into a studio at Stevens Institute of Technology with a single instruction: build something real for real users, with AI as a full partner in the process. No templates. No prescribed methods. Build culture, not course culture &mdash; which means four things: build constantly, bring an entrepreneurial mindset, keep humans at the center of every decision, and embrace experimentation as a way of thinking, not just a technique.</p>
+<p>By August, all four teams will have something working.</p>
+<p>The first team is building a voice-commanded safety drone: a quadcopter you can talk to, describe a workplace hazard, and send to investigate &mdash; designed for environments too dangerous for the humans who need information from them. The second is building an autonomous off-road vehicle that navigates without maps, lanes, or predictable surfaces, for disaster response, agriculture, and environments where infrastructure doesn&rsquo;t exist. The third is building an AI research agent: an autonomous thinking partner for academic work, designed to surface the assumptions researchers can&rsquo;t see in their own reasoning and make the logic of knowledge construction more transparent.</p>
+<p>The fourth team is doing something different. They&rsquo;re making a documentary &mdash; a video project about how young people today actually experience AI: how it shows up in their daily lives, how it shapes their sense of what&rsquo;s possible, and how they imagine their futures in a world being reshaped around them. No prototype, no system architecture. Just cameras, interviews, and the most important design question of all: what do real people &mdash; people who didn&rsquo;t choose to be at the frontier &mdash; actually think is happening to them?</p>
+<p>All four projects are cases. All four will run as evidence through this book.</p>
+<hr class="fp-rule">
+<h2>The Problem This Book Is Solving</h2>
+<p>There is a large and growing library of books about AI and work. Ethan Mollick&rsquo;s <em>Co-Intelligence</em> (2024) is among the most useful &mdash; genuinely observant and honest about what working with AI actually feels like. Mollick introduces the idea of the &ldquo;jagged frontier&rdquo; of AI capability: not a smooth curve of improvement but an uneven surface where AI is startlingly capable in some places and unexpectedly broken in others, and where the terrain shifts faster than our mental maps can update.</p>
+<p>But there is a specific question the growing library doesn&rsquo;t answer: what happens to the design and build process &mdash; the actual practice of making things for people &mdash; when AI becomes a genuine collaborator at every stage?</p>
+<p>We have excellent answers to the question of how to center humans in design. The IDEO <em>Field Guide to Human-Centered Design</em> lays out three phases &mdash; Inspiration, Ideation, Implementation &mdash; and the specific practices that make each one work. The Luma Institute&rsquo;s <em>Innovating for People</em> gives practitioners 36 methods organized around three modes: looking, understanding, making. The HBR collection on design thinking assembles the best arguments for why these practices belong in every organization. These are serious, practical frameworks. They work.</p>
+<p>What they were not designed for is a process in which AI participates at every stage: pre-field synthesis before discovery, competing framings generated in seconds, a hundred ideas before breakfast, a working prototype by afternoon. The economics of design have changed. The speed has changed. And the accountability structure &mdash; who is responsible for what got made &mdash; has changed in ways that none of these frameworks address.</p>
+<p>That is the gap. This book is an attempt to close it.</p>
+<hr class="fp-rule">
+<h2>The Craftsman Problem</h2>
+<p>Richard Sennett opens <em>The Craftsman</em> (2008) with a deceptively simple claim: craftsmanship means doing something well for its own sake. The carpenter who planes a door until it fits perfectly &mdash; not because the client will notice, but because imprecision is a form of dishonesty to the material &mdash; represents something important about what it means to be skilled. Sennett traces this ethic through history and arrives at a question that has become newly urgent: what happens to craftsmanship when the relationship between hand and mind is disrupted?</p>
+<p>AI disrupts that relationship in a specific way. It can generate, very quickly, outputs that look like the product of sustained craft &mdash; a well-structured argument, a working piece of code, a plausible design solution &mdash; without the understanding that normally underlies those outputs. The output arrives without the learning. The danger, for the person using the tool, is that they begin to mistake received fluency for developed judgment.</p>
+<p>This is what I mean by cognitive offloading: not laziness, but the gradual erosion of the thinking you used to do yourself because the tool does a version of it faster. Mollick warns about this in <em>Co-Intelligence</em>: the risk isn&rsquo;t that AI will replace your thinking, but that you&rsquo;ll stop thinking because AI makes it easy not to. Sennett would recognize the pattern. It is what happens to any craftsperson who starts depending on a tool they don&rsquo;t fully understand.</p>
+<p>The other pitfall the craftsman analogy illuminates is creativity reduction. AI systems trained on existing work tend toward the plausible center &mdash; toward outputs that fit patterns rather than break them. This is useful for synthesis and harmful for genuine innovation. When you&rsquo;re trying to discover something genuinely new about how a user experiences a problem, you need to be surprised. AI, most of the time, is not in the business of surprise. It is in the business of coherent extrapolation from what already exists.</p>
+<hr class="fp-rule">
+<h2>The Four Pitfalls</h2>
+<p>This book is organized around a framework for leveraging AI&rsquo;s power while actively resisting its failure modes. There are four of them, and they appear at every stage of the design and build process:</p>
+<p><strong>Hallucination.</strong> AI systems generate confident outputs that are factually wrong &mdash; not obviously wrong, but wrong in the way that passes a quick read and only reveals itself under scrutiny. Teams that move fast and don&rsquo;t verify will build on false foundations.</p>
+<p><strong>Creativity reduction.</strong> AI narrows the option space toward the probable. When you ask it to generate ideas, it generates ideas that fit existing patterns. The discipline required is structured divergence: using AI to expand range while insisting on human judgment about what is genuinely new versus what is merely coherent.</p>
+<p><strong>Cognitive offloading.</strong> The more you rely on AI to think, the less you think yourself. The teams that struggle this summer will be the ones who use AI to avoid hard thinking, not the ones who use it to do hard thinking faster.</p>
+<p><strong>Confident misdirection.</strong> The most dangerous failure mode. AI leads you convincingly in the wrong direction &mdash; a persuasive framing that misses the real problem, a well-reasoned rationale for a solution nobody needs. The danger is proportional to how fluently the output is written. The better AI gets at generating text, the more important it becomes to evaluate the argument, not just the prose.</p>
+<p>These are not reasons to avoid AI. They are reasons to use it with discipline. Guarding creativity is not the same as refusing the tools. It is knowing where they fail and building your process around that knowledge.</p>
+<hr class="fp-rule">
+<h2>Why a Beta Test</h2>
+<p>This summer is a beta test in the literal sense: we are running the process to see what breaks, so we can fix it before we hand it to others.</p>
+<p>Build Studio is a new kind of studio &mdash; not a design consultancy, not a university course, not a startup incubator, but something that takes the best of all three. The four teams are operating without a safety net: real users, real stakes, real AI tools at the frontier of what is currently possible. The methods in this book are being tested against their work in real time. What the teams discover will shape what the book argues.</p>
+<p>This means the book is both planned and emergent. The planned part is the framework: five stages of the design and build process, each one examined for what AI changes about what it requires of humans. The emergent part is the evidence: what the teams actually encounter, where the framework holds and where it breaks, what needs to be added that I didn&rsquo;t anticipate.</p>
+<p>I am also working on this book with AI. That is not a disclosure &mdash; it is a design decision. If the argument is that you can leverage AI&rsquo;s power while maintaining human judgment and creativity, then writing the book without AI would be a failure of nerve. The book should demonstrate what it argues.</p>
+<hr class="fp-rule">
+<h2>What Comes Next</h2>
+<p>Each chapter maps to one or more stages of the design and build process, and asks the same question at a different point: where does AI help, where does it hurt, and what does the human need to do to stay in control of both?</p>
+<p>The first two chapters are about stance and culture &mdash; the mental model and the organizational environment that make the rest possible. The middle seven are about the process itself, stage by stage. The final two are about what happens after: when the thing ships, and what the profession of building looks like when machines can do most of what we used to train people to do.</p>
+<p>The epilogue is about the thing AI can&rsquo;t do. It can discover. It can frame. It can generate, build, and validate. It cannot care.</p>
+<p>That, in the end, is what this summer is about.</p>
+<hr class="fp-rule">
+<p class="fp-cite">Mollick, E. (2024). <em>Co-Intelligence.</em> Portfolio/Penguin. &nbsp;&middot;&nbsp; IDEO (2015). <em>The Field Guide to Human-Centered Design.</em> IDEO.org. &nbsp;&middot;&nbsp; Luma Institute (2012). <em>Innovating for People.</em> Luma Institute. &nbsp;&middot;&nbsp; <em>HBR&rsquo;s 10 Must-Reads on Design Thinking.</em> Harvard Business Review Press. &nbsp;&middot;&nbsp; Sennett, R. (2008). <em>The Craftsman.</em> Yale University Press.</p>
+<p class="fp-cite" style="margin-top:14px;font-style:normal;color:#aaa;font-size:11px;">This post is part of the Co-Creation series. Each chapter of the book begins as a Substack post, written prospectively &mdash; before the argument is settled, while the evidence is still being gathered. Subscribe to follow the work as it develops.</p>`
+}
+};
+
 const P = {
 
 argument: {
@@ -604,10 +759,10 @@ projects: {
   label: 'The Build Studio Cases',
   left: `
     <div class="dp-eyebrow">The Evidence</div>
-    <h2 class="dp-title">Three projects. Nine weeks. Real constraints.</h2>
+    <h2 class="dp-title">Four projects. Nine weeks. Real constraints.</h2>
     <div class="dp-subtitle">Build Studio Summer 2026</div>
     <div class="dp-sec">About the Cases</div>
-    <p class="dp-txt">These are not hypothetical examples. They are documented in real time, during the Build Studio Summer 2026 program. Each project runs as a longitudinal case through every chapter of the book.</p>
+    <p class="dp-txt">These are not hypothetical examples. They are documented in real time, during the Build Studio Summer 2026 program. Each project runs as a longitudinal case through the chapters of the book.</p>
     <div class="dp-sec">Demo Day</div>
     <p class="dp-txt"><strong>August 31.</strong> All four teams present what they built. Open to students, faculty, industry, and the public.</p>
     <div class="dp-sec">Chapter Coverage</div>
@@ -615,6 +770,7 @@ projects: {
       <li><strong>Case A (Drone)</strong> — Ch 1, 2, 3, 5, 6, 8, 9, 10</li>
       <li><strong>Case B (Vehicle)</strong> — Ch 1, 2, 4, 6, 7, 8, 9, 10</li>
       <li><strong>Case C (Agent)</strong> — Ch 1, 2, 3, 4, 5, 7, 8, 9, 10</li>
+      <li><strong>Case D (Documentary)</strong> — Intro, Ch 2, 8, 10, Epilogue</li>
     </ul>
   `,
   right: `
@@ -640,6 +796,14 @@ projects: {
         <div class="dp-stage"><div class="dp-stage-body"><strong>Domain:</strong> Computational Research · Knowledge Work</div></div>
         <div class="dp-stage"><div class="dp-stage-body"><strong>Challenge:</strong> Building an autonomous agent that works alongside researchers constructing theory — surfacing assumptions, flagging gaps, making reasoning more transparent.</div></div>
         <div class="dp-stage"><div class="dp-stage-body"><strong>Design challenge:</strong> Designing an AI collaborator that strengthens, not replaces, the researcher's own judgment — the central tension of the entire book in miniature.</div></div>
+      </div>
+    </div>
+    <div class="dp-block">
+      <div class="dp-block-hdr ink">Case D — Young People &amp; AI Documentary</div>
+      <div class="dp-block-body">
+        <div class="dp-stage"><div class="dp-stage-body"><strong>Domain:</strong> Documentary Film · Youth Experience · AI Futures</div></div>
+        <div class="dp-stage"><div class="dp-stage-body"><strong>Challenge:</strong> How do young people actually experience AI — not as early adopters or tech skeptics, but as people living inside a world that is being reshaped around them? What do they think is happening, and what do they imagine is coming?</div></div>
+        <div class="dp-stage"><div class="dp-stage-body"><strong>Design challenge:</strong> Making a documentary that surfaces genuine perspective rather than rehearsed opinion — and that centers the people most affected by AI futures in a conversation usually dominated by people building those futures.</div></div>
       </div>
     </div>
   `
@@ -676,9 +840,9 @@ author: {
 
 'ch-intro': {
   label: 'Introduction — A Summer at the Edge',
-  chNum: '00', chPart: 'Introduction', chTitle: 'A Summer at the Edge', chSub: 'Four teams. Nine weeks. Building with machines.',
-  chBody: 'Four teams enter a studio in June with one instruction: build something real for real users — with AI as a full partner in the process. By August, all four will have something working. This introduction lays out what the summer is for: not to prove that AI can design, but to figure out what it means to build together with machines while keeping humans at the center. Our design, build, and engineering processes don\'t yet integrate AI at every stage. We\'ve learned to center the human. We haven\'t learned to co-create with machines. That\'s what this book is working out — in real time, against live evidence, as the summer unfolds.',
-  chConcepts: ['Build culture: building constantly, entrepreneurial mindset, centering humans, embracing experimentation','The jagged edge of performance: powerful but unpredictable, sometimes wrong, sometimes creativity-restricting','Building with machines vs. using machines'],
+  chNum: '00', chPart: 'Introduction', chTitle: 'A Summer at the Edge', chSub: 'Four teams. Nine weeks. A beta test.',
+  chBody: 'Four teams enter a studio in June with one instruction: build something real for real users — with AI as a full partner in the process. By August, all four will have something working. The fourth team is documenting something different: a video project on how young people experience AI and how they imagine their futures in an AI-shaped world. This summer is a beta test — for a new kind of studio, a new kind of process, and a new set of ideas about what it means to build with machines while centering humans. The goal is not just to leverage AI\'s power. It is to do that while actively resisting its pitfalls: the hallucinations, the creativity reduction, the cognitive offloading, the moments where the tool leads you confidently in the wrong direction. This book names those pitfalls and works out ways around them.',
+  chConcepts: ['Build culture: building constantly, entrepreneurial mindset, centering humans, embracing experimentation','The jagged edge of performance: powerful but unpredictable, sometimes wrong, sometimes creativity-restricting','The four pitfalls: hallucination, creativity reduction, cognitive offloading, confident misdirection','Build Studio Summer 2026 as beta test'],
   chCases: ['A','B','C']
 },
 'ch-1': {
@@ -819,7 +983,27 @@ function renderPanel(key) {
     right = d.right;
   }
 
-  document.getElementById('dp-body').innerHTML = '<div class="dp-left">'+left+'</div><div class="dp-right">'+right+'</div>';
+  const fullPost = FULLPOSTS[key] || null;
+  const fullPostHTML = fullPost ? `
+    <div class="fullpost-wrap">
+      <div class="fullpost-hdr">
+        <span class="fullpost-lbl">Full Post — Paste into Substack (~2,000 words)</span>
+        <button class="fullpost-copy" onclick="copyPost('${key}')">Copy to Clipboard</button>
+      </div>
+      <div class="fullpost-box" id="fullpost-${key}">${fullPost.html}</div>
+    </div>
+  ` : '';
+  document.getElementById('dp-body').innerHTML = '<div class="dp-left">'+left+'</div><div class="dp-right">'+right+'</div>'+fullPostHTML;
+}
+
+function copyPost(key) {
+  const text = FULLPOSTS[key].plain;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector('.fullpost-copy');
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy to Clipboard'; btn.classList.remove('copied'); }, 2000);
+  });
 }
 </script>
 </body>
