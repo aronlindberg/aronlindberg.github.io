@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Co-Creation — Aron Lindberg</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0e1117;--cream:#faf8f3;--off-white:#f5f3ee;--rule:#d8d3c8;
+  --navy:#1a3a6b;--gold:#b8972a;--red:#c0392b;--light-blue:#e8f0fb;
+  --font-serif:'DM Serif Display',serif;--font-sans:'DM Sans',sans-serif;
+  --font-mono:'DM Mono',monospace;--max-w:1120px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:var(--font-sans);background:var(--cream);color:var(--ink);padding:44px 40px;max-width:var(--max-w);margin:0 auto;}
+
+/* HEADER */
+.hdr{border-top:3px solid var(--ink);border-bottom:1px solid var(--rule);padding:20px 0 18px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;}
+.hdr-eyebrow{font-family:var(--font-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.hdr h1{font-family:var(--font-serif);font-size:32px;line-height:1.15;}
+.hdr-sub{font-family:var(--font-serif);font-style:italic;font-size:14px;color:#555;margin-top:3px;}
+.hdr-meta{font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#888;line-height:1.9;text-align:right;}
+.hdr-meta strong{color:var(--ink);font-weight:500;}
+
+/* PREMISE */
+.premise{padding:18px 0 22px;border-bottom:1px solid var(--rule);margin-bottom:24px;display:flex;gap:40px;align-items:flex-start;}
+.premise-quote{font-family:var(--font-serif);font-style:italic;font-size:15px;line-height:1.6;flex:1.4;max-width:520px;border-left:3px solid var(--gold);padding-left:18px;color:#333;}
+.premise-body{flex:1;font-size:12.5px;line-height:1.7;color:#444;}
+.premise-body p{margin-bottom:8px;}
+.premise-body p:last-child{margin-bottom:0;}
+
+/* STATS */
+.stats{display:flex;gap:0;margin-bottom:24px;border:1px solid var(--rule);border-radius:3px;overflow:hidden;background:#fff;}
+.stat{flex:1;padding:14px 20px;border-right:1px solid var(--rule);text-align:center;}
+.stat:last-child{border-right:none;}
+.stat-n{font-family:var(--font-serif);font-size:36px;line-height:1;color:var(--navy);}
+.stat-l{font-family:var(--font-mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#888;margin-top:4px;}
+
+/* SECTION LABELS */
+.sec-meta{font-family:var(--font-mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#aaa;margin-bottom:8px;}
+
+/* OVERVIEW GRID */
+.overview-grid{display:grid;grid-template-columns:1fr 16px 1fr 16px 1fr;margin-bottom:10px;}
+.overview-col{grid-column:auto;}
+.overview-sp{border-right:1px solid var(--rule);margin:0 8px;}
+
+/* TRACK BLOCKS */
+.track{border-radius:3px;overflow:hidden;border:1px solid;}
+.t-lbl{font-family:var(--font-mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;padding:7px 12px;font-weight:500;}
+
+.cc{padding:11px 13px;border-bottom:1px solid rgba(0,0,0,.06);position:relative;transition:background .15s;cursor:pointer;}
+.cc:last-child{border-bottom:none;}
+.cc:hover{background:rgba(0,0,0,.03);}
+.cc::after{content:'VIEW \2192';font-family:var(--font-mono);font-size:8px;letter-spacing:.08em;position:absolute;bottom:8px;right:11px;opacity:0;transition:opacity .15s;color:var(--navy);}
+.cc:hover::after{opacity:1;}
+.cc.active{outline:2px solid var(--navy);outline-offset:-2px;background:rgba(26,58,107,.05);}
+.cn{font-family:var(--font-mono);font-size:9px;letter-spacing:.08em;color:#888;margin-bottom:3px;}
+.ct{font-size:13px;font-weight:600;line-height:1.3;margin-bottom:4px;}
+.cd{font-size:10.5px;line-height:1.5;color:#555;}
+.ctags{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px;}
+.ctag{font-family:var(--font-mono);font-size:8px;letter-spacing:.06em;padding:2px 6px;border:1px solid var(--rule);border-radius:2px;color:#888;}
+.cbadge{display:inline-block;font-family:var(--font-mono);font-size:8.5px;letter-spacing:.08em;padding:2px 6px;border-radius:2px;margin-top:6px;}
+
+/* NAVY (chapters) */
+.navy-b{border-color:var(--navy);background:var(--light-blue);}
+.navy-b .t-lbl{background:var(--navy);color:#fff;}
+.navy-b .cbadge{background:#c5d5f0;color:var(--navy);}
+
+/* GOLD (argument / framework) */
+.gold-b{border-color:var(--gold);background:#fdf7e8;}
+.gold-b .t-lbl{background:var(--gold);color:#fff;}
+.gold-b .cbadge{background:#f5e8b8;color:#7a6010;}
+
+/* INK (projects) */
+.ink-b{border-color:#333;background:#fff;}
+.ink-b .t-lbl{background:var(--ink);color:#fff;}
+.ink-b .cbadge{background:#eee;color:#444;}
+
+/* CHAPTERS SPINE (full-width) */
+.chapters-row{margin-bottom:10px;}
+.spine{border:1.5px solid var(--navy);border-radius:3px;overflow:hidden;background:var(--navy);}
+.spine-hdr{display:flex;align-items:center;justify-content:space-between;padding:8px 16px;background:rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.1);}
+.spine-hdr-t{font-family:var(--font-serif);font-size:15px;color:#fff;}
+.spine-hdr-s{font-family:var(--font-mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.4);}
+.chapters-grid{display:grid;grid-template-columns:repeat(4,1fr);}
+.ch{padding:12px 14px;border-right:1px solid rgba(255,255,255,.1);cursor:pointer;transition:background .15s;position:relative;}
+.ch:last-child{border-right:none;}
+.ch:hover{background:rgba(255,255,255,.07);}
+.ch::after{content:'VIEW \2192';font-family:var(--font-mono);font-size:8px;letter-spacing:.08em;position:absolute;bottom:10px;right:12px;opacity:0;transition:opacity .15s;color:rgba(255,255,255,.45);}
+.ch:hover::after{opacity:1;}
+.ch.active{background:rgba(255,255,255,.12);outline:2px solid rgba(255,255,255,.4);outline-offset:-2px;}
+.ch-part{font-family:var(--font-mono);font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:4px;}
+.ch-num{font-family:var(--font-mono);font-size:22px;color:var(--gold);line-height:1;margin-bottom:3px;}
+.ch-title{font-size:12.5px;font-weight:600;color:#fff;line-height:1.25;margin-bottom:3px;}
+.ch-sub{font-size:10px;color:rgba(255,255,255,.55);line-height:1.4;}
+.ch-cases{display:flex;gap:3px;margin-top:6px;}
+.case-dot{font-family:var(--font-mono);font-size:8px;padding:1px 5px;border-radius:2px;background:rgba(255,255,255,.12);color:rgba(255,255,255,.6);}
+
+/* DETAIL PANEL */
+.detail-panel{margin-top:36px;border-top:3px solid var(--ink);overflow:hidden;max-height:0;transition:max-height .4s ease,opacity .3s ease;opacity:0;}
+.detail-panel.open{max-height:99999px;opacity:1;}
+.dp-hdr{display:flex;align-items:baseline;justify-content:space-between;padding:18px 0 14px;border-bottom:1px solid var(--rule);margin-bottom:28px;}
+.dp-lbl{font-family:var(--font-mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--red);}
+.dp-close{font-family:var(--font-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;color:#888;border:1px solid var(--rule);background:#fff;padding:4px 10px;border-radius:2px;}
+.dp-close:hover{background:var(--ink);color:#fff;border-color:var(--ink);}
+.dp-body{display:grid;grid-template-columns:1fr 1.6fr;gap:48px;padding-bottom:48px;align-items:start;}
+
+/* DETAIL LEFT */
+.dp-left{position:sticky;top:24px;max-height:calc(100vh - 80px);overflow-y:auto;padding-right:4px;}
+.dp-left::-webkit-scrollbar{width:3px;}
+.dp-left::-webkit-scrollbar-thumb{background:var(--rule);}
+.dp-eyebrow{font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.dp-title{font-family:var(--font-serif);font-size:24px;line-height:1.2;margin-bottom:4px;}
+.dp-subtitle{font-family:var(--font-serif);font-style:italic;font-size:14px;color:#666;margin-bottom:18px;}
+.dp-sec{font-family:var(--font-mono);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:#888;border-bottom:1px solid var(--rule);padding-bottom:4px;margin-bottom:10px;margin-top:18px;}
+.dp-txt{font-size:12.5px;line-height:1.65;color:#333;}
+.dp-list{list-style:none;padding:0;counter-reset:c;}
+.dp-list li{font-size:12px;line-height:1.6;color:#333;padding:5px 0 5px 22px;border-bottom:1px solid rgba(0,0,0,.04);position:relative;}
+.dp-list li:last-child{border-bottom:none;}
+.dp-list li::before{content:counter(c);counter-increment:c;font-family:var(--font-mono);font-size:9px;color:#aaa;position:absolute;left:0;top:7px;}
+.dp-ul{list-style:none;padding:0;}
+.dp-ul li{font-size:12px;line-height:1.6;color:#333;padding:5px 0 5px 18px;border-bottom:1px solid rgba(0,0,0,.04);position:relative;}
+.dp-ul li:last-child{border-bottom:none;}
+.dp-ul li::before{content:'—';font-family:var(--font-mono);font-size:9px;color:#aaa;position:absolute;left:0;top:7px;}
+.pill-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+.pill{font-family:var(--font-mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border:1px solid var(--rule);border-radius:2px;color:#666;}
+.pill.hi{background:var(--navy);color:#fff;border-color:var(--navy);}
+
+/* DETAIL RIGHT */
+.dp-right{}
+.dp-block{border:1px solid var(--rule);border-radius:3px;overflow:hidden;margin-bottom:18px;}
+.dp-block-hdr{font-family:var(--font-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;padding:7px 12px;font-weight:500;color:#fff;}
+.dp-block-hdr.navy{background:var(--navy);}
+.dp-block-hdr.gold{background:var(--gold);}
+.dp-block-hdr.ink{background:var(--ink);}
+.dp-block-body{padding:14px;background:#fff;}
+.dp-block-body p,.dp-block-body li{font-size:12px;line-height:1.65;color:#444;}
+.dp-stage{padding:12px 14px;border-bottom:1px solid rgba(0,0,0,.05);}
+.dp-stage:last-child{border-bottom:none;}
+.dp-stage-hdr{display:flex;align-items:baseline;gap:10px;margin-bottom:5px;}
+.dp-stage-n{font-family:var(--font-mono);font-size:9px;color:var(--gold);font-weight:500;}
+.dp-stage-t{font-size:13px;font-weight:600;}
+.dp-stage-body{font-size:11.5px;line-height:1.6;color:#555;}
+.dp-stage-tension{font-size:10.5px;color:#888;font-style:italic;margin-top:4px;}
+.dp-row{display:flex;justify-content:space-between;padding:6px 10px;border-bottom:1px solid rgba(0,0,0,.04);font-size:11.5px;gap:8px;background:#fff;}
+.dp-row:last-child{border-bottom:none;}
+.dp-row span:last-child{font-family:var(--font-mono);font-size:10px;color:#888;flex-shrink:0;}
+
+/* CHAPTER DETAIL */
+.ch-card-detail{padding:14px;border-bottom:1px solid rgba(0,0,0,.05);background:#fff;}
+.ch-card-detail:last-child{border-bottom:none;}
+.ch-card-num{font-family:var(--font-mono);font-size:10px;color:var(--gold);margin-bottom:3px;}
+.ch-card-part{font-family:var(--font-mono);font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:#aaa;margin-bottom:3px;}
+.ch-card-title{font-size:13px;font-weight:600;margin-bottom:2px;}
+.ch-card-sub{font-size:11px;font-style:italic;color:#666;margin-bottom:6px;}
+.ch-card-body{font-size:11.5px;line-height:1.6;color:#444;margin-bottom:6px;}
+.ch-card-footer{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.ch-kw{font-family:var(--font-mono);font-size:8px;padding:2px 6px;border:1px solid var(--rule);border-radius:2px;color:#888;}
+.ch-case{font-family:var(--font-mono);font-size:8px;padding:2px 6px;background:var(--light-blue);border-radius:2px;color:var(--navy);font-weight:500;}
+
+/* SUBSTACK POST OUTLINES */
+.post-block{border:1px solid var(--rule);border-radius:3px;overflow:hidden;margin-bottom:12px;background:#fff;}
+.post-hdr{display:flex;align-items:baseline;gap:10px;padding:9px 12px;background:var(--off-white);border-bottom:1px solid var(--rule);}
+.post-n{font-family:var(--font-mono);font-size:9px;color:var(--gold);font-weight:500;flex-shrink:0;}
+.post-title{font-size:12.5px;font-weight:600;line-height:1.3;}
+.post-body{padding:10px 12px;}
+.post-hook{font-size:11.5px;line-height:1.6;color:#444;font-style:italic;margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid rgba(0,0,0,.05);}
+.post-beats{list-style:none;padding:0;counter-reset:b;}
+.post-beats li{font-size:11px;line-height:1.55;color:#555;padding:4px 0 4px 20px;border-bottom:1px solid rgba(0,0,0,.03);position:relative;}
+.post-beats li:last-child{border-bottom:none;}
+.post-beats li::before{content:counter(b);counter-increment:b;font-family:var(--font-mono);font-size:8.5px;color:var(--gold);position:absolute;left:0;top:6px;}
+.posts-sec-lbl{font-family:var(--font-mono);font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:#888;border-bottom:1px solid var(--rule);padding-bottom:4px;margin-bottom:10px;margin-top:0;}
+
+/* FOOTER */
+.footer{margin-top:30px;padding-top:16px;border-top:1px solid var(--rule);display:flex;gap:40px;font-size:11px;color:#888;}
+.footer a{color:var(--navy);text-decoration:none;}
+.footer a:hover{text-decoration:underline;}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="hdr">
+  <div>
+    <div class="hdr-eyebrow">Building with Machines</div>
+    <h1>Co-Creation</h1>
+    <div class="hdr-sub">Building with Machines While Remaining Human-Centered</div>
+  </div>
+  <div class="hdr-meta">
+    <strong>Aron Lindberg</strong> &middot; Stevens Institute of Technology<br>
+    <strong>12 Chapters</strong> &middot; 3 Cases &middot; 9 Weeks<br>
+    <strong>Build Studio</strong> &middot; Summer 2026<br>
+    Practitioner book &middot; In progress
+  </div>
+</div>
+
+<!-- PREMISE -->
+<div class="premise">
+  <div class="premise-quote">"The question is no longer whether AI belongs in the design process. It's whether the design process can remain human-centered once it does."</div>
+  <div class="premise-body">
+    <p>Human-centered design was built for a world where the designer was human and the machine was a tool. That world no longer exists.</p>
+    <p>This book rebuilds the framework for a world where AI can discover, frame, generate, build, and validate — not always as well as a skilled designer, but differently, faster, and sometimes better.</p>
+    <p>The five stages of the design process survive. But each one now requires new discipline: knowing when to hand off to AI, when to pull the work back, and how to stay accountable for everything the system produces.</p>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><div class="stat-n">12</div><div class="stat-l">Chapters</div></div>
+  <div class="stat"><div class="stat-n">3</div><div class="stat-l">Live Cases</div></div>
+  <div class="stat"><div class="stat-n">9</div><div class="stat-l">Weeks at the Edge</div></div>
+  <div class="stat"><div class="stat-n">5</div><div class="stat-l">Design Stages</div></div>
+</div>
+
+<!-- TOP ROW: ARGUMENT + (spacer) + FRAMEWORK + (spacer) + PROJECTS -->
+<div class="sec-meta">Book Sections &mdash; Click to Expand</div>
+<div style="display:grid;grid-template-columns:1fr 16px 1fr 16px 1fr;margin-bottom:10px;">
+
+  <!-- ARGUMENT -->
+  <div>
+    <div class="track gold-b">
+      <div class="t-lbl">The Core Argument</div>
+      <div class="cc" data-key="argument" onclick="openPanel('argument',this)">
+        <div class="cn">Part 1</div>
+        <div class="ct">Why human-centered design needs to be rebuilt</div>
+        <div class="cd">Not replaced. Rebuilt. The capability shift, the gap in existing work, and the evidence from nine weeks at the frontier.</div>
+        <div class="ctags"><span class="ctag">Capability Shift</span><span class="ctag">Co-Creation Era</span><span class="ctag">HCD Rebuilt</span></div>
+      </div>
+    </div>
+  </div>
+  <div></div>
+
+  <!-- FRAMEWORK -->
+  <div>
+    <div class="track navy-b">
+      <div class="t-lbl">The Five-Stage Model</div>
+      <div class="cc" data-key="framework" onclick="openPanel('framework',this)">
+        <div class="cn">Part 2</div>
+        <div class="ct">Five stages. Rebuilt for co-creation.</div>
+        <div class="cd">Discover · Frame · Generate · Build · Validate — each stage with a human layer, an AI layer, and a handoff.</div>
+        <div class="ctags"><span class="ctag">Autonomy Dial</span><span class="ctag">Dual Evaluation</span><span class="ctag">Handoff Design</span></div>
+      </div>
+    </div>
+  </div>
+  <div></div>
+
+  <!-- PROJECTS -->
+  <div>
+    <div class="track ink-b">
+      <div class="t-lbl">The Build Studio Cases</div>
+      <div class="cc" data-key="projects" onclick="openPanel('projects',this)">
+        <div class="cn">The Evidence</div>
+        <div class="ct">Three projects. Nine weeks. Real constraints.</div>
+        <div class="cd">Safety Drone · Off-Road Vehicle · Research Agent — each running as a longitudinal case through every chapter.</div>
+        <div class="ctags"><span class="ctag">Case A</span><span class="ctag">Case B</span><span class="ctag">Case C</span></div>
+      </div>
+      <div class="cc" data-key="author" onclick="openPanel('author',this)">
+        <div class="cn">About</div>
+        <div class="ct">Aron Lindberg</div>
+        <div class="cd">Professor · Chair · Builder. Stevens Institute of Technology, School of Business.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CHAPTERS SPINE -->
+<div class="chapters-row">
+  <div class="spine">
+    <div class="spine-hdr">
+      <div class="spine-hdr-t">All Chapters &mdash; Click any to expand</div>
+      <div class="spine-hdr-s">Intro + 10 Chapters + Epilogue &middot; 3 Parts</div>
+    </div>
+    <div class="chapters-grid">
+      <div class="ch" data-key="ch-intro" onclick="openPanel('ch-intro',this)">
+        <div class="ch-part">Introduction</div>
+        <div class="ch-num">00</div>
+        <div class="ch-title">A Summer at the Edge</div>
+        <div class="ch-sub">Four teams. Nine weeks. Building with machines.</div>
+        <div class="ch-cases"><span class="case-dot">A</span><span class="case-dot">B</span><span class="case-dot">C</span></div>
+      </div>
+      <div class="ch" data-key="ch-1" onclick="openPanel('ch-1',this)">
+        <div class="ch-part">Stance</div>
+        <div class="ch-num">01</div>
+        <div class="ch-title">The Harness Engineer</div>
+        <div class="ch-sub">Mindset for the co-creation era</div>
+        <div class="ch-cases"><span class="case-dot">A</span><span class="case-dot">B</span><span class="case-dot">C</span></div>
+      </div>
+      <div class="ch" data-key="ch-2" onclick="openPanel('ch-2',this)">
+        <div class="ch-part">Stance</div>
+        <div class="ch-num">02</div>
+        <div class="ch-title">Build Culture</div>
+        <div class="ch-sub">The environment that makes co-creation possible</div>
+        <div class="ch-cases"><span class="case-dot">A</span><span class="case-dot">B</span><span class="case-dot">C</span></div>
+      </div>
+      <div class="ch" data-key="ch-3" onclick="openPanel('ch-3',this)">
+        <div class="ch-part">Design Arc</div>
+        <div class="ch-num">03</div>
+        <div class="ch-title">Discover</div>
+        <div class="ch-sub">Staying close to human truth</div>
+        <div class="ch-cases"><span class="case-dot">A</span><span class="case-dot">C</span></div>
+      </div>
+      <div class="ch" data-key="ch-4" onclick="openPanel('ch-4',this)">
+        <div class="ch-part">Design Arc</div>
+        <div class="ch-num">04</div>
+        <div class="ch-title">Frame</div>
+        <div class="ch-sub">Choosing the problem</div>
+        <div class="ch-cases"><span class="case-dot">B</span><span class="case-dot">C</span></div>
+      </div>
+      <div class="ch" data-key="ch-5" onclick="openPanel('ch-5',this)">
+        <div class="ch-part">Design Arc</div>
+        <div class="ch-num">05</div>
+        <div class="ch-title">Generate</div>
+        <div class="ch-sub">Diverging with machines</div>
+        <div class="ch-cases"><span class="case-dot">A</span><span class="case-dot">C</span></div>
+      </div>
+      <div class="ch" data-key="ch-6" onclick="openPanel('ch-6',this)">
+        <div class="ch-part">Design Arc</div>
+        <div class="ch-num">06</div>
+        <div class="ch-title">Build (I)</div>
+        <div class="ch-sub">Making the intangible tangible</div>
+        <div class="ch-cases"><span class="case-dot">A</span><span class="case-dot">B</span></div>
+      </div>
+      <div class="ch" data-key="ch-7" onclick="openPanel('ch-7',this)">
+        <div class="ch-part">Design Arc</div>
+        <div class="ch-num">07</div>
+        <div class="ch-title">Build (II)</div>
+        <div class="ch-sub">Navigating the handoff</div>
+        <div class="ch-cases"><span class="case-dot">B</span><span class="case-dot">C</span></div>
+      </div>
+      <div class="ch" data-key="ch-8" onclick="openPanel('ch-8',this)">
+        <div class="ch-part">Design Arc</div>
+        <div class="ch-num">08</div>
+        <div class="ch-title">Validate</div>
+        <div class="ch-sub">Learning from real people</div>
+        <div class="ch-cases"><span class="case-dot">A</span><span class="case-dot">B</span><span class="case-dot">C</span></div>
+      </div>
+      <div class="ch" data-key="ch-9" onclick="openPanel('ch-9',this)">
+        <div class="ch-part">After</div>
+        <div class="ch-num">09</div>
+        <div class="ch-title">Ship</div>
+        <div class="ch-sub">Organizational reality</div>
+        <div class="ch-cases"><span class="case-dot">A</span><span class="case-dot">B</span><span class="case-dot">C</span></div>
+      </div>
+      <div class="ch" data-key="ch-10" onclick="openPanel('ch-10',this)">
+        <div class="ch-part">After</div>
+        <div class="ch-num">10</div>
+        <div class="ch-title">Careers</div>
+        <div class="ch-sub">Building as a profession</div>
+        <div class="ch-cases"><span class="case-dot">A</span><span class="case-dot">B</span><span class="case-dot">C</span></div>
+      </div>
+      <div class="ch" data-key="ch-epi" onclick="openPanel('ch-epi',this)">
+        <div class="ch-part">Epilogue</div>
+        <div class="ch-num">—</div>
+        <div class="ch-title">The Human Part</div>
+        <div class="ch-sub">AI can discover. It cannot care.</div>
+        <div class="ch-cases"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DETAIL PANEL -->
+<div class="detail-panel" id="detail-panel">
+  <div class="dp-hdr">
+    <div class="dp-lbl" id="dp-lbl">Detail</div>
+    <button class="dp-close" onclick="closePanel()">&#10005; Close</button>
+  </div>
+  <div class="dp-body" id="dp-body"></div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div>Co-Creation &middot; Stevens School of Business &middot; &copy; 2026</div>
+  <div><a href="https://aronlindberg.com">aronlindberg.com</a> &middot; <a href="https://aronlindberg.com/build-studio">Build Studio</a></div>
+  <div><a href="mailto:aron.lindberg@stevens.edu">aron.lindberg@stevens.edu</a></div>
+</div>
+
+<script>
+// Substack post outlines: 12 chapters × 4 posts
+const POSTS = {
+'ch-intro': [
+  { n:'Post 1', title:'Build Studio: The Brief', hook:'Four teams. Nine weeks. Build something real for real users — with AI as a full design partner. This is what we\'re doing and why.',
+    beats:['What Build Studio is: not a course with a syllabus but a studio with a culture — building constantly, entrepreneurial mindset, centering humans, embracing experimentation','The four teams and their challenges: a safety drone, an off-road autonomous vehicle, an AI research agent, and a fourth project pushing into new territory','What "build something real" actually means: working prototypes, real users, real constraints — not slide decks or demos','Why this summer is the right moment to do this: the tools are powerful enough to build with, unpredictable enough to require judgment, and the field hasn\'t caught up yet'] },
+  { n:'Post 2', title:'The Jagged Edge of Performance', hook:'These tools are extraordinary. They are also wrong in ways you can\'t predict, and sometimes they restrict the very creativity you brought them in to amplify.',
+    beats:['What the jagged edge is: not a smooth capability curve but a surface with peaks and sudden drops — extraordinary in some places, broken or limiting in others','Where the tools exceed expectation: synthesis speed, variation generation, pattern recognition across domains','Where the tools fail or constrain: confidently wrong outputs, narrowing toward plausible-but-generic solutions, creative restriction when you need genuine divergence','The discipline this requires: you can\'t trust the tool as a reliable instrument — you have to know the terrain'] },
+  { n:'Post 3', title:'The Gap No One Has Closed', hook:'We\'ve learned to center the human in design. We have no idea how to build together with machines. That\'s what this summer is for.',
+    beats:['What current design, build, and engineering processes do well: they have good frameworks for centering users, iterating on feedback, and shipping working products','What they don\'t do: integrate AI as a genuine collaborator at every stage — they treat it as a tool, a shortcut, or an add-on','The specific gap: not "how do I use AI" but "how do we build together" — shared judgment, shared authorship, shared accountability','Why this gap hasn\'t been closed: the tools moved faster than the practice, and the people who build practices (designers, engineers, educators) are still catching up'] },
+  { n:'Post 4', title:'A Book Both Planned and Emergent', hook:'This book comes from an interaction between what I think I know, what the teams discover this summer, and what happens when I work through it all with AI. It will not be exactly what I planned.',
+    beats:['The planned part: a framework for building with machines while centering humans — five stages, each rebuilt for the co-creation era','The emergent part: the summer will surface things I haven\'t anticipated, and those things will reshape the argument','The role of AI in writing the book itself: working with AI to structure, test, and develop the argument — making the book a demonstration of its own thesis','The forward-looking commitment: these posts are written prospectively, not as a recap — the argument is being made in real time, and readers are part of the process'] }
+],
+'ch-1': [
+  { n:'Post 1', title:'The Frontier Is Not a Line', hook:'AI capability doesn\'t improve evenly. The map keeps shifting. That\'s the design problem.',
+    beats:['What the uneven capability frontier actually looks like in practice — not a smooth curve','Where AI is startling: synthesis, variation, pattern recognition at scale','Where AI is surprisingly broken: judgment under ambiguity, context-sensitivity, knowing what it doesn\'t know','Why the frontier moves: what this means for anyone trying to design with AI consistently'] },
+  { n:'Post 2', title:'The Autonomy Dial', hook:'Every design decision involving AI has a setting. Most teams never choose one deliberately.',
+    beats:['The spectrum from "AI suggests" to "AI acts" — and all the positions in between','Why the dial is a design decision, not a default','What happens when teams leave the dial at the factory setting','Three examples of deliberate dial-setting from the Build Studio cases'] },
+  { n:'Post 3', title:'Designing the Handoff', hook:'The seam between human judgment and machine output is where the design work actually lives.',
+    beats:['What a handoff is: the moment where control passes between human and AI (or back)','The two failure modes: handing off too early (abdication) and too late (bottleneck)','How to design handoffs explicitly — before you need them','The Build Studio teams that got this right, and what they did differently'] },
+  { n:'Post 4', title:'The Harness Engineer as Professional Identity', hook:'Prompt engineering is a tactic. Harness engineering is a profession.',
+    beats:['Why the core skill is judgment about the frontier, not fluency with the tools','What the harness engineer does that neither the engineer nor the designer did before','The competency stack: frontier mapping, handoff design, accountability narration','What this means for how the role is hired, trained, and evaluated'] }
+],
+'ch-2': [
+  { n:'Post 1', title:'Fluency Is Not Literacy', hook:'Organizations are hiring for AI fluency. They need AI literacy. These are not the same thing.',
+    beats:['What AI fluency looks like: prompt speed, tool familiarity, workflow integration','What AI literacy looks like: knowing when the AI is wrong, narrating the decision process, maintaining accountability','The specific way fluency-without-literacy breaks: confidently wrong AI, no one catches it','How to test for literacy in a hiring or team context'] },
+  { n:'Post 2', title:'The Three Conditions', hook:'Human-AI collaboration doesn\'t happen by default. Three conditions have to be built.',
+    beats:['Condition 1: Psychological safety to show half-finished work — why this is harder with AI in the room','Condition 2: Iteration norms that don\'t confuse speed with progress','Condition 3: Shared language for distinguishing AI-generated insight from human judgment','What happens to teams that have fluency but none of these three conditions'] },
+  { n:'Post 3', title:'The Dual Evaluation Model', hook:'In a co-creative process, you evaluate two things. Most teams only evaluate one.',
+    beats:['Evaluation 1: The output — does it work for real users in real conditions?','Evaluation 2: The narrative — can you explain why the system does what it does?','Why the narrative evaluation is not secondary: it\'s how organizations learn and iterate','How to build the dual evaluation into a team\'s regular cadence, not just the final review'] },
+  { n:'Post 4', title:'What Brittle Cultures Do', hook:'Some organizations are building AI processes that will break the first time the AI is confidently wrong.',
+    beats:['The anatomy of a brittle AI culture: speed over narration, fluency over literacy, output over judgment','The specific moment brittle cultures break: when AI failure requires explanation and no one can give one','Three organizational patterns that accelerate brittleness','What durable AI culture looks like — and what it costs to build it'] }
+],
+'ch-3': [
+  { n:'Post 1', title:'What AI Cannot Do in the Field', hook:'AI can prepare you for fieldwork. It cannot do the fieldwork.',
+    beats:['What the discovery stage actually requires: presence, attention to non-verbal signals, tolerance for ambiguity','Where AI genuinely helps in discovery — and why that help is pre-field, not in-field','The specific things that are lost when teams substitute AI synthesis for field observation','Why this matters more as AI gets better at simulation: the better the simulation, the easier the shortcut'] },
+  { n:'Post 2', title:'Synthetic Personas as Assumption Testing', hook:'AI-generated personas aren\'t users. They\'re a map of your own assumptions. Use them that way.',
+    beats:['What synthetic personas are actually good for: surfacing what you assume before you go to the field','The difference between a synthetic persona used as an assumption test vs. a synthetic persona used as a substitute for research','How to construct synthetic personas that force you to identify gaps rather than fill them','The Build Studio teams that used synthetic personas well — and what they discovered when they got to real users'] },
+  { n:'Post 3', title:'The Pre-Field / Post-Field Distinction', hook:'AI belongs in discovery. The discipline is knowing which side of the field it belongs on.',
+    beats:['Pre-field AI: sharpening questions, mapping assumptions, generating interview guides','Post-field AI: transcript analysis, pattern surfacing, theme synthesis across sessions','The danger zone: using post-field tools before the field — letting AI tell you what you\'ll find','How the Build Studio teams learned to sequence this correctly, and what it cost when they didn\'t'] },
+  { n:'Post 4', title:'The Discovery Failure Modes', hook:'Teams that shortcut discovery don\'t skip it. They do it wrong, faster.',
+    beats:['Failure mode 1: AI synthesis as a substitute for field observation — and what gets missed','Failure mode 2: Question sharpening without question asking — knowing the right questions but not running them','Failure mode 3: Confirmation via synthetic persona — using AI to validate what you already believe','What recovery looks like: how the Build Studio teams caught and corrected each of these'] }
+],
+'ch-4': [
+  { n:'Post 1', title:'Why Framing Gets Skipped', hook:'The most important stage of the design process is the one teams most want to rush through.',
+    beats:['The pressure to move from discovery to generation without stopping to frame','What "framing" actually is: a judgment call about what matters, encoded as a problem statement','Why AI makes skipping framing easier — and more dangerous','The cost of a bad frame: it doesn\'t show up immediately, it shows up in validation'] },
+  { n:'Post 2', title:'The Mirror Test', hook:'AI-generated problem statements show you what you\'ve already decided. That\'s the test.',
+    beats:['What the mirror test is: using AI\'s framing output to reveal your own embedded assumptions','How to run a mirror test: generate multiple AI framings, then interrogate the shared assumptions beneath them','What the mirror test found in the Build Studio cases: the assumptions teams didn\'t know they had','When the mirror test fails — and what to do when no framing feels right'] },
+  { n:'Post 3', title:'Framing Is a Values Decision', hook:'When you choose a problem statement, you\'re choosing whose problem it is. AI cannot make that choice.',
+    beats:['What\'s encoded in a problem statement: who counts, what trade-offs are acceptable, what success means','Why competing framings are often incompatible — they reflect different underlying values, not just different emphases','The cases where AI framing masked a values disagreement the team hadn\'t surfaced','How to make framing decisions transparent and accountable, not just fast'] },
+  { n:'Post 4', title:'HMW Generation with AI — and Its Hazards', hook:'"How Might We" prompts are powerful. AI can generate hundreds. That\'s exactly the problem.',
+    beats:['The HMW format and why it works: reframing problems as design opportunities','What AI does well: generating range, inverting constraints, crossing domains','The specific hazard: volume without selection discipline produces noise, not direction','How to use AI-generated HMWs as input to a human convergence process — not as the output of one'] }
+],
+'ch-5': [
+  { n:'Post 1', title:'The Quantity Problem', hook:'AI can generate 100 ideas in the time it takes a human to generate 5. That is not an advantage unless you know what to do with it.',
+    beats:['Why generative quantity is a design hazard as much as an asset','What happens to teams that accept AI output as ideation output: pattern convergence, false breadth','The specific cognitive failure: mistaking volume for coverage','How the Build Studio teams learned to treat AI generation as raw material, not finished ideas'] },
+  { n:'Post 2', title:'The 100-Ideas Exercise', hook:'Generating 100 ideas is easy with AI. The discipline is in what you do at idea 101.',
+    beats:['What the exercise is: structured AI-assisted divergence with explicit human convergence gates','Why 100 ideas and not 10 or 1,000: the number is chosen to force discomfort, not efficiency','The convergence gate: the moment where a human has to choose what to pursue, and why','What the exercise reveals about the team\'s implicit selection criteria — and why that revelation matters'] },
+  { n:'Post 3', title:'Resonance vs. Cleverness', hook:'AI ideas tend to be clever. Good ideas tend to resonate. These are different things.',
+    beats:['What "resonance" means in this context: an idea that connects to what you observed in the field, not just what seems interesting','Why AI overindexes on cleverness: it optimizes for novelty and coherence, not for human truth','The Build Studio teams\' sorting process: how they distinguished resonant ideas from clever ones','Building resonance as a selection criterion into the ideation process explicitly'] },
+  { n:'Post 4', title:'Convergence Is Always Human', hook:'This is the principle the chapter is built on. Here\'s why it\'s non-negotiable.',
+    beats:['What convergence requires: judgment about what matters, which is always grounded in values and observation','Why AI convergence fails: it selects for internal coherence and pattern frequency, not human relevance','The specific failure mode of delegated convergence: plausible directions that no one can actually defend','How to structure the human convergence step so it\'s disciplined, not arbitrary'] }
+],
+'ch-6': [
+  { n:'Post 1', title:'The Cost Collapse', hook:'Prototyping used to cost weeks and thousands of dollars. Now it costs an afternoon. That changes everything — including the discipline required.',
+    beats:['What the cost collapse actually means: the economic barrier to building is gone','What the cost collapse does not change: the epistemic value of a prototype depends on what it tests','Why cheaper prototypes create a new failure mode: more prototypes, less learning','The Build Studio teams who built fast and learned slowly — and what slowed them down'] },
+  { n:'Post 2', title:'Good Enough to Be Wrong', hook:'The right prototype is the one that can be falsified. Not the one that looks finished.',
+    beats:['What "good enough to be wrong" means: enough fidelity to generate a testable hypothesis, no more','Why the standard is hard to hold when building is easy: the temptation to keep refining','The specific fidelity questions: what does this prototype need to demonstrate? What must it not hide?','How the Build Studio teams set and held the "good enough to be wrong" threshold — and when they failed to'] },
+  { n:'Post 3', title:'Over-Refinement as Failure Mode', hook:'The most dangerous prototype is the one that looks too finished to test honestly.',
+    beats:['What over-refinement is: building past the point where honest testing is possible','Why AI makes over-refinement easier: the quality ceiling on AI-assisted output is much higher than on hand-built prototypes','The social cost of over-refinement: users and stakeholders respond to polish, not to the underlying hypothesis','How to use deliberate constraint (time-boxing, fidelity caps) to prevent over-refinement'] },
+  { n:'Post 4', title:'When the Building Tool Is the AI', hook:'Building an AI product with AI raises a question nobody has answered cleanly: who is responsible for the thing that got built?',
+    beats:['The specific accountability question: when AI generates a component, who owns it?','What this means for design documentation: the artifact is not self-explanatory','The Build Studio cases where AI-built components created unexpected behavior — and what the teams did','How to maintain harness engineer accountability when the prototype writes its own code'] }
+],
+'ch-7': [
+  { n:'Post 1', title:'Who Is Responsible When AI Fails', hook:'This is not a legal question. It\'s a design question. And the design answer is clearer than the legal one.',
+    beats:['The legal framing of AI accountability — and why it\'s not useful for practitioners','The design framing: if you cannot explain why your system does what it does, you cannot improve it when it fails','What "responsible" means in this context: not blame, but the ability to iterate','Why the harness engineer framing resolves the accountability question — and what it requires'] },
+  { n:'Post 2', title:'Harness Engineer Accountability in Practice', hook:'Accountability isn\'t about ownership. It\'s about explanation.',
+    beats:['What the harness engineer is accountable for: the behavior of the system, not just the decisions made in building it','The explanation requirement: can you narrate why the system does what it does at each decision point?','What this looks like in practice: documentation, design rationale, testable claims about system behavior','The Build Studio teams that built accountable systems — and what their documentation looked like'] },
+  { n:'Post 3', title:'Evals as Design Practice', hook:'Evaluation frameworks for AI behavior are usually treated as engineering problems. They are design problems.',
+    beats:['What an eval is in the AI context: a structured test of whether the system does what you intended','Why evals are a design practice: they require judgment about what matters, which is always a design question','How to build evals into the design process rather than appending them at the end','The specific evals the Build Studio teams built — and what they discovered about their own systems'] },
+  { n:'Post 4', title:'The Taxonomy of Systematic AI Failure', hook:'AI fails in patterns. Knowing the patterns is the first step to designing around them.',
+    beats:['The main failure categories: hallucination, distributional shift, specification gaming, confident wrongness','What each failure mode looks like in a deployed product context','The mitigation strategies: not elimination (impossible) but detection and recovery','How the Build Studio teams encountered each failure mode and what they built in response'] }
+],
+'ch-8': [
+  { n:'Post 1', title:'The Stage AI Cannot Do', hook:'AI can simulate a user test. It cannot run one. Here\'s why that difference matters.',
+    beats:['What real validation requires: real users, real conditions, real behavior — not predicted behavior','Why AI simulation of user testing fails: it predicts what users should do, not what they actually do','The specific information that only comes from being in the room: non-verbal signals, workarounds, confusion','Why this stage justifies everything that comes before it — and what happens when teams skip it'] },
+  { n:'Post 2', title:'Testing a System, Not an Artifact', hook:'When your product includes a language model, you are not testing a stable thing. You are testing a system that behaves differently every time.',
+    beats:['The traditional assumption of validation: the thing being tested is fixed','What changes with AI products: behavior varies by context, phrasing, session state, user mental model','What this means for test design: you need more sessions, more variation, more systematic documentation','How the Build Studio teams adapted their validation protocols for non-deterministic products'] },
+  { n:'Post 3', title:'What You Miss When You\'re Not in the Room', hook:'The most important data from a user test is often the data you can\'t put in a transcript.',
+    beats:['Non-verbal signals: hesitation, physical posture, micro-expressions, the moment someone gives up trying to explain','What AI post-processing of transcripts misses: everything that wasn\'t said','The discipline of in-person observation: what to watch for, how to note it, how to use it','Why remote testing is insufficient for AI products — and what hybrid protocols can recover'] },
+  { n:'Post 4', title:'Synthesis After Testing', hook:'AI is genuinely good at synthesizing test findings. Here\'s how to use that capability without losing the judgment layer.',
+    beats:['Where AI helps in post-testing synthesis: pattern surfacing across sessions, clustering findings, drafting next-iteration priorities','Where AI synthesis fails: it weights frequency over significance, pattern over anomaly','The human judgment layer in synthesis: choosing what to act on is always a design decision','How to structure AI-assisted synthesis so it supports rather than replaces the interpretation step'] }
+],
+'ch-9': [
+  { n:'Post 1', title:'Where Design Thinking Ends', hook:'Every design thinking framework ends at testing. Real products don\'t.',
+    beats:['The handoff problem: what happens when a co-created product leaves the studio and enters an organization','What the standard handoff looks like: a deck, a prototype, a recommendation — and then silence','Why the handoff is especially fragile for AI products: the conditions that made the product work rarely transfer','What the Build Studio teams discovered about handoff on the three cases'] },
+  { n:'Post 2', title:'Three Patterns That Break Co-Created Products', hook:'Co-created products break in organizations in predictable ways. The patterns are learnable.',
+    beats:['Pattern 1: The AI literacy gap — the team that built it can explain it; the team that inherits it cannot','Pattern 2: The governance void — no one owns the system\'s behavior once the builders are gone','Pattern 3: The iteration freeze — organizations stop updating what they don\'t understand','What each pattern costs — and when in the post-launch lifecycle it shows up'] },
+  { n:'Post 3', title:'The Governance Layer', hook:'Every AI product ships with a governance layer, whether it was designed or not.',
+    beats:['What the governance layer is: the structures, roles, and protocols that determine what happens when the system fails','What an undesigned governance layer looks like: ad hoc escalation, no accountability assignment, no update protocol','What a designed governance layer includes: behavior documentation, failure protocols, update authority, review cadence','How to build the governance layer during the design process, not after shipping'] },
+  { n:'Post 4', title:'The Internal Build Studio Model', hook:'The alternative to the standard handoff is not a better handoff. It\'s a different organizational structure.',
+    beats:['What an internal Build Studio is: a persistent team that retains design accountability after shipping','Why the alternative works: it keeps AI literacy and iteration capacity inside the organization','What this costs: it requires organizational investment in a function that doesn\'t map to existing job categories','How organizations that have built this have structured it — and what the minimum viable version looks like'] }
+],
+'ch-10': [
+  { n:'Post 1', title:'What Is Being Automated', hook:'A generation is graduating into a labor market that is automating the skills they trained for. This chapter names what\'s actually at risk.',
+    beats:['The skills most exposed: task execution, basic analysis, first-draft production, structured research','The skills least exposed: judgment under ambiguity, accountability narration, client and user relationships','Why the exposure is not evenly distributed: seniority, context, domain all affect the automation frontier','What this means for the students graduating into this market — and the managers hiring them'] },
+  { n:'Post 2', title:'The Dual Portfolio', hook:'The portfolio of the AI era has two parts. Most people are only building one.',
+    beats:['Portfolio part 1: the work — AI-assisted output at quality and speed that demonstrates frontier fluency','Portfolio part 2: the narration — the documented reasoning behind how the work was made','Why both parts are required: output without narration looks undifferentiated; narration without output is unverifiable','What a dual portfolio looks like in practice — and how to start building it now'] },
+  { n:'Post 3', title:'Three Career Paths', hook:'The harness engineer role manifests differently depending on where you sit in an organization. Here are the three main configurations.',
+    beats:['Path 1: The embedded practitioner — inside a product or engineering team, responsible for AI behavior at the component level','Path 2: The forward-deployed specialist — client-facing, responsible for fitting AI capability to organizational context','Path 3: The internal studio lead — building and maintaining a team that holds AI literacy organizationally','What each path requires, what it pays, and what it builds toward'] },
+  { n:'Post 4', title:'Builder Identity', hook:'The professional identity of the AI era is not "AI user." It\'s builder.',
+    beats:['What builder identity means: orientation toward making things that work for people, with whatever tools are available','Why the identity matters: it determines what you optimize for when the tools change','The difference between builders and operators — and why the distinction is getting sharper','What it takes to develop and sustain builder identity in a labor market that is trying to make everyone an operator'] }
+],
+'ch-epi': [
+  { n:'Post 1', title:'What AI Can Simulate', hook:'The capabilities keep expanding. The gap keeps being the same gap.',
+    beats:['The expanding list: AI can now simulate empathy, model perspective, generate emotionally resonant language','What simulation means technically: pattern matching on expressions of human care, not the underlying state','Why the simulation is increasingly convincing — and why that makes the gap more important, not less','The specific design contexts where simulation is sufficient — and the ones where it isn\'t'] },
+  { n:'Post 2', title:'Empathy vs. Simulation', hook:'The difference between empathy and its simulation is not philosophical. It is functional.',
+    beats:['What empathy does that simulation doesn\'t: grounds design in the specific person in front of you, not the average of all similar people','Where simulation breaks: novel situations, high-stakes context, users who don\'t match the training distribution','The design risk of mistaking simulation for empathy: decisions made as if users were understood when they weren\'t','How to test whether you\'re working from simulation or real understanding'] },
+  { n:'Post 3', title:'The Permanent Role', hook:'As AI gets more capable, the gap doesn\'t close. It moves.',
+    beats:['Why the gap is structural: empathy requires a subject, and AI has no subjectivity','The moving gap: as AI gets better at simulation, the human role shifts to the situations simulation can\'t reach','What the permanent role is: presence, accountability, and the willingness to be responsible for real people in real conditions','Why this is the argument the whole book was building toward'] },
+  { n:'Post 4', title:'Where the Design Process Begins', hook:'AI can discover, frame, generate, build, and validate. The design process still begins with a human deciding it matters.',
+    beats:['The moment that starts everything: a human choosing to pay attention to another human\'s experience','Why that moment cannot be automated: it requires a decision about what is worth caring about','What this means for the future of human-centered design: not threatened, but clarified','The one thing that makes all the rest of the book possible — and what it asks of the designer'] }
+]
+};
+
+const P = {
+
+argument: {
+  label: 'The Core Argument',
+  left: `
+    <div class="dp-eyebrow">The Argument</div>
+    <h2 class="dp-title">Why human-centered design needs to be rebuilt</h2>
+    <div class="dp-subtitle">Not replaced. Rebuilt.</div>
+    <div class="dp-sec">Section 1 — What the framework got right</div>
+    <p class="dp-txt"><strong>Five stages. Still right.</strong><br>The best design process ever developed for building things that work for people starts with deep human understanding and ends with real-world validation. That structure is correct. AI doesn't change it.</p>
+    <p class="dp-txt" style="margin-top:8px">What AI changes is the cost and speed of every stage — and therefore the discipline required to do each one well.</p>
+    <div class="dp-sec">Section 2 — The capability shift</div>
+    <p class="dp-txt">In 2023, something structural happened. AI systems crossed a threshold where they could meaningfully participate in creative and analytical work — not perfectly, not reliably, but consequentially.</p>
+    <p class="dp-txt" style="margin-top:8px">The result is a new collaboration problem: how do you keep a design process human-centered when AI is doing a meaningful fraction of the designing?</p>
+    <div class="dp-sec">Section 3 — The gap in existing books</div>
+    <p class="dp-txt">Recent books on AI and work are excellent at describing AI as a creative partner. What they don't address is the harder question: how do you design products <em>with</em> AI that work for people who aren't already AI-fluent?</p>
+    <p class="dp-txt" style="margin-top:8px">That is the human-centered design question. Nobody has written that book yet for practitioners. This is that book.</p>
+    <div class="dp-sec">Section 4 — The evidence</div>
+    <p class="dp-txt">The argument in this book is not theoretical. It is drawn from a summer — nine weeks with four student teams building at the frontier of what AI can currently do, for real users, with no templates and no safety net.</p>
+  `,
+  right: `
+    <div class="dp-block">
+      <div class="dp-block-hdr navy">The Capability Shift — Pre vs. Post 2023</div>
+      <div class="dp-block-body">
+        <div class="dp-stage">
+          <div class="dp-stage-hdr"><span class="dp-stage-n">PRE-2023</span><span class="dp-stage-t">Design Thinking Era</span></div>
+          <div class="dp-stage-body">AI as tool. Designer as author. Machine as executor.</div>
+        </div>
+        <div class="dp-stage">
+          <div class="dp-stage-hdr"><span class="dp-stage-n">POST-2023</span><span class="dp-stage-t">Co-Creation Era</span></div>
+          <div class="dp-stage-body">AI as design partner. New collaboration problem. Human-centered discipline must be rebuilt at every stage.</div>
+        </div>
+      </div>
+    </div>
+    <div class="dp-block">
+      <div class="dp-block-hdr gold">Key Claims</div>
+      <div class="dp-block-body">
+        <ul class="dp-ul">
+          <li>The five stages of the design process survive intact.</li>
+          <li>AI changes the cost and speed of every stage.</li>
+          <li>The discipline required at each stage has increased, not decreased.</li>
+          <li>Problem framing is a values decision that cannot be delegated.</li>
+          <li>Convergence is always human. Divergence can be shared.</li>
+          <li>You are responsible for everything your system produces.</li>
+        </ul>
+      </div>
+    </div>
+  `
+},
+
+framework: {
+  label: 'The Five-Stage Model',
+  left: `
+    <div class="dp-eyebrow">The Framework</div>
+    <h2 class="dp-title">Five stages. Rebuilt for co-creation.</h2>
+    <div class="dp-subtitle">Human layer + AI layer + handoff at each stage</div>
+    <div class="dp-sec">The Autonomy Dial</div>
+    <p class="dp-txt">At every stage of the design process, you are making a judgment about how much autonomy to give the AI — from "AI suggests" to "AI acts." The discipline of co-creation is knowing how to set that dial correctly at each moment, and knowing when to override it.</p>
+    <p class="dp-txt" style="margin-top:8px">There is no universal setting. There is only judgment, developed through practice.</p>
+    <div class="dp-sec">The Dual Evaluation Model</div>
+    <p class="dp-txt">In a co-creative process, you evaluate two things. First: the quality of the output — does it work for real users in real conditions? Second: the quality of the narrative — can you explain why your system does what it does, and what you would change if it failed?</p>
+    <p class="dp-txt" style="margin-top:8px">The second evaluation is not secondary. It is how organizations learn.</p>
+    <div class="dp-sec">Cases Drawn On</div>
+    <div class="pill-row"><span class="pill hi">Case A — Safety Drone</span><span class="pill hi">Case B — Off-Road Vehicle</span><span class="pill hi">Case C — Research Agent</span></div>
+  `,
+  right: `
+    <div class="dp-block">
+      <div class="dp-block-hdr navy">The Five-Stage Arc</div>
+      <div class="dp-block-body">
+        <div class="dp-stage">
+          <div class="dp-stage-hdr"><span class="dp-stage-n">01</span><span class="dp-stage-t">Discover</span></div>
+          <div class="dp-stage-body"><strong>Human:</strong> Field observation, user interviews, reading non-verbal signals, interpreting meaning<br><strong>AI:</strong> Pre-field synthesis, assumption stress-testing, synthetic persona generation, transcript analysis</div>
+          <div class="dp-stage-tension">Key tension: AI sharpens your questions. Only humans can answer them.</div>
+        </div>
+        <div class="dp-stage">
+          <div class="dp-stage-hdr"><span class="dp-stage-n">02</span><span class="dp-stage-t">Frame</span></div>
+          <div class="dp-stage-body"><strong>Human:</strong> Choose the problem statement (a values decision), weigh competing framings<br><strong>AI:</strong> Generate competing framings, write and rewrite problem statements, stress-test against edge cases</div>
+          <div class="dp-stage-tension">Key tension: Problem framing encodes what you think matters. That judgment can't be delegated.</div>
+        </div>
+        <div class="dp-stage">
+          <div class="dp-stage-hdr"><span class="dp-stage-n">03</span><span class="dp-stage-t">Generate</span></div>
+          <div class="dp-stage-body"><strong>Human:</strong> Gate transitions from AI output to pursued directions; feel which ideas resonate<br><strong>AI:</strong> Forced divergence, analogous domain exploration, constraint inversion, rapid variation generation</div>
+          <div class="dp-stage-tension">Key tension: Convergence is always human. Divergence can be shared.</div>
+        </div>
+        <div class="dp-stage">
+          <div class="dp-stage-hdr"><span class="dp-stage-n">04</span><span class="dp-stage-t">Build</span></div>
+          <div class="dp-stage-body"><strong>Human:</strong> Set the "good enough to be wrong" threshold; maintain accountability for everything built<br><strong>AI:</strong> Low-fidelity functional prototyping, parallel option generation, evals as design practice</div>
+          <div class="dp-stage-tension">Key tension: AI optimizes. Prototyping requires staying falsifiable.</div>
+        </div>
+        <div class="dp-stage">
+          <div class="dp-stage-hdr"><span class="dp-stage-n">05</span><span class="dp-stage-t">Validate</span></div>
+          <div class="dp-stage-body"><strong>Human:</strong> Be present in test sessions; read non-verbal signals; choose what to act on<br><strong>AI:</strong> Synthesize findings across sessions, identify failure patterns, prepare next test protocol</div>
+          <div class="dp-stage-tension">Key tension: Testing for robustness is different from testing for usability.</div>
+        </div>
+      </div>
+    </div>
+  `
+},
+
+projects: {
+  label: 'The Build Studio Cases',
+  left: `
+    <div class="dp-eyebrow">The Evidence</div>
+    <h2 class="dp-title">Three projects. Nine weeks. Real constraints.</h2>
+    <div class="dp-subtitle">Build Studio Summer 2026</div>
+    <div class="dp-sec">About the Cases</div>
+    <p class="dp-txt">These are not hypothetical examples. They are documented in real time, during the Build Studio Summer 2026 program. Each project runs as a longitudinal case through every chapter of the book.</p>
+    <div class="dp-sec">Demo Day</div>
+    <p class="dp-txt"><strong>August 31.</strong> All four teams present what they built. Open to students, faculty, industry, and the public.</p>
+    <div class="dp-sec">Chapter Coverage</div>
+    <ul class="dp-ul">
+      <li><strong>Case A (Drone)</strong> — Ch 1, 2, 3, 5, 6, 8, 9, 10</li>
+      <li><strong>Case B (Vehicle)</strong> — Ch 1, 2, 4, 6, 7, 8, 9, 10</li>
+      <li><strong>Case C (Agent)</strong> — Ch 1, 2, 3, 4, 5, 7, 8, 9, 10</li>
+    </ul>
+  `,
+  right: `
+    <div class="dp-block">
+      <div class="dp-block-hdr ink">Case A — Voice-Commanded Safety Drone</div>
+      <div class="dp-block-body">
+        <div class="dp-stage"><div class="dp-stage-body"><strong>Domain:</strong> Occupational Safety &amp; Health · Autonomous Systems</div></div>
+        <div class="dp-stage"><div class="dp-stage-body"><strong>Challenge:</strong> Most workplace safety inspections put humans in the danger zone. This team built a quadcopter you can talk to — describe the hazard, the drone investigates.</div></div>
+        <div class="dp-stage"><div class="dp-stage-body"><strong>Design challenge:</strong> Designing for users (safety managers) who need to trust a system they cannot fully see or correct in real time.</div></div>
+      </div>
+    </div>
+    <div class="dp-block">
+      <div class="dp-block-hdr ink">Case B — Off-Road Autonomous Vehicle</div>
+      <div class="dp-block-body">
+        <div class="dp-stage"><div class="dp-stage-body"><strong>Domain:</strong> Autonomous Navigation · Unstructured Terrain</div></div>
+        <div class="dp-stage"><div class="dp-stage-body"><strong>Challenge:</strong> Self-driving systems assume roads exist. This one doesn't — built for disaster response, agriculture, off-grid operations.</div></div>
+        <div class="dp-stage"><div class="dp-stage-body"><strong>Design challenge:</strong> Defining failure tolerance for high-stakes, low-supervision environments with no established user population to test with.</div></div>
+      </div>
+    </div>
+    <div class="dp-block">
+      <div class="dp-block-hdr ink">Case C — AI Research Agent</div>
+      <div class="dp-block-body">
+        <div class="dp-stage"><div class="dp-stage-body"><strong>Domain:</strong> Computational Research · Knowledge Work</div></div>
+        <div class="dp-stage"><div class="dp-stage-body"><strong>Challenge:</strong> Building an autonomous agent that works alongside researchers constructing theory — surfacing assumptions, flagging gaps, making reasoning more transparent.</div></div>
+        <div class="dp-stage"><div class="dp-stage-body"><strong>Design challenge:</strong> Designing an AI collaborator that strengthens, not replaces, the researcher's own judgment — the central tension of the entire book in miniature.</div></div>
+      </div>
+    </div>
+  `
+},
+
+author: {
+  label: 'About Aron Lindberg',
+  left: `
+    <div class="dp-eyebrow">The Author</div>
+    <h2 class="dp-title">Aron Lindberg</h2>
+    <div class="dp-subtitle">Professor · Chair · Builder</div>
+    <div class="dp-sec">Bio</div>
+    <p class="dp-txt">Aron Lindberg is the Chair of Information Systems &amp; Analytics at Stevens Institute of Technology's School of Business, where he studies how organizations build things at the AI frontier.</p>
+    <p class="dp-txt" style="margin-top:8px">He founded Build Studio — the program where teams take real AI challenges from paper sketch to working product in fifteen weeks. The summer program documented in this book is Build Studio's first intensive cohort.</p>
+    <p class="dp-txt" style="margin-top:8px">His research spans crowd-based digital innovation, AI-based product development, and the governance of AI agents in organizational settings. He writes on Substack and is the co-host of the Collaborative Intelligence podcast.</p>
+    <div class="dp-sec">Links</div>
+    <ul class="dp-ul">
+      <li><a href="https://aronlindberg.com/build-studio" style="color:var(--navy)">Build Studio</a></li>
+      <li>Substack (link TK)</li>
+      <li>Podcast: Collaborative Intelligence</li>
+      <li>Stevens School of Business</li>
+    </ul>
+  `,
+  right: `
+    <div class="dp-block">
+      <div class="dp-block-hdr navy">Speaking &amp; Consulting</div>
+      <div class="dp-block-body">
+        <p>Aron runs Build Sprints for leadership teams — one-day and three-day formats that apply the co-creation framework to real product challenges.</p>
+        <p style="margin-top:10px"><a href="mailto:aron.lindberg@stevens.edu" style="color:var(--navy);font-weight:600">Get in touch &rarr; aron.lindberg@stevens.edu</a></p>
+      </div>
+    </div>
+  `
+},
+
+'ch-intro': {
+  label: 'Introduction — A Summer at the Edge',
+  chNum: '00', chPart: 'Introduction', chTitle: 'A Summer at the Edge', chSub: 'Four teams. Nine weeks. Building with machines.',
+  chBody: 'Four teams enter a studio in June with one instruction: build something real for real users — with AI as a full partner in the process. By August, all four will have something working. This introduction lays out what the summer is for: not to prove that AI can design, but to figure out what it means to build together with machines while keeping humans at the center. Our design, build, and engineering processes don\'t yet integrate AI at every stage. We\'ve learned to center the human. We haven\'t learned to co-create with machines. That\'s what this book is working out — in real time, against live evidence, as the summer unfolds.',
+  chConcepts: ['Build culture: building constantly, entrepreneurial mindset, centering humans, embracing experimentation','The jagged edge of performance: powerful but unpredictable, sometimes wrong, sometimes creativity-restricting','Building with machines vs. using machines'],
+  chCases: ['A','B','C']
+},
+'ch-1': {
+  label: 'Chapter 1 — The Harness Engineer',
+  chNum: '01', chPart: 'Stance', chTitle: 'The Harness Engineer', chSub: 'Mindset for the co-creation era',
+  chBody: 'AI capability is not a smooth curve — it is startling in some places and surprisingly broken in others, and the map keeps shifting. The core professional skill of the AI era is not prompt engineering. It is knowing where that frontier runs and designing the handoffs between human and machine judgment so that neither degrades the other. This chapter introduces the central mental model of the book.',
+  chConcepts: ['The uneven capability frontier','The autonomy dial','Handoff design'],
+  chCases: ['A','B','C']
+},
+'ch-2': {
+  label: 'Chapter 2 — Build Culture',
+  chNum: '02', chPart: 'Stance', chTitle: 'Build Culture', chSub: 'The environment that makes co-creation possible',
+  chBody: 'Mindset is individual; culture is collective. Three conditions make human-AI collaboration work: psychological safety to show half-finished work, iteration norms that don\'t confuse speed with progress, and a shared language for distinguishing AI-generated insight from human judgment. Organizations that mistake AI fluency for AI literacy build brittle processes that break when the AI is confidently wrong. The dual evaluation model is introduced here.',
+  chConcepts: ['AI fluency vs. AI literacy','The dual evaluation model','Iteration culture'],
+  chCases: ['A','B','C']
+},
+'ch-3': {
+  label: 'Chapter 3 — Discover',
+  chNum: '03', chPart: 'Design Arc', chTitle: 'Discover: Staying Close to Human Truth', chSub: 'The first stage. The hardest discipline.',
+  chBody: 'The first instinct of human-centered design survives intact: go into the world and observe before you assume. AI changes the preparation layer dramatically but cannot do the fieldwork. This chapter traces what AI does well in the discovery stage — and the specific failure modes that emerge when teams shortcut the human part.',
+  chConcepts: ['Synthetic personas as assumption testing','Pre/post-field distinction','Question sharpening'],
+  chCases: ['A','C']
+},
+'ch-4': {
+  label: 'Chapter 4 — Frame',
+  chNum: '04', chPart: 'Design Arc', chTitle: 'Frame: Choosing the Problem', chSub: 'The stage most often skipped. The one that matters most.',
+  chBody: 'Framing the problem is a judgment call that encodes what you think matters about the people you observed. AI can generate competing framings in seconds — and that speed is the hazard. This chapter introduces the "mirror test" for AI-generated problem definitions and argues that choosing the problem statement is a values decision that cannot be delegated.',
+  chConcepts: ['The mirror test','Problem framing as values decision','HMW generation'],
+  chCases: ['B','C']
+},
+'ch-5': {
+  label: 'Chapter 5 — Generate',
+  chNum: '05', chPart: 'Design Arc', chTitle: 'Generate: Diverging With Machines', chSub: 'Quantity is not creativity. Convergence is always human.',
+  chBody: 'AI is a prodigious idea generator. That is the problem. Quantity without a quality filter is noise. This chapter introduces the discipline of structured diverge-then-converge — where AI expands the option space and human judgment gates every transition from generated options to pursued directions. Convergence is always human. Divergence can be shared.',
+  chConcepts: ['Structured diverge-then-converge','The 100-ideas exercise','Resonance vs. cleverness'],
+  chCases: ['A','C']
+},
+'ch-6': {
+  label: 'Chapter 6 — Build (I)',
+  chNum: '06', chPart: 'Design Arc', chTitle: 'Build: Making the Intangible Tangible', chSub: 'The cost of prototyping has collapsed. The discipline required has not.',
+  chBody: 'AI has collapsed the cost of making a working prototype almost to zero. This changes the economics of the design process but creates a new failure mode: over-refinement before testing. This chapter introduces the "good enough to be wrong" standard and traces what it means to build AI-enabled products in a world where the building tool is itself an AI.',
+  chConcepts: ['Good enough to be wrong','Over-refinement as failure mode','AI-built artifacts'],
+  chCases: ['A','B']
+},
+'ch-7': {
+  label: 'Chapter 7 — Build (II)',
+  chNum: '07', chPart: 'Design Arc', chTitle: 'Build: Navigating the Handoff', chSub: 'You are responsible for everything your system does.',
+  chBody: 'When AI generates a component that fails, who is responsible? This chapter argues that harness engineer accountability is not a legal position — it is a design position. If you cannot explain why your system does what it does, you cannot iterate on it when it fails. Evaluation frameworks for AI behavior are introduced here as a design practice, not an engineering one.',
+  chConcepts: ['Harness engineer accountability','Evals as design','Systematic AI failure modes'],
+  chCases: ['B','C']
+},
+'ch-8': {
+  label: 'Chapter 8 — Validate',
+  chNum: '08', chPart: 'Design Arc', chTitle: 'Validate: Learning from Real People', chSub: 'The stage AI cannot do. The one that justifies everything else.',
+  chBody: 'Real users don\'t interact with your intent. They interact with what you built. AI cannot tell you what real users will do; only real users can do that. This chapter addresses both the irreducible human role in validation and the new challenge created by AI products: when the product behavior is partly determined by a language model, you are not testing a stable artifact. You are testing a system.',
+  chConcepts: ['Testing for robustness vs. usability','Non-verbal signals','Synthesis after testing'],
+  chCases: ['A','B','C']
+},
+'ch-9': {
+  label: 'Chapter 9 — Ship',
+  chNum: '09', chPart: 'After', chTitle: 'Ship: Organizational Reality', chSub: 'What happens when a co-created product leaves the studio',
+  chBody: 'Design thinking frameworks end at testing. Real products don\'t. This chapter addresses what happens when a co-created product enters an organization where the conditions for human-AI collaboration rarely exist. Three patterns consistently break co-created products in organizations — and what the internal Build Studio model offers as an alternative.',
+  chConcepts: ['Three organizational failure patterns','Internal Build Studio','The governance layer'],
+  chCases: ['A','B','C']
+},
+'ch-10': {
+  label: 'Chapter 10 — Careers',
+  chNum: '10', chPart: 'After', chTitle: 'Careers: Building as a Profession', chSub: 'The skills that matter when AI can build most things',
+  chBody: 'A generation is graduating into a labor market where the skills they trained for are being automated. This chapter is addressed directly to them — and to the managers who will hire them. The harness engineer is the professional identity of the AI era: someone who builds judgment about what\'s worth building, can evaluate AI output rather than accept it, and can narrate the decisions behind what they made.',
+  chConcepts: ['The dual portfolio','Three career paths','Builder identity'],
+  chCases: ['A','B','C']
+},
+'ch-epi': {
+  label: 'Epilogue — The Human Part',
+  chNum: '—', chPart: 'Epilogue', chTitle: 'The Human Part', chSub: 'AI can discover, frame, generate, build, and validate. It cannot care.',
+  chBody: 'The book ends where the design process begins: with people. AI can simulate empathy. It cannot have it. The gap between those two things is where human-centered design lives — and where it will continue to live regardless of how capable the machines become.',
+  chConcepts: [],
+  chCases: []
+}
+
+};
+
+let activeKey = null;
+
+function openPanel(key, el) {
+  if (activeKey === key && document.getElementById('detail-panel').classList.contains('open')) {
+    closePanel(); return;
+  }
+  document.querySelectorAll('.cc.active,.ch.active').forEach(e => e.classList.remove('active'));
+  document.querySelectorAll('[data-key="'+key+'"]').forEach(e => e.classList.add('active'));
+  activeKey = key;
+  renderPanel(key);
+  const p = document.getElementById('detail-panel');
+  p.classList.add('open');
+  setTimeout(() => p.scrollIntoView({behavior:'smooth',block:'start'}), 80);
+}
+
+function closePanel() {
+  document.getElementById('detail-panel').classList.remove('open');
+  document.querySelectorAll('.cc.active,.ch.active').forEach(e => e.classList.remove('active'));
+  activeKey = null;
+}
+
+function renderPanel(key) {
+  const d = P[key];
+  document.getElementById('dp-lbl').textContent = d.label;
+  let left, right;
+
+  if (d.chNum !== undefined) {
+    // Chapter panel
+    left = `
+      <div class="dp-eyebrow">${d.chPart}</div>
+      <h2 class="dp-title">${d.chTitle}</h2>
+      <div class="dp-subtitle">${d.chSub}</div>
+      <div class="dp-sec">Chapter Description</div>
+      <p class="dp-txt">${d.chBody}</p>
+      ${d.chConcepts.length ? `<div class="dp-sec">Key Concepts</div><ul class="dp-ul">${d.chConcepts.map(c=>`<li>${c}</li>`).join('')}</ul>` : ''}
+      ${d.chCases.length ? `<div class="dp-sec">Cases</div><div class="pill-row">${d.chCases.map(c=>`<span class="pill hi">Case ${c}</span>`).join('')}</div>` : ''}
+    `;
+    const posts = POSTS[key] || [];
+    right = `
+      <div class="posts-sec-lbl">4 Substack Posts · ~1,250 words each</div>
+      ${posts.map(p => `
+        <div class="post-block">
+          <div class="post-hdr">
+            <span class="post-n">${p.n}</span>
+            <span class="post-title">${p.title}</span>
+          </div>
+          <div class="post-body">
+            <div class="post-hook">${p.hook}</div>
+            <ol class="post-beats">${p.beats.map(b=>`<li>${b}</li>`).join('')}</ol>
+          </div>
+        </div>
+      `).join('')}
+    `;
+  } else {
+    left = d.left;
+    right = d.right;
+  }
+
+  document.getElementById('dp-body').innerHTML = '<div class="dp-left">'+left+'</div><div class="dp-right">'+right+'</div>';
+}
+</script>
+</body>
+</html>
