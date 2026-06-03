@@ -299,8 +299,8 @@ body{font-family:var(--font-sans);background:var(--cream);color:var(--ink);paddi
       <div class="ch" data-key="ch-1" onclick="openPanel('ch-1',this)">
         <div class="ch-part">Stance</div>
         <div class="ch-num">01</div>
-        <div class="ch-title">The Harness Engineer</div>
-        <div class="ch-sub">Mindset for the co-creation era</div>
+        <div class="ch-title">The Context Engineer</div>
+        <div class="ch-sub">From prompt engineering to context engineering</div>
         <div class="ch-cases"><span class="case-dot">A</span><span class="case-dot">B</span><span class="case-dot">C</span></div>
       </div>
       <div class="ch" data-key="ch-2" onclick="openPanel('ch-2',this)">
@@ -407,14 +407,14 @@ const POSTS = {
     beats:['The planned part: a framework for leveraging AI\'s power while avoiding its pitfalls — structured around five design stages, each rebuilt for the co-creation era','The emergent part: the summer will surface things I haven\'t anticipated, and the best of those will reshape the argument','The role of AI in writing the book itself: working with AI to structure, challenge, and develop the argument — making the book a live demonstration of its own thesis','The forward-looking stance: these posts are written prospectively, not as a recap — the argument is being made in real time alongside the work, and the pitfalls are real ones we\'re navigating as we go'] }
 ],
 'ch-1': [
-  { n:'Post 1', title:'The Frontier Is Not a Line', hook:'AI capability doesn\'t improve evenly. The map keeps shifting. That\'s the design problem.',
-    beats:['What the uneven capability frontier actually looks like in practice — not a smooth curve','Where AI is startling: synthesis, variation, pattern recognition at scale','Where AI is surprisingly broken: judgment under ambiguity, context-sensitivity, knowing what it doesn\'t know','Why the frontier moves: what this means for anyone trying to design with AI consistently'] },
-  { n:'Post 2', title:'The Autonomy Dial', hook:'Every design decision involving AI has a setting. Most teams never choose one deliberately.',
-    beats:['The spectrum from "AI suggests" to "AI acts" — and all the positions in between','Why the dial is a design decision, not a default','What happens when teams leave the dial at the factory setting','Three examples of deliberate dial-setting from the Build Studio cases'] },
-  { n:'Post 3', title:'Designing the Handoff', hook:'The seam between human judgment and machine output is where the design work actually lives.',
-    beats:['What a handoff is: the moment where control passes between human and AI (or back)','The two failure modes: handing off too early (abdication) and too late (bottleneck)','How to design handoffs explicitly — before you need them','The Build Studio teams that got this right, and what they did differently'] },
-  { n:'Post 4', title:'The Harness Engineer as Professional Identity', hook:'Prompt engineering is a tactic. Harness engineering is a profession.',
-    beats:['Why the core skill is judgment about the frontier, not fluency with the tools','What the harness engineer does that neither the engineer nor the designer did before','The competency stack: frontier mapping, handoff design, accountability narration','What this means for how the role is hired, trained, and evaluated'] }
+  { n:'Post 1', title:'From Prompt to Context', hook:'A prompt is a sentence. A context is a world. The shift between them is the whole game.',
+    beats:['What prompt engineering actually is — and why it\'s limited: single-turn optimization, no memory, no persistent environment','What context engineering is: designing the architecture of skills, documents, instructions, and summaries that an AI operates inside across a whole project','The key question context engineers ask: what does the agent need to know, in what form, organized how — before any task begins','Why this is a judgment skill, not a technical one: it requires understanding what makes a context sufficient vs. overwhelming'] },
+  { n:'Post 2', title:'Building the Context Architecture', hook:'Context isn\'t a file you attach. It\'s an architecture you design — with a hierarchy, a logic, and a maintenance practice.',
+    beats:['The hierarchy of skills: from broad (covering everything you do across a domain) down to narrow (specific tasks, specific outputs) — and why the hierarchy matters for agent performance','Beyond skills: the role of documents, prior outputs, and structured summaries in context design — how you put in and organize material that isn\'t code','The iterative feedback loop: recording your own reactions to AI output (Zoom calls, voice notes) and having Claude turn those into a revision plan','A concrete example: iterating through 12 outlines with Claude before a single line of manual editing — how feedback cycles compress what used to take months'] },
+  { n:'Post 3', title:'Multi-Agent Systems and Adversarial Review', hook:'A single AI that generates is useful. A system that generates and then critically reviews its own output is something else entirely.',
+    beats:['Why generative agents alone aren\'t enough: without review, AI output trends toward confident mediocrity — plausible, coherent, and unremarkable','The adversarial review agent: what it looks for, what instructions it needs, and how its output feeds back into the generative loop','The dual standard for review: trustworthiness (is this accurate, grounded, defensible?) AND generativity (is this novel, useful, genuinely new?) — both matter, and they pull in different directions','What happens when you build this system: the output improves, but so does your ability to see what\'s wrong with it — adversarial review builds judgment, not just quality'] },
+  { n:'Post 4', title:'Scaffolding Artifacts and the Harness', hook:'When your context spans hundreds of pages and multiple agents, no human can hold it in their head. You need artifacts that give you the overview.',
+    beats:['What intermediary scaffolding artifacts are: evaluation tables, dashboards, metric summaries that sit between the raw context and the final output — giving you inspectability into a system that\'s too large to read','The metrics that matter: readability, creativity, concept coverage, iteration count, how many ideas you\'ve tried and discarded — not just quality of the latest output but richness of the process','How scaffolding artifacts function as a governance layer: they make the system correctable without requiring you to read everything from scratch','The harness: when context architecture + multi-agent review + scaffolding artifacts combine into a full system you build, modulate, and nudge toward a goal — that is harness engineering. Context engineering is what everyone needs. Harness engineering is what the most complex projects require.'] }
 ],
 'ch-2': [
   { n:'Post 1', title:'Fluency Is Not Literacy', hook:'Organizations are hiring for AI fluency. They need AI literacy. These are not the same thing.',
@@ -846,10 +846,10 @@ author: {
   chCases: ['A','B','C']
 },
 'ch-1': {
-  label: 'Chapter 1 — The Harness Engineer',
-  chNum: '01', chPart: 'Stance', chTitle: 'The Harness Engineer', chSub: 'Mindset for the co-creation era',
-  chBody: 'AI capability is not a smooth curve — it is startling in some places and surprisingly broken in others, and the map keeps shifting. The core professional skill of the AI era is not prompt engineering. It is knowing where that frontier runs and designing the handoffs between human and machine judgment so that neither degrades the other. This chapter introduces the central mental model of the book.',
-  chConcepts: ['The uneven capability frontier','The autonomy dial','Handoff design'],
+  label: 'Chapter 1 — The Context Engineer',
+  chNum: '01', chPart: 'Stance', chTitle: 'The Context Engineer', chSub: 'From prompt engineering to context engineering',
+  chBody: 'A prompt is a sentence. A context is a world. The core professional shift of the AI era is not learning to write better prompts — it is learning to build better contexts: the architectures of skills, documents, instructions, and feedback loops that give an AI system the environment it needs to perform in. This chapter introduces context engineering as a practice: how to build a hierarchical skill architecture, how to feed documents and summaries deliberately, how to work iteratively with AI output through structured feedback loops (recorded sessions turned into revision plans, twelve outlines iterated before a single edit), how to build multi-agent systems with adversarial review agents that check both trustworthiness and generativity, and how to design the intermediary scaffolding artifacts — evaluation tables, dashboards, metric summaries — that give you oversight of a context that spans hundreds of pages. Harness engineering is the advanced form: building and modulating the entire system to reliably produce the output you want.',
+  chConcepts: ['Context architecture: hierarchical skills from broad to specific','Iterative feedback loops: recorded sessions, revision plans, multi-round outline cycles','Multi-agent systems: generative agents + adversarial review agents','Intermediary scaffolding artifacts: evaluation tables, dashboards, metrics (readability, creativity, concept coverage)','Harness engineering as the full system — the advanced form of context engineering'],
   chCases: ['A','B','C']
 },
 'ch-2': {
