@@ -653,6 +653,143 @@ html: `<p class="fp-meta">Build Studio, Summer 2026 &middot; Introduction</p>
 <hr class="fp-rule">
 <p class="fp-cite">Mollick, E. (2024). <em>Co-Intelligence.</em> Portfolio/Penguin. &nbsp;&middot;&nbsp; IDEO (2015). <em>The Field Guide to Human-Centered Design.</em> IDEO.org. &nbsp;&middot;&nbsp; Luma Institute (2012). <em>Innovating for People.</em> Luma Institute. &nbsp;&middot;&nbsp; <em>HBR&rsquo;s 10 Must-Reads on Design Thinking.</em> Harvard Business Review Press. &nbsp;&middot;&nbsp; Sennett, R. (2008). <em>The Craftsman.</em> Yale University Press.</p>
 <p class="fp-cite" style="margin-top:14px;font-style:normal;color:#aaa;font-size:11px;">This post is part of the Co-Creation series. Each chapter of the book begins as a Substack post, written prospectively &mdash; before the argument is settled, while the evidence is still being gathered. Subscribe to follow the work as it develops.</p>`
+},
+'ch-1': {
+plain: `THE CONTEXT ENGINEER
+Chapter 1 · Build Studio, Summer 2026
+
+---
+
+There is a phrase that became unavoidable in 2023: prompt engineering. If you could write the right prompt — specific enough, structured enough, with the right instructions in the right order — the AI would do what you needed it to do. Entire courses were built around it. Job titles appeared. A practice was born.
+
+Prompt engineering is real and useful. It is also insufficient.
+
+A prompt is a single input to a single conversation. It has no memory of what you built yesterday, no awareness of the project's history, no connection to the standards and patterns you've developed over months of work. Every time you start a new conversation, you start from scratch. The AI doesn't know who you are, what you've already decided, or what you're trying to build.
+
+Context engineering is the answer to that problem. Not a better prompt — a better world for the AI to operate in.
+
+---
+
+FROM PROMPT TO CONTEXT
+
+The shift from prompt engineering to context engineering is a shift in what you're designing. A prompt engineer optimizes a single input. A context engineer designs a persistent environment — the architecture of skills, documents, instructions, accumulated outputs, and structured summaries that give an AI system what it needs to perform across a whole project.
+
+The difference shows up immediately in how you start a session. A prompt engineer opens a new conversation and types. A context engineer opens a new conversation and already has a context loaded: the project's guiding principles, the standards for good output, the relevant prior work, the specific constraints that matter here. The AI enters the conversation already oriented.
+
+This sounds like a technical problem — where to put the files, how to structure the folders. It isn't. It's a judgment problem: what does the agent need to know, in what form, organized how? Those are design questions. They require understanding of the work, the AI's capabilities, and the relationship between the two.
+
+That judgment is the skill. And it's learnable.
+
+---
+
+BUILDING THE CONTEXT ARCHITECTURE
+
+A context architecture has a hierarchy. At the top are broad skills — markdown files or instructions that cover everything you do across a domain. A researcher might have a broad skill that describes how they approach theory construction: what counts as a contribution, what they look for in literature, how they evaluate whether an argument holds. An engineer might have one that describes their coding conventions, their preferred libraries, their tolerance for technical debt.
+
+Below the broad skills are the narrow ones: specific instructions for specific tasks. A skill for writing an abstract. A skill for running a particular kind of analysis. A skill for formatting output in a way that fits downstream use. The hierarchy means that every conversation begins with the general principles already in place, and pulls in specific guidance as the task requires.
+
+Skills are only part of the context. Documents matter too — and how you put them in matters as much as which ones you include. A 50-page paper dropped into a context window is not the same as a structured summary of that paper's key claims, organized by the questions your project is trying to answer. The context engineer decides not just what goes in, but in what form. A raw document is harder to use than a document that has been processed — summarized, annotated, restructured — to make its relevant content accessible.
+
+This takes time to build. It also compounds. A context architecture developed over months becomes a genuine asset — a representation of accumulated knowledge and judgment that makes every subsequent session faster and better.
+
+---
+
+THE ITERATIVE FEEDBACK LOOP
+
+Context engineering is not just about what you put in. It's about how you work with what comes out.
+
+The most powerful practice I've developed is systematic feedback into revision cycles. When I'm working on a document — a paper, a chapter, a proposal — I don't just read the AI's output and ask for changes. I talk about it. I record a Zoom session describing what works and what doesn't: where the argument is weak, what's missing, what the output doesn't seem to understand about what I'm trying to do. Then I have Claude turn that recording into a structured revision plan.
+
+This changes the quality of the feedback fundamentally. Writing feedback requires you to already know how to fix the problem. Talking about what's wrong doesn't. It lets you articulate the problem without prescribing the solution, and then lets the AI help figure out what to do about it.
+
+The iteration cycles become the work. For a recent paper, we went through twelve outlines before a single line of prose was written manually. Each cycle, the outline got more precise — not because I was telling the AI exactly what to write, but because I was getting clearer about what I actually thought, and the AI was helping me find the form that matched the thinking.
+
+Twelve outlines sounds like a lot. It's less than a draft that isn't working.
+
+---
+
+MULTI-AGENT SYSTEMS AND ADVERSARIAL REVIEW
+
+A single AI that generates is useful. A system that generates and then reviews its own output against independent criteria is something else.
+
+The problem with a single generative agent is that it optimizes for coherence and plausibility. It produces outputs that hang together, that sound right, that don't obviously contradict themselves. This is a low bar. It produces mediocre work that is hard to criticize because it has no apparent flaws — only an absence of genuine quality.
+
+Adversarial review agents change this. An adversarial agent is an AI instance with a specific mandate: find what's wrong. Not "what could be better" — that's too gentle. What is wrong. What is weak. What is vague where it needs to be precise. What is claimed without evidence. What could be challenged by a smart, skeptical reader who is not trying to be helpful.
+
+The adversarial agent and the generative agent need to be run separately, with different instructions and different perspectives. If you put them in the same conversation, the generative agent's outputs contaminate the review — the reviewer becomes an editor rather than a critic.
+
+There is a dual standard the adversarial agent should apply. Trustworthiness: is this accurate, grounded, defensible? Can it withstand scrutiny from someone who knows the domain? And generativity: is this novel, useful, genuinely new? Does it say something that needed to be said, or does it rearrange existing ideas into a plausible-sounding structure?
+
+Both matter. They pull in different directions. Output that is trustworthy but not generative is safe but forgettable. Output that is generative but not trustworthy is interesting but unreliable. The adversarial review process is what holds both standards simultaneously.
+
+---
+
+SCAFFOLDING ARTIFACTS AND THE HARNESS
+
+When a project's context spans hundreds of pages — multiple papers, accumulated outputs, revision histories, feedback logs — no human can hold it in their head. You need artifacts that give you the overview.
+
+Intermediary scaffolding artifacts are the answer. These are not the final outputs of the project. They are structures that sit between the raw context and the work itself: evaluation tables, dashboards, metric summaries that make the system inspectable at a glance.
+
+The metrics that matter vary by project, but some recur: readability scores across drafts, creativity indicators (how many genuinely distinct ideas have been generated vs. variations on a theme), concept coverage (what proportion of the relevant territory has been addressed), iteration count (how many rounds have been completed, what changed at each), and novelty tracking (how many ideas were tried and abandoned versus pursued). These aren't measures of quality directly. They are measures of the richness of the process — indicators that the system is exploring rather than converging prematurely.
+
+Scaffolding artifacts also function as a governance layer. When something goes wrong — when the output drifts, when quality drops, when the project loses its way — the artifacts tell you where in the system the problem started. They make a complex, distributed process correctable without requiring you to read everything from scratch.
+
+When all of this comes together — a context architecture with a clear hierarchy, an iterative feedback loop, multi-agent review for both trustworthiness and generativity, and scaffolding artifacts that give oversight of the whole — you are doing harness engineering.
+
+Context engineering is what everyone who works seriously with AI needs to learn. It is the entry point, the fundamental skill, the practice that separates people who use AI from people who work with it.
+
+Harness engineering is what the most complex projects require. It is context engineering at the level of a system: not just designing what goes into a single context window, but building and modulating a full environment across multiple agents, multiple feedback loops, and accumulated work that would overwhelm any single human or machine working alone.
+
+The harness engineer is not managing AI. They are building a world for AI to perform in, and staying close enough to the work to know when the world needs to change.
+
+---
+
+This post is part of the Co-Creation series. Each chapter of the book begins as a Substack post, written prospectively — before the argument is settled, while the evidence is still being gathered. Subscribe to follow the work as it develops.`,
+
+html: `<p class="fp-meta">Chapter 1 &middot; Build Studio, Summer 2026</p>
+<p>There is a phrase that became unavoidable in 2023: prompt engineering. If you could write the right prompt &mdash; specific enough, structured enough, with the right instructions in the right order &mdash; the AI would do what you needed it to do. Entire courses were built around it. Job titles appeared. A practice was born.</p>
+<p>Prompt engineering is real and useful. It is also insufficient.</p>
+<p>A prompt is a single input to a single conversation. It has no memory of what you built yesterday, no awareness of the project&rsquo;s history, no connection to the standards and patterns you&rsquo;ve developed over months of work. Every time you start a new conversation, you start from scratch. The AI doesn&rsquo;t know who you are, what you&rsquo;ve already decided, or what you&rsquo;re trying to build.</p>
+<p>Context engineering is the answer to that problem. Not a better prompt &mdash; a better world for the AI to operate in.</p>
+<hr class="fp-rule">
+<h2>From Prompt to Context</h2>
+<p>The shift from prompt engineering to context engineering is a shift in what you&rsquo;re designing. A prompt engineer optimizes a single input. A context engineer designs a persistent environment &mdash; the architecture of skills, documents, instructions, accumulated outputs, and structured summaries that give an AI system what it needs to perform across a whole project.</p>
+<p>The difference shows up immediately in how you start a session. A prompt engineer opens a new conversation and types. A context engineer opens a new conversation and already has a context loaded: the project&rsquo;s guiding principles, the standards for good output, the relevant prior work, the specific constraints that matter here. The AI enters the conversation already oriented.</p>
+<p>This sounds like a technical problem &mdash; where to put the files, how to structure the folders. It isn&rsquo;t. It&rsquo;s a judgment problem: what does the agent need to know, in what form, organized how? Those are design questions. They require understanding of the work, the AI&rsquo;s capabilities, and the relationship between the two.</p>
+<p>That judgment is the skill. And it&rsquo;s learnable.</p>
+<hr class="fp-rule">
+<h2>Building the Context Architecture</h2>
+<p>A context architecture has a hierarchy. At the top are broad skills &mdash; markdown files or instructions that cover everything you do across a domain. A researcher might have a broad skill that describes how they approach theory construction: what counts as a contribution, what they look for in literature, how they evaluate whether an argument holds. An engineer might have one that describes their coding conventions, their preferred libraries, their tolerance for technical debt.</p>
+<p>Below the broad skills are the narrow ones: specific instructions for specific tasks. A skill for writing an abstract. A skill for running a particular kind of analysis. A skill for formatting output in a way that fits downstream use. The hierarchy means that every conversation begins with the general principles already in place, and pulls in specific guidance as the task requires.</p>
+<p>Skills are only part of the context. Documents matter too &mdash; and how you put them in matters as much as which ones you include. A 50-page paper dropped into a context window is not the same as a structured summary of that paper&rsquo;s key claims, organized by the questions your project is trying to answer. The context engineer decides not just what goes in, but in what form. A raw document is harder to use than a document that has been processed &mdash; summarized, annotated, restructured &mdash; to make its relevant content accessible.</p>
+<p>This takes time to build. It also compounds. A context architecture developed over months becomes a genuine asset &mdash; a representation of accumulated knowledge and judgment that makes every subsequent session faster and better.</p>
+<hr class="fp-rule">
+<h2>The Iterative Feedback Loop</h2>
+<p>Context engineering is not just about what you put in. It&rsquo;s about how you work with what comes out.</p>
+<p>The most powerful practice I&rsquo;ve developed is systematic feedback into revision cycles. When I&rsquo;m working on a document &mdash; a paper, a chapter, a proposal &mdash; I don&rsquo;t just read the AI&rsquo;s output and ask for changes. I talk about it. I record a Zoom session describing what works and what doesn&rsquo;t: where the argument is weak, what&rsquo;s missing, what the output doesn&rsquo;t seem to understand about what I&rsquo;m trying to do. Then I have Claude turn that recording into a structured revision plan.</p>
+<p>This changes the quality of the feedback fundamentally. Writing feedback requires you to already know how to fix the problem. Talking about what&rsquo;s wrong doesn&rsquo;t. It lets you articulate the problem without prescribing the solution, and then lets the AI help figure out what to do about it.</p>
+<p>The iteration cycles become the work. For a recent paper, we went through twelve outlines before a single line of prose was written manually. Each cycle, the outline got more precise &mdash; not because I was telling the AI exactly what to write, but because I was getting clearer about what I actually thought, and the AI was helping me find the form that matched the thinking.</p>
+<p>Twelve outlines sounds like a lot. It&rsquo;s less than a draft that isn&rsquo;t working.</p>
+<hr class="fp-rule">
+<h2>Multi-Agent Systems and Adversarial Review</h2>
+<p>A single AI that generates is useful. A system that generates and then reviews its own output against independent criteria is something else.</p>
+<p>The problem with a single generative agent is that it optimizes for coherence and plausibility. It produces outputs that hang together, that sound right, that don&rsquo;t obviously contradict themselves. This is a low bar. It produces mediocre work that is hard to criticize because it has no apparent flaws &mdash; only an absence of genuine quality.</p>
+<p>Adversarial review agents change this. An adversarial agent is an AI instance with a specific mandate: find what&rsquo;s wrong. Not &ldquo;what could be better&rdquo; &mdash; that&rsquo;s too gentle. What is wrong. What is weak. What is vague where it needs to be precise. What is claimed without evidence. What could be challenged by a smart, skeptical reader who is not trying to be helpful.</p>
+<p>The adversarial agent and the generative agent need to be run separately, with different instructions and different perspectives. If you put them in the same conversation, the generative agent&rsquo;s outputs contaminate the review &mdash; the reviewer becomes an editor rather than a critic.</p>
+<p>There is a dual standard the adversarial agent should apply. <strong>Trustworthiness:</strong> is this accurate, grounded, defensible? Can it withstand scrutiny from someone who knows the domain? And <strong>generativity:</strong> is this novel, useful, genuinely new? Does it say something that needed to be said, or does it rearrange existing ideas into a plausible-sounding structure?</p>
+<p>Both matter. They pull in different directions. Output that is trustworthy but not generative is safe but forgettable. Output that is generative but not trustworthy is interesting but unreliable. The adversarial review process is what holds both standards simultaneously.</p>
+<hr class="fp-rule">
+<h2>Scaffolding Artifacts and the Harness</h2>
+<p>When a project&rsquo;s context spans hundreds of pages &mdash; multiple papers, accumulated outputs, revision histories, feedback logs &mdash; no human can hold it in their head. You need artifacts that give you the overview.</p>
+<p>Intermediary scaffolding artifacts are the answer. These are not the final outputs of the project. They are structures that sit between the raw context and the work itself: evaluation tables, dashboards, metric summaries that make the system inspectable at a glance.</p>
+<p>The metrics that matter vary by project, but some recur: readability scores across drafts, creativity indicators (how many genuinely distinct ideas have been generated vs. variations on a theme), concept coverage (what proportion of the relevant territory has been addressed), iteration count (how many rounds completed, what changed at each), and novelty tracking (how many ideas were tried and abandoned versus pursued). These aren&rsquo;t measures of quality directly. They are measures of the richness of the process &mdash; indicators that the system is exploring rather than converging prematurely.</p>
+<p>Scaffolding artifacts also function as a governance layer. When something goes wrong &mdash; when the output drifts, when quality drops, when the project loses its way &mdash; the artifacts tell you where in the system the problem started. They make a complex, distributed process correctable without requiring you to read everything from scratch.</p>
+<p>When all of this comes together &mdash; a context architecture with a clear hierarchy, an iterative feedback loop, multi-agent review for both trustworthiness and generativity, and scaffolding artifacts that give oversight of the whole &mdash; you are doing harness engineering.</p>
+<p>Context engineering is what everyone who works seriously with AI needs to learn. It is the entry point, the fundamental skill, the practice that separates people who use AI from people who work with it.</p>
+<p>Harness engineering is what the most complex projects require. It is context engineering at the level of a system: not just designing what goes into a single context window, but building and modulating a full environment across multiple agents, multiple feedback loops, and accumulated work that would overwhelm any single human or machine working alone.</p>
+<p>The harness engineer is not managing AI. They are building a world for AI to perform in, and staying close enough to the work to know when the world needs to change.</p>
+<hr class="fp-rule">
+<p class="fp-cite" style="font-style:normal;color:#aaa;font-size:11px;">This post is part of the Co-Creation series. Each chapter of the book begins as a Substack post, written prospectively &mdash; before the argument is settled, while the evidence is still being gathered. Subscribe to follow the work as it develops.</p>`
 }
 };
 
