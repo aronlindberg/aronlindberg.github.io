@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 240" width="720" height="240">
+  <defs>
+    <style>text { font-family: 'DM Sans', sans-serif; }</style>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5"
+            markerUnits="strokeWidth" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,1 L9,5 L0,9 Z" fill="#0e1117"/>
+    </marker>
+    <marker id="ah-rev" viewBox="0 0 10 10" refX="1" refY="5"
+            markerUnits="strokeWidth" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,1 L9,5 L0,9 Z" fill="#0e1117"/>
+    </marker>
+  </defs>
+
+  <!-- Background transparent -->
+
+  <!-- Human Cognitive Context — ORANGE (left) -->
+  <rect x="30" y="60" width="240" height="120" rx="10"
+        fill="#fdf0e8" stroke="#c0682b" stroke-width="2"/>
+  <text x="150" y="114" font-size="14" font-weight="600" fill="#7a3010" text-anchor="middle">Human</text>
+  <text x="150" y="133" font-size="14" font-weight="600" fill="#7a3010" text-anchor="middle">Cognitive Context</text>
+
+  <!-- Agent Computational Context — BLUE (right) -->
+  <rect x="450" y="60" width="240" height="120" rx="10"
+        fill="#e8f0fb" stroke="#1a3a6b" stroke-width="2"/>
+  <text x="570" y="114" font-size="14" font-weight="600" fill="#1a3a6b" text-anchor="middle">Agent</text>
+  <text x="570" y="133" font-size="14" font-weight="600" fill="#1a3a6b" text-anchor="middle">Computational Context</text>
+
+  <!-- Arrow: Human → Agent (upper) -->
+  <line x1="278" y1="103" x2="442" y2="103"
+        stroke="#0e1117" stroke-width="1.5"
+        marker-end="url(#ah)"/>
+
+  <!-- Arrow: Agent → Human (lower) -->
+  <line x1="442" y1="137" x2="278" y2="137"
+        stroke="#0e1117" stroke-width="1.5"
+        marker-end="url(#ah)"/>
+
+</svg>
