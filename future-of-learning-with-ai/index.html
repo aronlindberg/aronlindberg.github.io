@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Future of Learning with AI — ICE-T Workshop</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #ffffff;
+      --bg-secondary: #f7f7f5;
+      --text: #1a1a18;
+      --text-secondary: #5f5e5a;
+      --text-tertiary: #888780;
+      --border: rgba(0,0,0,0.12);
+      --border-secondary: rgba(0,0,0,0.20);
+      --purple: #7F77DD;
+      --purple-light: #EEEDFE;
+      --purple-dark: #534AB7;
+      --green-label: #3B6D11;
+      --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --radius: 10px;
+      --radius-sm: 7px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1c1c1a;
+        --bg-secondary: #252523;
+        --text: #e8e7e2;
+        --text-secondary: #b4b2a9;
+        --text-tertiary: #888780;
+        --border: rgba(255,255,255,0.10);
+        --border-secondary: rgba(255,255,255,0.18);
+        --purple-light: #26215C;
+      }
+    }
+    body {
+      font-family: var(--font);
+      background: var(--bg-secondary);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 2.5rem 1rem;
+    }
+    .shell {
+      width: 100%;
+      max-width: 900px;
+    }
+    .top-label {
+      font-size: 11px;
+      color: var(--text-tertiary);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .app {
+      display: grid;
+      grid-template-columns: 210px 1fr;
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--bg);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+    /* ── sidebar ── */
+    .sidebar {
+      border-right: 0.5px solid var(--border);
+      padding: 1.25rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      background: var(--bg-secondary);
+    }
+    .sidebar-label {
+      font-size: 10px;
+      color: var(--text-tertiary);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0 1rem 0.5rem;
+      margin-top: 0.75rem;
+    }
+    .sidebar-label:first-child { margin-top: 0; }
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 1rem;
+      cursor: pointer;
+      font-size: 13px;
+      color: var(--text-secondary);
+      background: transparent;
+      border: none;
+      border-right: 2px solid transparent;
+      width: 100%;
+      text-align: left;
+      transition: background 0.12s, color 0.12s;
+    }
+    .nav-item:hover { background: var(--bg); color: var(--text); }
+    .nav-item.active {
+      background: var(--bg);
+      color: var(--text);
+      font-weight: 500;
+      border-right-color: var(--purple);
+    }
+    .nav-item i { font-size: 15px; color: var(--text-tertiary); flex-shrink: 0; }
+    .nav-item.active i { color: var(--purple); }
+
+    /* ── main ── */
+    .main { display: flex; flex-direction: column; min-height: 520px; }
+    .progress-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.6rem 2rem;
+      border-bottom: 0.5px solid var(--border);
+    }
+    .progress-row span { font-size: 11px; color: var(--text-tertiary); }
+    .progress-bar { height: 2px; background: var(--border); }
+    .progress-fill { height: 100%; background: var(--purple); transition: width 0.25s; }
+    .content { flex: 1; overflow-y: auto; }
+
+    /* ── sections ── */
+    .section { display: none; padding: 2rem 2rem 1.5rem; animation: fadeIn 0.18s ease; }
+    .section.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+    .eyebrow { font-size: 11px; color: var(--text-tertiary); letter-spacing: 0.07em; text-transform: uppercase; margin-bottom: 6px; }
+    .section-title { font-size: 22px; font-weight: 500; line-height: 1.3; margin-bottom: 0.3rem; color: var(--text); }
+    .section-title em { color: var(--purple); font-style: normal; }
+    .section-sub { font-size: 14px; color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.65; }
+
+    .pill-row { display: flex; flex-wrap: wrap; gap: 6px; margin: 0.75rem 0 1.5rem; }
+    .pill { font-size: 12px; border: 0.5px solid var(--border-secondary); border-radius: 99px; padding: 3px 10px; color: var(--text-secondary); }
+
+    .hl {
+      border-left: 3px solid var(--purple);
+      padding-left: 1rem;
+      margin: 1.25rem 0;
+    }
+    .hl-label { font-size: 11px; color: var(--purple); font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 5px; }
+    .hl p { font-size: 14px; color: var(--text); line-height: 1.7; }
+
+    .card { background: var(--bg-secondary); border-radius: var(--radius-sm); padding: 0.875rem 1rem; margin-bottom: 8px; }
+    .card-title { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
+    .card-title i { font-size: 15px; color: var(--purple); }
+    .card-body { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 1rem 0; }
+    .dm-card { border: 0.5px solid var(--border); border-radius: var(--radius-sm); padding: 1rem; }
+    .dm-label { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+    .dm-card.build .dm-label { color: var(--green-label); }
+    .dm-card.experience .dm-label { color: var(--purple-dark); }
+    .dm-card p { font-size: 13px; color: var(--text-secondary); line-height: 1.55; }
+
+    .outcome-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 0.75rem; }
+    .oc { background: var(--bg-secondary); border-radius: var(--radius-sm); padding: 1rem; }
+    .oc-icon { font-size: 18px; color: var(--purple); margin-bottom: 8px; }
+    .oc-title { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+    .oc-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.55; }
+
+    .session-list { margin-top: 0.75rem; }
+    .session { border: 0.5px solid var(--border); border-radius: var(--radius-sm); margin-bottom: 8px; overflow: hidden; }
+    .session-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0.875rem 1rem;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      width: 100%;
+      text-align: left;
+      color: var(--text);
+    }
+    .session-header:hover { background: var(--bg-secondary); }
+    .session-badge {
+      width: 26px; height: 26px; border-radius: 50%;
+      background: var(--purple-light);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 500;
+      color: var(--purple);
+      border: 1px solid rgba(127,119,221,0.3);
+      flex-shrink: 0;
+    }
+    .session-name { font-size: 13px; font-weight: 500; flex: 1; color: var(--text); }
+    .session-tag { font-size: 11px; color: var(--text-tertiary); padding: 2px 8px; background: var(--bg-secondary); border-radius: 99px; white-space: nowrap; }
+    .session-chevron { font-size: 14px; color: var(--text-tertiary); transition: transform 0.2s; flex-shrink: 0; }
+    .session.open .session-chevron { transform: rotate(180deg); }
+    .session-body { display: none; padding: 0 1rem 0.875rem 3.25rem; }
+    .session.open .session-body { display: block; }
+    .session-body p { font-size: 13px; color: var(--text-secondary); line-height: 1.65; }
+
+    /* ── bottom nav ── */
+    .arrow-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 2rem;
+      padding-top: 1.25rem;
+      border-top: 0.5px solid var(--border);
+    }
+    .an-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      background: transparent;
+      border: 0.5px solid var(--border-secondary);
+      border-radius: var(--radius-sm);
+      padding: 6px 14px;
+      cursor: pointer;
+      font-family: var(--font);
+    }
+    .an-btn:hover { background: var(--bg-secondary); color: var(--text); }
+    .an-btn:disabled { opacity: 0.3; cursor: default; }
+
+    @media (max-width: 600px) {
+      .app { grid-template-columns: 1fr; }
+      .sidebar { display: flex; flex-direction: row; flex-wrap: wrap; border-right: none; border-bottom: 0.5px solid var(--border); padding: 0.5rem; }
+      .sidebar-label { display: none; }
+      .nav-item { width: auto; border-right: none; border-bottom: 2px solid transparent; padding: 6px 10px; font-size: 12px; }
+      .nav-item.active { border-bottom-color: var(--purple); border-right-color: transparent; }
+      .two-col, .outcome-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <p class="top-label">Stevens Build Studio &nbsp;·&nbsp; ICE-T Workshop Pitch</p>
+  <div class="app">
+    <nav class="sidebar" aria-label="Section navigation">
+      <div class="sidebar-label">Overview</div>
+      <button class="nav-item active" onclick="show(0)" id="nav-0"><i class="ti ti-home"></i> The question</button>
+      <button class="nav-item" onclick="show(1)" id="nav-1"><i class="ti ti-users"></i> Who &amp; why</button>
+      <div class="sidebar-label">The pitch</div>
+      <button class="nav-item" onclick="show(2)" id="nav-2"><i class="ti ti-alert-triangle"></i> The challenge</button>
+      <button class="nav-item" onclick="show(3)" id="nav-3"><i class="ti ti-bulb"></i> Our approach</button>
+      <button class="nav-item" onclick="show(4)" id="nav-4"><i class="ti ti-target"></i> Outcomes</button>
+      <div class="sidebar-label">The work</div>
+      <button class="nav-item" onclick="show(5)" id="nav-5"><i class="ti ti-calendar"></i> 4 sessions</button>
+    </nav>
+
+    <div class="main">
+      <div class="progress-row">
+        <span id="prog-label">1 of 6</span>
+        <span id="section-name">The question</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="prog-fill" style="width:16.67%"></div></div>
+
+      <div class="content">
+
+        <!-- 0: The question -->
+        <div class="section active" id="sec-0">
+          <div class="eyebrow">Big question</div>
+          <div class="section-title">What does learning look like <em>in the world of AI?</em></div>
+          <div class="pill-row">
+            <span class="pill">Aron Lindberg</span>
+            <span class="pill">Michael [—]</span>
+            <span class="pill">Brian [—]</span>
+            <span class="pill">Pfizer · ICE-T / GCET</span>
+          </div>
+          <div class="hl">
+            <div class="hl-label">The premise</div>
+            <p>The question is the title — and it sets the conceptual register. This workshop is a prototype of a new mode of learning, not a class about AI.</p>
+          </div>
+          <div class="card"><div class="card-title"><i class="ti ti-sparkles"></i> The spine</div><div class="card-body">What does learning look like now — and what does designing it look like — when AI changes everything?</div></div>
+          <div class="card"><div class="card-title"><i class="ti ti-cpu"></i> The method inside it</div><div class="card-body">HEAD — Human-Embedded Agentic Design — spelled out on first use. Tools recede; conceptual moves lead.</div></div>
+          <div class="arrow-nav">
+            <button class="an-btn" disabled><i class="ti ti-arrow-left"></i> Prev</button>
+            <button class="an-btn" onclick="show(1)">Next <i class="ti ti-arrow-right"></i></button>
+          </div>
+        </div>
+
+        <!-- 1: Who & why -->
+        <div class="section" id="sec-1">
+          <div class="eyebrow">Overview</div>
+          <div class="section-title">Who we're building for</div>
+          <div class="section-sub">Context on ICE-T, GCET, and what we heard going in.</div>
+          <div class="card"><div class="card-title"><i class="ti ti-building"></i> ICE-T</div><div class="card-body">13 colleagues under Shae Sakach, inside GCET (~108 people), under VP Katina Owens. They design field-ready training for Pfizer's commercial force.</div></div>
+          <div class="card"><div class="card-title"><i class="ti ti-message"></i> What we heard</div><div class="card-body">GCET is already moving on AI — and Ryan set the bar above basic prompts. This isn't a starting-from-zero audience.</div></div>
+          <div class="card"><div class="card-title"><i class="ti ti-refresh"></i> The reframe</div><div class="card-body">The real question isn't "which AI tool?" It's what does learning even look like now? And for a training org: what does delivering it look like?</div></div>
+          <div class="hl">
+            <div class="hl-label">Why this is ICE-T's question to answer</div>
+            <p>ICE-T doesn't just learn — they design learning for thousands. Reconceiving it is strategic, not academic.</p>
+          </div>
+          <div class="arrow-nav">
+            <button class="an-btn" onclick="show(0)"><i class="ti ti-arrow-left"></i> Prev</button>
+            <button class="an-btn" onclick="show(2)">Next <i class="ti ti-arrow-right"></i></button>
+          </div>
+        </div>
+
+        <!-- 2: Challenge -->
+        <div class="section" id="sec-2">
+          <div class="eyebrow">The pitch</div>
+          <div class="section-title">Learning itself has changed</div>
+          <div class="section-sub">The old model is breaking. The frontier moved past the prompt.</div>
+          <div class="card"><div class="card-title"><i class="ti ti-trending-down"></i> The old model is breaking</div><div class="card-body">When anyone can work with AI constantly, learning can't mean sitting through delivered content. The lecture, the deck, the one-shot prompt — all plateaus.</div></div>
+          <div class="card"><div class="card-title"><i class="ti ti-arrow-right"></i> The frontier moved</div><div class="card-body">prompt → context → harness engineering. The skill now is directing systems, not consuming material.</div></div>
+          <div class="hl">
+            <div class="hl-label">The wager</div>
+            <p>You can't answer "what does learning look like now?" in a slideshow. You have to build the answer — by prototyping a new mode of learning, live.</p>
+          </div>
+          <div class="arrow-nav">
+            <button class="an-btn" onclick="show(1)"><i class="ti ti-arrow-left"></i> Prev</button>
+            <button class="an-btn" onclick="show(3)">Next <i class="ti ti-arrow-right"></i></button>
+          </div>
+        </div>
+
+        <!-- 3: Approach -->
+        <div class="section" id="sec-3">
+          <div class="eyebrow">The pitch</div>
+          <div class="section-title">Our approach</div>
+          <div class="section-sub">A working prototype of new learning — not a class about AI.</div>
+          <div class="two-col">
+            <div class="dm-card build">
+              <div class="dm-label"><i class="ti ti-hammer"></i> Building</div>
+              <p>ICE-T builds real learning solutions for real Pfizer training needs using HEAD.</p>
+            </div>
+            <div class="dm-card experience">
+              <div class="dm-label"><i class="ti ti-eye"></i> Experiencing</div>
+              <p>In doing so, they live a new way of learning and delivering it. The medium is the message.</p>
+            </div>
+          </div>
+          <div class="hl">
+            <div class="hl-label">HEAD — Human-Embedded Agentic Design</div>
+            <p>The human designer holds the vision and guardrails. Design agents generate. Crit agents critique. Eval artifacts hand work back to a human who stays in charge. AI in the loop of the designer — not the reverse.</p>
+          </div>
+          <div class="card"><div class="card-title"><i class="ti ti-school"></i> Conceptual, not tool-training</div><div class="card-body">Tools show up — and they'll use them — but the workshop is about the conceptual moves: how learning, authorship, and judgment shift when you build with agents.</div></div>
+          <div class="arrow-nav">
+            <button class="an-btn" onclick="show(2)"><i class="ti ti-arrow-left"></i> Prev</button>
+            <button class="an-btn" onclick="show(4)">Next <i class="ti ti-arrow-right"></i></button>
+          </div>
+        </div>
+
+        <!-- 4: Outcomes -->
+        <div class="section" id="sec-4">
+          <div class="eyebrow">The pitch</div>
+          <div class="section-title">Expected outcomes</div>
+          <div class="section-sub">What ICE-T leaves with — and what Pfizer sees.</div>
+          <div class="outcome-grid">
+            <div class="oc"><div class="oc-icon"><i class="ti ti-bulb"></i></div><div class="oc-title">A new model of learning, prototyped</div><div class="oc-desc">A lived answer to "what does learning look like now" — not a theory of it.</div></div>
+            <div class="oc"><div class="oc-icon"><i class="ti ti-package"></i></div><div class="oc-title">A working learning solution</div><div class="oc-desc">Each pod ships a real solution to a real ICE-T need, built through HEAD.</div></div>
+            <div class="oc"><div class="oc-icon"><i class="ti ti-repeat"></i></div><div class="oc-title">Repeatable method + context architecture</div><div class="oc-desc">Documents, skills, and design/crit loop become durable ICE-T infrastructure they can re-run.</div></div>
+            <div class="oc"><div class="oc-icon"><i class="ti ti-chart-line"></i></div><div class="oc-title">Leadership proof point</div><div class="oc-desc">Concrete demonstration of AI-era learning design at Pfizer (Shae → Katina).</div></div>
+          </div>
+          <div class="arrow-nav">
+            <button class="an-btn" onclick="show(3)"><i class="ti ti-arrow-left"></i> Prev</button>
+            <button class="an-btn" onclick="show(5)">Next <i class="ti ti-arrow-right"></i></button>
+          </div>
+        </div>
+
+        <!-- 5: Sessions -->
+        <div class="section" id="sec-5">
+          <div class="eyebrow">The work</div>
+          <div class="section-title">4 sessions × 2h</div>
+          <div class="section-sub">Each session is a conceptual move, enacted by building. Click any session to expand.</div>
+          <div class="session-list">
+            <div class="session" id="s1">
+              <button class="session-header" onclick="toggleSession('s1')">
+                <div class="session-badge">1</div>
+                <div class="session-name">Flipping the classroom</div>
+                <div class="session-tag">Consuming → setting a vision</div>
+                <i class="ti ti-chevron-down session-chevron"></i>
+              </button>
+              <div class="session-body"><p>Reframe a real training problem as a design challenge. Define the human gestalt that drives HEAD — the vision and guardrails the designer holds while agents do the generative work.</p></div>
+            </div>
+            <div class="session" id="s2">
+              <button class="session-header" onclick="toggleSession('s2')">
+                <div class="session-badge">2</div>
+                <div class="session-name">Learning as curating context</div>
+                <div class="session-tag">Being taught → assembling</div>
+                <i class="ti ti-chevron-down session-chevron"></i>
+              </button>
+              <div class="session-body"><p>Build the context architecture — their training domain as material the agents draw on. Learning here means assembling what the system needs to know, not absorbing what an instructor delivers.</p></div>
+            </div>
+            <div class="session" id="s3">
+              <button class="session-header" onclick="toggleSession('s3')">
+                <div class="session-badge">3</div>
+                <div class="session-name">Learning by directing &amp; judging</div>
+                <div class="session-tag">Answers given → critique</div>
+                <i class="ti ti-chevron-down session-chevron"></i>
+              </button>
+              <div class="session-body"><p>Run the design/crit agent loop. Generate learning solutions and push back on them — the crit agent surfaces weaknesses, the human decides. Judgment becomes the primary skill.</p></div>
+            </div>
+            <div class="session" id="s4">
+              <button class="session-header" onclick="toggleSession('s4')">
+                <div class="session-badge">4</div>
+                <div class="session-name">Delivering a new kind of learning</div>
+                <div class="session-tag">Finished course → living capability</div>
+                <i class="ti ti-chevron-down session-chevron"></i>
+              </button>
+              <div class="session-body"><p>Use eval artifacts to finalize. Pitch the solution. Reflect on what learning has become — for ICE-T and for the field force they serve. The infrastructure built here is what they take back.</p></div>
+            </div>
+          </div>
+          <div class="arrow-nav">
+            <button class="an-btn" onclick="show(4)"><i class="ti ti-arrow-left"></i> Prev</button>
+            <button class="an-btn" disabled>Done <i class="ti ti-check"></i></button>
+          </div>
+        </div>
+
+      </div><!-- /content -->
+    </div><!-- /main -->
+  </div><!-- /app -->
+</div><!-- /shell -->
+
+<script>
+  const labels = ['The question', 'Who & why', 'The challenge', 'Our approach', 'Outcomes', '4 sessions'];
+  let cur = 0;
+  function show(n) {
+    document.getElementById('sec-' + cur).classList.remove('active');
+    document.getElementById('nav-' + cur).classList.remove('active');
+    cur = n;
+    document.getElementById('sec-' + cur).classList.add('active');
+    document.getElementById('nav-' + cur).classList.add('active');
+    document.getElementById('content') && (document.querySelector('.content').scrollTop = 0);
+    document.getElementById('prog-label').textContent = (cur + 1) + ' of 6';
+    document.getElementById('section-name').textContent = labels[cur];
+    document.getElementById('prog-fill').style.width = ((cur + 1) / 6 * 100).toFixed(2) + '%';
+  }
+  function toggleSession(id) {
+    document.getElementById(id).classList.toggle('open');
+  }
+</script>
+</body>
+</html>
