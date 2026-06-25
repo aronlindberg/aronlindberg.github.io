@@ -211,6 +211,9 @@
     .an-btn:hover { background: var(--bg-secondary); color: var(--text); }
     .an-btn:disabled { opacity: 0.3; cursor: default; }
 
+    a.cite { font-size: 10px; color: var(--text-tertiary); text-decoration: none; border-bottom: 0.5px solid var(--border-secondary); vertical-align: super; line-height: 0; white-space: nowrap; margin-left: 2px; }
+    a.cite:hover { color: var(--purple); border-bottom-color: var(--purple); }
+
     @media (max-width: 600px) {
       .app { grid-template-columns: 1fr; }
       .sidebar { display: flex; flex-direction: row; flex-wrap: wrap; border-right: none; border-bottom: 0.5px solid var(--border); padding: 0.5rem; }
@@ -268,7 +271,7 @@
           <div class="section-title">Who this is for</div>
           <div class="section-sub">An organization that drives learning across a large, complex corporation.</div>
           <div class="card"><div class="card-title"><i class="ti ti-building"></i> You drive learning at scale</div><div class="card-body">You design and deliver learning across a large, complex organization. Your reach is the whole enterprise — not a single team or course.</div></div>
-          <div class="card"><div class="card-title"><i class="ti ti-pointer"></i> Not a tools class</div><div class="card-body">This isn't about how to use Claude, or which buttons to click. The tools will show up — but they're not the point.</div></div>
+          <div class="card"><div class="card-title"><i class="ti ti-pointer"></i> Not a tools class</div><div class="card-body">This isn't about how to use Claude, or which buttons to click. The tools will show up — but they're not the point. Deploying AI without building judgment first creates significant organizational risk.<a href="https://doi.org/10.63383/hadw7619" class="cite" target="_blank" rel="noopener">Anderson et al., 2025</a></div></div>
           <div class="card"><div class="card-title"><i class="ti ti-refresh"></i> Rethinking learning itself</div><div class="card-body">The real question is how we rethink what learning looks like across a complex organization when AI changes the ground rules.</div></div>
           <div class="hl">
             <div class="hl-label">Why this matters to L&amp;D</div>
@@ -297,9 +300,9 @@
           </div>
           <div class="hl">
             <div class="hl-label"><a href="https://aronlindberg.substack.com/p/human-embedded-agentic-design-head" target="_blank" rel="noopener" style="color: var(--purple); text-decoration: none;">Human-embedded agentic design ↗</a></div>
-            <p>The human designer holds the vision and guardrails. Design agents generate. Crit agents critique. Eval artifacts hand the work back to a human who stays in charge. AI in the loop of the designer — not the reverse.</p>
+            <p>The human designer holds the vision and guardrails.<a href="https://doi.org/10.63383/hbrn1606" class="cite" target="_blank" rel="noopener">Van Der Meulen &amp; Wixom, 2024</a> Design agents generate. Crit agents critique<a href="https://doi.org/10.1177/00081256231170028" class="cite" target="_blank" rel="noopener">Recker et al., 2023</a> — eval artifacts hand the work back to a human who stays in charge. AI in the loop of the designer — not the reverse.<a href="https://doi.org/10.5465/amr.2018.0072" class="cite" target="_blank" rel="noopener">Raisch &amp; Krakowski, 2021</a></p>
           </div>
-          <div class="card"><div class="card-title"><i class="ti ti-school"></i> Conceptual, not tool-training</div><div class="card-body">Tools show up — and you'll use them — but the work is about the conceptual moves: how learning, authorship, and judgment shift when you build with agents.</div></div>
+          <div class="card"><div class="card-title"><i class="ti ti-school"></i> Conceptual, not tool-training</div><div class="card-body">Tools show up — and you'll use them — but the work is about the conceptual moves: how learning, authorship, and judgment shift when you build with agents. While the cost of AI capability is falling, the premium on human judgment is not.<a href="https://doi.org/10.1177/00081256231211020" class="cite" target="_blank" rel="noopener">Kolbjørnsrud, 2023</a></div></div>
           <div class="arrow-nav">
             <button class="an-btn" onclick="show(1)"><i class="ti ti-arrow-left"></i> Prev</button>
             <button class="an-btn" onclick="show(3)">Next <i class="ti ti-arrow-right"></i></button>
@@ -313,7 +316,7 @@
           <div class="section-sub">What your team leaves with — and what leadership sees.</div>
           <div class="outcome-grid">
             <div class="oc"><div class="oc-icon"><i class="ti ti-bulb"></i></div><div class="oc-title">A new model of learning, prototyped</div><div class="oc-desc">A lived answer to "what does learning look like now" — not a theory of it.</div></div>
-            <div class="oc"><div class="oc-icon"><i class="ti ti-package"></i></div><div class="oc-title">Working learning artifacts</div><div class="oc-desc">Each team ships real learning artifacts for a real organizational need.</div></div>
+            <div class="oc"><div class="oc-icon"><i class="ti ti-package"></i></div><div class="oc-title">Working learning artifacts</div><div class="oc-desc">Each team ships real learning artifacts for a real organizational need. Task- and role-level changes deliver the most immediate value.<a href="https://doi.org/10.63383/hajw8875" class="cite" target="_blank" rel="noopener">Westerman, 2025</a></div></div>
             <div class="oc"><div class="oc-icon"><i class="ti ti-repeat"></i></div><div class="oc-title">A repeatable method + scaffolds</div><div class="oc-desc">The documents, scaffolds, and design/crit loop become durable infrastructure you can re-run.</div></div>
             <div class="oc"><div class="oc-icon"><i class="ti ti-chart-line"></i></div><div class="oc-title">A leadership proof point</div><div class="oc-desc">A concrete demonstration of what AI-era learning design looks like across the organization.</div></div>
           </div>
@@ -363,7 +366,7 @@
                 <div class="session-tag">Scale &amp; spread</div>
                 <i class="ti ti-chevron-down session-chevron"></i>
               </button>
-              <div class="session-body"><p>We turn prototypes into something the organization can adopt — how to deploy, scale, and spread the method across your L&amp;D function.</p></div>
+              <div class="session-body"><p>We turn prototypes into something the organization can adopt — how to deploy, scale, and spread the method across your L&amp;D function. Cross-functional AI structures that share use cases across business units dramatically accelerate organization-wide adoption.<a href="https://doi.org/10.63383/vvef4479" class="cite" target="_blank" rel="noopener">Schmitt et al., 2026</a></p></div>
             </div>
           </div>
           <div class="arrow-nav">
