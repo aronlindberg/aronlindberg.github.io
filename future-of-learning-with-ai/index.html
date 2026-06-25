@@ -394,6 +394,10 @@
   function toggleSession(id) {
     document.getElementById(id).classList.toggle('open');
   }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowRight' && cur < total - 1) show(cur + 1);
+    if (e.key === 'ArrowLeft' && cur > 0) show(cur - 1);
+  });
 </script>
 </body>
 </html>
