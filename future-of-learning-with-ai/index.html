@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Future of Learning with AI</title>
+  <title>Future of Learning in the Age of AI — Aron Lindberg</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -226,6 +226,10 @@
 </head>
 <body>
 <div class="shell">
+  <div style="margin-bottom: 1.25rem;">
+    <div style="font-size: 18px; font-weight: 500; color: var(--text); margin-bottom: 0.35rem;">Future of Learning in the Age of AI <span style="font-weight: 400; color: var(--text-secondary);">by Aron Lindberg</span></div>
+    <a href="https://aronlindberg.substack.com/" target="_blank" rel="noopener" style="font-size: 13px; color: var(--purple); text-decoration: none; border-bottom: 1px solid var(--purple); padding-bottom: 1px;">aronlindberg.substack.com</a>
+  </div>
   <div class="app">
     <nav class="sidebar" aria-label="Section navigation">
       <div class="sidebar-label">Overview</div>
@@ -233,6 +237,7 @@
       <button class="nav-item" onclick="show(1)" id="nav-1"><i class="ti ti-users"></i> Who &amp; why</button>
       <div class="sidebar-label">The pitch</div>
       <button class="nav-item" onclick="show(2)" id="nav-2"><i class="ti ti-bulb"></i> Our approach</button>
+      <button class="nav-item" onclick="show(5)" id="nav-5"><i class="ti ti-route"></i> Process</button>
       <button class="nav-item" onclick="show(3)" id="nav-3"><i class="ti ti-target"></i> Outcomes</button>
       <div class="sidebar-label">The work</div>
       <button class="nav-item" onclick="show(4)" id="nav-4"><i class="ti ti-calendar"></i> 4 sessions</button>
@@ -249,7 +254,7 @@
 
         <!-- 0: The question -->
         <div class="section active" id="sec-0">
-          <div class="section-title">What does learning look like <em>in the world of AI?</em></div>
+          <div class="section-title">Future of learning <em>in the age of AI</em></div>
           <p class="lead">
             AI is changing the way we learn. Increasingly, live content is getting expensive. Asynchronous content can no longer be static, but rather needs to be
             <strong>interactive</strong>, and <strong>deeply integrated</strong> with live, in-person or virtual workshops
@@ -367,6 +372,75 @@
           </div>
           <div class="arrow-nav">
             <button class="an-btn" onclick="show(3)"><i class="ti ti-arrow-left"></i> Prev</button>
+            <button class="an-btn" onclick="show(5)">Next <i class="ti ti-arrow-right"></i></button>
+          </div>
+        </div>
+
+        <!-- 5: Process -->
+        <div class="section" id="sec-5">
+          <div class="eyebrow">The pitch</div>
+          <div class="section-title">The learning process</div>
+          <div class="section-sub">Six steps — from defining context to deploying a living artifact. AI has a defined role at each.</div>
+
+          <div class="session-list">
+            <div class="session" id="p1">
+              <button class="session-header" onclick="toggleSession('p1')">
+                <div class="session-badge">1</div>
+                <div class="session-name">Define learning context</div>
+                <div class="session-tag">Goals &amp; competency models</div>
+                <i class="ti ti-chevron-down session-chevron"></i>
+              </button>
+              <div class="session-body"><p><strong>Human role:</strong> Sets the goals and competency targets that frame the entire learning design. <strong>AI role:</strong> Generates competency frameworks and maps objectives via <a href="https://aronlindberg.substack.com/p/know-more-build-more" target="_blank" rel="noopener" style="color: var(--purple);">context engineering</a>.</p></div>
+            </div>
+            <div class="session" id="p2">
+              <button class="session-header" onclick="toggleSession('p2')">
+                <div class="session-badge">2</div>
+                <div class="session-name">Build the learning spine</div>
+                <div class="session-tag">Concepts &amp; relations</div>
+                <i class="ti ti-chevron-down session-chevron"></i>
+              </button>
+              <div class="session-body"><p><strong>Human role:</strong> Validates the concept map and decides which gaps matter most. <strong>AI role:</strong> Surfaces concept relationships and generates a dependency map of the domain.</p></div>
+            </div>
+            <div class="session" id="p3">
+              <button class="session-header" onclick="toggleSession('p3')">
+                <div class="session-badge">3</div>
+                <div class="session-name">Fill in the blanks</div>
+                <div class="session-tag">Content generation</div>
+                <i class="ti ti-chevron-down session-chevron"></i>
+              </button>
+              <div class="session-body"><p><strong>Human role:</strong> Maintains the overall gestalt and pushes back on generated content. <strong>AI role:</strong> Design agents generate content node by node in a progressive, iterated build.</p></div>
+            </div>
+            <div class="session" id="p4">
+              <button class="session-header" onclick="toggleSession('p4')">
+                <div class="session-badge">4</div>
+                <div class="session-name">Construct workflows</div>
+                <div class="session-tag">Logic &amp; iteration</div>
+                <i class="ti ti-chevron-down session-chevron"></i>
+              </button>
+              <div class="session-body"><p><strong>Human role:</strong> Decides how to resolve ambiguities and which workflow paths to take. <strong>AI role:</strong> Crit agents evaluate workflow logic and surface dead ends for the human to adjudicate.</p></div>
+            </div>
+            <div class="session" id="p5">
+              <button class="session-header" onclick="toggleSession('p5')">
+                <div class="session-badge">5</div>
+                <div class="session-name">Build rules of thumb</div>
+                <div class="session-tag">Heuristics for navigation</div>
+                <i class="ti ti-chevron-down session-chevron"></i>
+              </button>
+              <div class="session-body"><p><strong>Human role:</strong> Validates which <a href="https://aronlindberg.substack.com/p/reading-the-water" target="_blank" rel="noopener" style="color: var(--purple);">rules of thumb</a> hold up under real conditions. <strong>AI role:</strong> Synthesizes patterns across workflow runs and surfaces edge cases the heuristics need to cover.</p></div>
+            </div>
+            <div class="session" id="p6">
+              <button class="session-header" onclick="toggleSession('p6')">
+                <div class="session-badge">6</div>
+                <div class="session-name">Design dynamic artifacts</div>
+                <div class="session-tag">Deploy &amp; teach the process</div>
+                <i class="ti ti-chevron-down session-chevron"></i>
+              </button>
+              <div class="session-body"><p><strong>Human role:</strong> Facilitates deployment and teaches others to run the process. <strong>AI role:</strong> Generates scaffolds and eval artifacts that hand the work back to human facilitators for the next cycle.</p></div>
+            </div>
+          </div>
+
+          <div class="arrow-nav">
+            <button class="an-btn" onclick="show(4)"><i class="ti ti-arrow-left"></i> Prev</button>
             <button class="an-btn" disabled>Done <i class="ti ti-check"></i></button>
           </div>
         </div>
@@ -377,7 +451,7 @@
 </div><!-- /shell -->
 
 <script>
-  const labels = ['The question', 'Who & why', 'Our approach', 'Outcomes', '4 sessions'];
+  const labels = ['The question', 'Who & why', 'Our approach', 'Outcomes', '4 sessions', 'Process'];
   const total = labels.length;
   let cur = 0;
   function show(n) {
