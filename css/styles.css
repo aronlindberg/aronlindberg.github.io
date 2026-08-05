@@ -25,12 +25,17 @@
 
 /* --- Reset --- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  /* Root scale: every rem below keys off this. Bumped 16px -> 17.5px
+     to lift the whole type scale ~9% without retuning each rule. */
+  font-size: 17.5px;
+}
 body {
   background: var(--bg);
   color: var(--text);
   font-family: var(--sans);
-  font-size: 1.0625rem; /* 17px */
+  font-size: 1rem; /* 17.5px */
   line-height: 1.75;
   -webkit-font-smoothing: antialiased;
 }
@@ -197,7 +202,9 @@ nav a.active {
 
 .hero-name {
   font-family: var(--serif);
-  font-size: 3.25rem;
+  /* Held near its original 52px so the root bump lifts body/label text,
+     not the already-large display type */
+  font-size: 3rem;
   font-weight: 600;
   line-height: 1.1;
   letter-spacing: -0.01em;
