@@ -22,11 +22,11 @@ if (hamburger && navLinks) {
     navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
     navLinks.style.flexDirection = 'column';
     navLinks.style.position = 'absolute';
-    navLinks.style.top = '64px';
+    navLinks.style.top = '60px';
     navLinks.style.right = '20px';
-    navLinks.style.background = '#1A2744';
+    navLinks.style.background = '#11151B';
     navLinks.style.padding = '8px';
-    navLinks.style.borderRadius = '8px';
+    navLinks.style.borderRadius = '2px';
     navLinks.style.boxShadow = '0 8px 24px rgba(0,0,0,0.3)';
   });
 }
