@@ -1,0 +1,280 @@
+/* =========================================================
+   aronlindberg.com — Curriculum Vitae
+   Screen styles first; the @media print block at the bottom
+   is what produces the downloadable PDF.
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400&display=swap');
+
+:root {
+  --bg:          #FAFAF8;
+  --surface:     #F2F1EE;
+  --text:        #1A1A1A;
+  --muted:       #6B6860;
+  --accent:      #2B4B8A;
+  --accent-dark: #1E3566;
+  --border:      #E2E0DC;
+
+  --serif: 'Newsreader', Georgia, serif;
+  --sans:  'Inter', system-ui, sans-serif;
+  --mono:  'IBM Plex Mono', monospace;
+
+  --cv-width: 820px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 17px; scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 0.94rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--accent-dark); text-decoration: underline; }
+
+/* --- Toolbar --- */
+.cv-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(250,250,248,0.94);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+
+.cv-toolbar-inner {
+  max-width: var(--cv-width);
+  margin-inline: auto;
+  padding: 0.7rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.cv-back { font-size: 0.85rem; color: var(--muted); }
+.cv-back:hover { color: var(--accent); text-decoration: none; }
+
+.cv-download {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--bg);
+  background: var(--text);
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1.1rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.cv-download:hover { background: var(--accent); }
+
+/* --- Layout --- */
+.cv {
+  max-width: var(--cv-width);
+  margin-inline: auto;
+  padding: 3.5rem 2rem 4rem;
+}
+
+/* --- Masthead --- */
+.cv-head { margin-bottom: 2.25rem; }
+
+.cv-head h1 {
+  font-family: var(--serif);
+  font-size: 2.6rem;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.6rem;
+}
+
+.cv-affil {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+}
+
+.cv-contact {
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* --- Section jump links (screen only) --- */
+.cv-jump {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1rem;
+  padding: 1rem 0 1.25rem;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2.5rem;
+}
+
+.cv-jump a {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.cv-jump a:hover { color: var(--accent); text-decoration: none; }
+
+/* --- Sections --- */
+.cv h2 {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 2.5rem 0 1rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.cv h3 {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 1.6rem 0 0.6rem;
+}
+
+.cv-line {
+  margin-bottom: 0.2rem;
+  padding-left: 1.6rem;
+}
+
+/* --- Entry lists --- */
+.cv-entries {
+  list-style: none;
+  counter-reset: entry;
+  margin-bottom: 0.5rem;
+}
+
+.cv-entries li {
+  counter-increment: entry;
+  position: relative;
+  padding-left: 1.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.cv-entries li::before {
+  content: counter(entry) ".";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  line-height: 1.9;
+}
+
+.cv-entries em { font-style: italic; }
+
+/* Ranking markers: [UTD24, FT50], [ABS 4*], [IF 6.988] */
+.tag {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.tag::before { content: '['; }
+.tag::after  { content: ']'; }
+
+/* --- Footer --- */
+.cv-foot {
+  border-top: 1px solid var(--border);
+  padding: 1.5rem 2rem 2.5rem;
+  text-align: center;
+}
+.cv-foot p { font-size: 0.8rem; color: var(--muted); }
+
+/* --- Narrow screens --- */
+@media (max-width: 640px) {
+  .cv { padding: 2.5rem 1.25rem 3rem; }
+  .cv-toolbar-inner { padding: 0.6rem 1.25rem; }
+  .cv-head h1 { font-size: 2rem; }
+  .cv h2 { font-size: 1.3rem; }
+  .cv-jump { display: none; }
+}
+
+/* =========================================================
+   PRINT — this is the PDF.
+   Tuned for US Letter; keeps entries from splitting across
+   pages and drops all screen-only chrome.
+   ========================================================= */
+@media print {
+  @page {
+    size: letter;
+    margin: 0.6in 0.65in;
+  }
+
+  html { font-size: 16px; }
+
+  body {
+    background: #fff;
+    color: #000;
+    font-size: 9.6pt;
+    line-height: 1.42;
+  }
+
+  /* Screen-only chrome */
+  .cv-toolbar,
+  .cv-jump,
+  .cv-foot { display: none !important; }
+
+  .cv {
+    max-width: none;
+    padding: 0;
+  }
+
+  a { color: #000; text-decoration: none; }
+
+  .cv-head {
+    margin-bottom: 1.1rem;
+    text-align: center;
+  }
+  .cv-head h1 { font-size: 20pt; margin-bottom: 0.25rem; }
+  .cv-affil   { font-size: 9.6pt; margin-bottom: 0.15rem; }
+  .cv-contact { font-size: 8.6pt; }
+
+  .cv h2 {
+    font-size: 12.5pt;
+    margin: 1.15rem 0 0.45rem;
+    padding-bottom: 0.15rem;
+    border-bottom: 0.5pt solid #999;
+    /* Never strand a heading at the foot of a page */
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  .cv h3 {
+    font-size: 8pt;
+    margin: 0.7rem 0 0.3rem;
+    color: #333;
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  /* Keep a publication on one page */
+  .cv-entries li,
+  .cv-line {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .cv-entries li { margin-bottom: 0.22rem; padding-left: 1.45rem; }
+  .cv-entries li::before { font-size: 7.6pt; color: #555; line-height: 1.75; }
+  .cv-line { margin-bottom: 0.08rem; padding-left: 1.45rem; }
+
+  .tag { font-size: 7.6pt; color: #555; }
+}
