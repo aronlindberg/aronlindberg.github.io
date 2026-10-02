@@ -94,6 +94,7 @@ body{font-family:var(--font-sans);background:var(--cream);color:var(--ink);paddi
 .ch-num{font-family:var(--font-mono);font-size:22px;color:var(--gold);line-height:1;margin-bottom:3px;}
 .ch-title{font-size:12.5px;font-weight:600;color:#fff;line-height:1.25;margin-bottom:3px;}
 .ch-sub{font-size:10px;color:rgba(255,255,255,.55);line-height:1.4;}
+.ch-pub{font-family:var(--font-mono);font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:5px;}
 .ch-cases{display:flex;gap:3px;margin-top:6px;}
 .case-dot{font-family:var(--font-mono);font-size:8px;padding:1px 5px;border-radius:2px;background:rgba(255,255,255,.12);color:rgba(255,255,255,.6);}
 
@@ -145,6 +146,8 @@ body{font-family:var(--font-sans);background:var(--cream);color:var(--ink);paddi
 .dp-stage-tension{font-size:10.5px;color:#888;font-style:italic;margin-top:4px;}
 .dp-row{display:flex;justify-content:space-between;padding:6px 10px;border-bottom:1px solid rgba(0,0,0,.04);font-size:11.5px;gap:8px;background:#fff;}
 .dp-row:last-child{border-bottom:none;}
+.pub-link{color:var(--navy);text-decoration:none;}
+.pub-link:hover{text-decoration:underline;}
 .dp-row span:last-child{font-family:var(--font-mono);font-size:10px;color:#888;flex-shrink:0;}
 
 /* CHAPTER DETAIL */
@@ -219,6 +222,7 @@ body{font-family:var(--font-sans);background:var(--cream);color:var(--ink);paddi
     <p>Human-centered design was built for a world where the designer was human and the machine was a tool. That world no longer exists.</p>
     <p>This book rebuilds the framework for a world where AI can discover, frame, generate, build, and validate — not always as well as a skilled designer, but differently, faster, and sometimes better.</p>
     <p>The five stages of the design process survive. But each one now requires new discipline: knowing when to hand off to AI, when to pull the work back, and how to stay accountable for everything the system produces.</p>
+    <p>Every build produces two things: the artifact and the builder. This book is about both. The machine can take over much of the making, but not the attending, the judging, or the caring &mdash; and those turn out to be where builders are formed.</p>
   </div>
 </div>
 
@@ -241,8 +245,17 @@ body{font-family:var(--font-sans);background:var(--cream);color:var(--ink);paddi
       <div class="cc" data-key="argument" onclick="openPanel('argument',this)">
         <div class="cn">Part 1</div>
         <div class="ct">Why human-centered design needs to be rebuilt</div>
-        <div class="cd">Not replaced. Rebuilt. The capability shift, the gap in existing work, and the evidence from ten weeks at the frontier.</div>
-        <div class="ctags"><span class="ctag">Capability Shift</span><span class="ctag">Co-Creation Era</span><span class="ctag">HCD Rebuilt</span></div>
+        <div class="cd">Not replaced. Rebuilt. The capability shift, the gap in existing work, and why the builder, not just the product, is what&rsquo;s at stake.</div>
+        <div class="ctags"><span class="ctag">Capability Shift</span><span class="ctag">Co-Creation Era</span><span class="ctag">Formation</span></div>
+      </div>
+    </div>
+    <div class="track gold-b" style="margin-top:10px">
+      <div class="t-lbl">The Through-Line</div>
+      <div class="cc" data-key="throughline" onclick="openPanel('throughline',this)">
+        <div class="cn">Every Chapter</div>
+        <div class="ct">Two things get built.</div>
+        <div class="cd">The artifact and the builder. Each chapter asks what the machine can take over, and what has to stay with you because it forms you.</div>
+        <div class="ctags"><span class="ctag">Attention</span><span class="ctag">Ownership</span><span class="ctag">Fidelity</span></div>
       </div>
     </div>
   </div>
@@ -255,7 +268,7 @@ body{font-family:var(--font-sans);background:var(--cream);color:var(--ink);paddi
       <div class="cc" data-key="framework" onclick="openPanel('framework',this)">
         <div class="cn">Part 2</div>
         <div class="ct">Five stages. Rebuilt for co-creation.</div>
-        <div class="cd">Discover · Frame · Generate · Build · Validate — each stage with a human layer, an AI layer, and a handoff.</div>
+        <div class="cd">Discover · Frame · Generate · Build · Validate — each stage with a human layer, an AI layer, and a handoff. At every stage, one question stays human: who is this for, and am I still paying attention to them?</div>
         <div class="ctags"><span class="ctag">Autonomy Dial</span><span class="ctag">Dual Evaluation</span><span class="ctag">Handoff Design</span></div>
       </div>
     </div>
@@ -269,8 +282,8 @@ body{font-family:var(--font-sans);background:var(--cream);color:var(--ink);paddi
       <div class="cc" data-key="projects" onclick="openPanel('projects',this)">
         <div class="cn">The Evidence</div>
         <div class="ct">Four projects. Ten weeks. Real constraints.</div>
-        <div class="cd">Safety Drone · Off-Road Vehicle · Research Agent — each running as a longitudinal case through every chapter.</div>
-        <div class="ctags"><span class="ctag">Case A</span><span class="ctag">Case B</span><span class="ctag">Case C</span></div>
+        <div class="cd">Safety Drone · Off-Road Vehicle · Research Agent · Documentary — each running as a longitudinal case through every chapter.</div>
+        <div class="ctags"><span class="ctag">Case A</span><span class="ctag">Case B</span><span class="ctag">Case C</span><span class="ctag">Case D</span></div>
       </div>
       <div class="cc" data-key="author" onclick="openPanel('author',this)">
         <div class="cn">About</div>
@@ -294,7 +307,7 @@ body{font-family:var(--font-sans);background:var(--cream);color:var(--ink);paddi
         <div class="ch-num">00</div>
         <div class="ch-title">A Summer at the Edge</div>
         <div class="ch-sub">Four teams. Ten weeks. A beta test.</div>
-        <div class="ch-cases"><span class="case-dot">A</span><span class="case-dot">B</span><span class="case-dot">C</span></div>
+        <div class="ch-cases"><span class="case-dot">A</span><span class="case-dot">B</span><span class="case-dot">C</span><span class="case-dot">D</span></div>
       </div>
       <div class="ch" data-key="ch-1" onclick="openPanel('ch-1',this)">
         <div class="ch-part">Stance</div>
@@ -308,7 +321,7 @@ body{font-family:var(--font-sans);background:var(--cream);color:var(--ink);paddi
         <div class="ch-num">02</div>
         <div class="ch-title">Build Culture</div>
         <div class="ch-sub">The environment that makes co-creation possible</div>
-        <div class="ch-cases"><span class="case-dot">A</span><span class="case-dot">B</span><span class="case-dot">C</span></div>
+        <div class="ch-cases"><span class="case-dot">A</span><span class="case-dot">B</span><span class="case-dot">C</span><span class="case-dot">D</span></div>
       </div>
       <div class="ch" data-key="ch-3" onclick="openPanel('ch-3',this)">
         <div class="ch-part">Design Arc</div>
@@ -350,7 +363,7 @@ body{font-family:var(--font-sans);background:var(--cream);color:var(--ink);paddi
         <div class="ch-num">08</div>
         <div class="ch-title">Validate</div>
         <div class="ch-sub">Learning from real people</div>
-        <div class="ch-cases"><span class="case-dot">A</span><span class="case-dot">B</span><span class="case-dot">C</span></div>
+        <div class="ch-cases"><span class="case-dot">A</span><span class="case-dot">B</span><span class="case-dot">C</span><span class="case-dot">D</span></div>
       </div>
       <div class="ch" data-key="ch-9" onclick="openPanel('ch-9',this)">
         <div class="ch-part">After</div>
@@ -364,14 +377,14 @@ body{font-family:var(--font-sans);background:var(--cream);color:var(--ink);paddi
         <div class="ch-num">10</div>
         <div class="ch-title">Careers</div>
         <div class="ch-sub">Building as a profession</div>
-        <div class="ch-cases"><span class="case-dot">A</span><span class="case-dot">B</span><span class="case-dot">C</span></div>
+        <div class="ch-cases"><span class="case-dot">A</span><span class="case-dot">B</span><span class="case-dot">C</span><span class="case-dot">D</span></div>
       </div>
       <div class="ch" data-key="ch-epi" onclick="openPanel('ch-epi',this)">
         <div class="ch-part">Epilogue</div>
         <div class="ch-num">—</div>
         <div class="ch-title">The Human Part</div>
         <div class="ch-sub">AI can discover. It cannot care.</div>
-        <div class="ch-cases"></div>
+        <div class="ch-cases"><span class="case-dot">D</span></div>
       </div>
     </div>
   </div>
@@ -398,17 +411,17 @@ body{font-family:var(--font-sans);background:var(--cream);color:var(--ink);paddi
 const POSTS = {
 'ch-intro': [
   { n:'Post 1', title:'Build Studio: The Beta Test', hook:'This summer is a beta test — for a new kind of studio, a new kind of process, and a new set of ideas about what it means to build with machines while centering humans.',
-    beats:['What Build Studio is: not a course with a syllabus but a studio with a culture — building constantly, entrepreneurial mindset, centering humans, embracing experimentation','The four teams: a voice-commanded safety drone, an off-road autonomous vehicle, an AI research agent, and a video documentary on how young people experience AI and imagine their futures','Why "beta test": the methods, the culture, and the framework are all being developed alongside the projects — nothing here is settled','What all four teams share: real users, real constraints, AI as a genuine collaborator at every stage — not a shortcut bolted on at the end'] },
+    beats:['What Build Studio is: not a course with a syllabus but a studio with a culture — building constantly, entrepreneurial mindset, centering humans, embracing experimentation','The four teams: a voice-commanded safety drone, an off-road autonomous vehicle, an AI research agent, and a video documentary on how young people experience AI and imagine their futures','Why "beta test": the methods, the culture, and the framework are all being developed alongside the projects — nothing here is settled','What all four teams share: real users, real constraints, AI as a genuine collaborator at every stage — not a shortcut bolted on at the end','Two things get built: the four projects, and the people building them'] },
   { n:'Post 2', title:'The Jagged Edge of Performance', hook:'These tools are extraordinary. They are also wrong in ways you can\'t predict, and sometimes they restrict the very creativity you brought them in to amplify.',
     beats:['What the jagged edge is: not a smooth capability curve but a surface with sharp peaks and sudden drops — extraordinary in some places, unreliable or limiting in others','Where the tools genuinely exceed human capacity: synthesis speed, variation generation, pattern recognition across domains, tireless iteration','The four pitfalls this book is built around: hallucination (confidently wrong), creativity reduction (narrowing toward generic), cognitive offloading (turning off your own thinking), confident misdirection (leading you the wrong way with conviction)','Why you can\'t just be cautious: the power is real and the work requires it — the discipline is learning to leverage it while staying alert to where it fails'] },
   { n:'Post 3', title:'The Gap No One Has Closed', hook:'We\'ve learned to center the human in design. We have no idea how to build together with machines. That\'s what this summer is for.',
     beats:['What current design, build, and engineering processes do well: centering users, iterating on feedback, shipping working products — these frameworks are real and they work','What they don\'t do: integrate AI as a genuine collaborator at every stage — they treat it as a tool, a shortcut, or a feature to add at the end','The specific gap: not "how do I use AI" but "how do we build together" — shared judgment, shared authorship, accountability for what the system produces','Why this gap hasn\'t been closed yet: the tools moved faster than the practice, and nobody has written the practitioner playbook — this book is an attempt'] },
   { n:'Post 4', title:'A Book Both Planned and Emergent', hook:'This book comes from an interaction between what I think I know, what the teams discover this summer, and what happens when I work through it all with AI. It will not be exactly what I planned.',
-    beats:['The planned part: a framework for leveraging AI\'s power while avoiding its pitfalls — structured around five design stages, each rebuilt for the co-creation era','The emergent part: the summer will surface things I haven\'t anticipated, and the best of those will reshape the argument','The role of AI in writing the book itself: working with AI to structure, challenge, and develop the argument — making the book a live demonstration of its own thesis','The forward-looking stance: these posts are written prospectively, not as a recap — the argument is being made in real time alongside the work, and the pitfalls are real ones we\'re navigating as we go'] }
+    beats:['The planned part: a framework for leveraging AI\'s power while avoiding its pitfalls — structured around five design stages, each rebuilt for the co-creation era','The emergent part: the summer will surface things I haven\'t anticipated, and the best of those will reshape the argument','The role of AI in writing the book itself: working with AI to structure, challenge, and develop the argument — making the book a live demonstration of its own thesis','The forward-looking stance: these posts are written prospectively, not as a recap — the argument is being made in real time alongside the work, and the pitfalls are real ones we\'re navigating as we go','The question under the method: what does building with machines do to the builder?'] }
 ],
 'ch-1': [
   { n:'Post 1', title:'From Prompt to Context', hook:'A prompt is a sentence. A context is a world. The shift between them is the whole game.',
-    beats:['What prompt engineering actually is — and why it\'s limited: single-turn optimization, no memory, no persistent environment','What context engineering is: designing the architecture of skills, documents, instructions, and summaries that an AI operates inside across a whole project','The key question context engineers ask: what does the agent need to know, in what form, organized how — before any task begins','Why this is a judgment skill, not a technical one: it requires understanding what makes a context sufficient vs. overwhelming'] },
+    beats:['What prompt engineering actually is — and why it\'s limited: single-turn optimization, no memory, no persistent environment','What context engineering is: designing the architecture of skills, documents, instructions, and summaries that an AI operates inside across a whole project','The key question context engineers ask: what does the agent need to know, in what form, organized how — before any task begins','Why this is a judgment skill, not a technical one: it requires understanding what makes a context sufficient vs. overwhelming','Know more, build more: the context you build in the machine has to be mirrored by the understanding you build in yourself'] },
   { n:'Post 2', title:'Building the Context Architecture', hook:'Context isn\'t a file you attach. It\'s an architecture you design — with a hierarchy, a logic, and a maintenance practice.',
     beats:['The hierarchy of skills: from broad (covering everything you do across a domain) down to narrow (specific tasks, specific outputs) — and why the hierarchy matters for agent performance','Beyond skills: the role of documents, prior outputs, and structured summaries in context design — how you put in and organize material that isn\'t code','The iterative feedback loop: recording your own reactions to AI output (Zoom calls, voice notes) and having Claude turn those into a revision plan','A concrete example: iterating through 12 outlines with Claude before a single line of manual editing — how feedback cycles compress what used to take months'] },
   { n:'Post 3', title:'Multi-Agent Systems and Adversarial Review', hook:'A single AI that generates is useful. A system that generates and then critically reviews its own output is something else entirely.',
@@ -417,24 +430,24 @@ const POSTS = {
     beats:['What intermediary scaffolding artifacts are: evaluation tables, dashboards, metric summaries that sit between the raw context and the final output — giving you inspectability into a system that\'s too large to read','The metrics that matter: readability, creativity, concept coverage, iteration count, how many ideas you\'ve tried and discarded — not just quality of the latest output but richness of the process','How scaffolding artifacts function as a governance layer: they make the system correctable without requiring you to read everything from scratch','The harness: when context architecture + multi-agent review + scaffolding artifacts combine into a full system you build, modulate, and nudge toward a goal — that is harness engineering. Context engineering is what everyone needs. Harness engineering is what the most complex projects require.'] }
 ],
 'ch-2': [
-  { n:'Post 1', title:'Fluency Is Not Literacy', hook:'Organizations are hiring for AI fluency. They need AI literacy. These are not the same thing.',
-    beats:['What AI fluency looks like: prompt speed, tool familiarity, workflow integration','What AI literacy looks like: knowing when the AI is wrong, narrating the decision process, maintaining accountability','The specific way fluency-without-literacy breaks: confidently wrong AI, no one catches it','How to test for literacy in a hiring or team context'] },
+  { n:'Post 1', title:'Fluency Is Not Literacy', hook:'Organizations are hiring for AI fluency. They need AI literacy. These are not the same thing. A build culture forms builders, not just products.',
+    beats:['What AI fluency looks like: prompt speed, tool familiarity, workflow integration','What AI literacy looks like: knowing when the AI is wrong, narrating the decision process, maintaining accountability','The specific way fluency-without-literacy breaks: confidently wrong AI, no one catches it','How to test for literacy in a hiring or team context','Some friction formed us and some was just toil. Syntax formed nobody. Holding a system in your head, deciding what to build and answering for it did'] },
   { n:'Post 2', title:'The Three Conditions', hook:'Human-AI collaboration doesn\'t happen by default. Three conditions have to be built.',
     beats:['Condition 1: Psychological safety to show half-finished work — why this is harder with AI in the room','Condition 2: Iteration norms that don\'t confuse speed with progress','Condition 3: Shared language for distinguishing AI-generated insight from human judgment','What happens to teams that have fluency but none of these three conditions'] },
   { n:'Post 3', title:'The Dual Evaluation Model', hook:'In a co-creative process, you evaluate two things. Most teams only evaluate one.',
     beats:['Evaluation 1: The output — does it work for real users in real conditions?','Evaluation 2: The narrative — can you explain why the system does what it does?','Why the narrative evaluation is not secondary: it\'s how organizations learn and iterate','How to build the dual evaluation into a team\'s regular cadence, not just the final review'] },
   { n:'Post 4', title:'What Brittle Cultures Do', hook:'Some organizations are building AI processes that will break the first time the AI is confidently wrong.',
-    beats:['The anatomy of a brittle AI culture: speed over narration, fluency over literacy, output over judgment','The specific moment brittle cultures break: when AI failure requires explanation and no one can give one','Three organizational patterns that accelerate brittleness','What durable AI culture looks like — and what it costs to build it'] }
+    beats:['The anatomy of a brittle AI culture: speed over narration, fluency over literacy, output over judgment','The specific moment brittle cultures break: when AI failure requires explanation and no one can give one','Three organizational patterns that accelerate brittleness','What durable AI culture looks like — and what it costs to build it','Brittle cultures delegate the formative work along with the tedious work'] }
 ],
 'ch-3': [
   { n:'Post 1', title:'What AI Cannot Do in the Field', hook:'AI can prepare you for fieldwork. It cannot do the fieldwork.',
-    beats:['What the discovery stage actually requires: presence, attention to non-verbal signals, tolerance for ambiguity','Where AI genuinely helps in discovery — and why that help is pre-field, not in-field','The specific things that are lost when teams substitute AI synthesis for field observation','Why this matters more as AI gets better at simulation: the better the simulation, the easier the shortcut'] },
+    beats:['What the discovery stage actually requires: presence, attention to non-verbal signals, tolerance for ambiguity','Where AI genuinely helps in discovery — and why that help is pre-field, not in-field','The specific things that are lost when teams substitute AI synthesis for field observation','Why this matters more as AI gets better at simulation: the better the simulation, the easier the shortcut','The model wasn\'t in the room. Listening to someone whose work you don\'t share, without telling them what they need, is a discipline of character, not a technique'] },
   { n:'Post 2', title:'Synthetic Personas as Assumption Testing', hook:'AI-generated personas aren\'t users. They\'re a map of your own assumptions. Use them that way.',
-    beats:['What synthetic personas are actually good for: surfacing what you assume before you go to the field','The difference between a synthetic persona used as an assumption test vs. a synthetic persona used as a substitute for research','How to construct synthetic personas that force you to identify gaps rather than fill them','The Build Studio teams that used synthetic personas well — and what they discovered when they got to real users'] },
+    beats:['What synthetic personas are actually good for: surfacing what you assume before you go to the field','The difference between a synthetic persona used as an assumption test vs. a synthetic persona used as a substitute for research','How to construct synthetic personas that force you to identify gaps rather than fill them','The Build Studio teams that used synthetic personas well — and what they discovered when they got to real users','A persona is an average. The person in front of you is not'] },
   { n:'Post 3', title:'The Pre-Field / Post-Field Distinction', hook:'AI belongs in discovery. The discipline is knowing which side of the field it belongs on.',
     beats:['Pre-field AI: sharpening questions, mapping assumptions, generating interview guides','Post-field AI: transcript analysis, pattern surfacing, theme synthesis across sessions','The danger zone: using post-field tools before the field — letting AI tell you what you\'ll find','How the Build Studio teams learned to sequence this correctly, and what it cost when they didn\'t'] },
   { n:'Post 4', title:'The Discovery Failure Modes', hook:'Teams that shortcut discovery don\'t skip it. They do it wrong, faster.',
-    beats:['Failure mode 1: AI synthesis as a substitute for field observation — and what gets missed','Failure mode 2: Question sharpening without question asking — knowing the right questions but not running them','Failure mode 3: Confirmation via synthetic persona — using AI to validate what you already believe','What recovery looks like: how the Build Studio teams caught and corrected each of these'] }
+    beats:['Failure mode 1: AI synthesis as a substitute for field observation — and what gets missed','Failure mode 2: Question sharpening without question asking — knowing the right questions but not running them','Failure mode 3: Confirmation via synthetic persona — using AI to validate what you already believe','What recovery looks like: how the Build Studio teams caught and corrected each of these','Failure mode: attending to the transcript instead of the person'] }
 ],
 'ch-4': [
   { n:'Post 1', title:'Why Framing Gets Skipped', hook:'The most important stage of the design process is the one teams most want to rush through.',
@@ -442,7 +455,7 @@ const POSTS = {
   { n:'Post 2', title:'The Mirror Test', hook:'AI-generated problem statements show you what you\'ve already decided. That\'s the test.',
     beats:['What the mirror test is: using AI\'s framing output to reveal your own embedded assumptions','How to run a mirror test: generate multiple AI framings, then interrogate the shared assumptions beneath them','What the mirror test found in the Build Studio cases: the assumptions teams didn\'t know they had','When the mirror test fails — and what to do when no framing feels right'] },
   { n:'Post 3', title:'Framing Is a Values Decision', hook:'When you choose a problem statement, you\'re choosing whose problem it is. AI cannot make that choice.',
-    beats:['What\'s encoded in a problem statement: who counts, what trade-offs are acceptable, what success means','Why competing framings are often incompatible — they reflect different underlying values, not just different emphases','The cases where AI framing masked a values disagreement the team hadn\'t surfaced','How to make framing decisions transparent and accountable, not just fast'] },
+    beats:['What\'s encoded in a problem statement: who counts, what trade-offs are acceptable, what success means','Why competing framings are often incompatible — they reflect different underlying values, not just different emphases','The cases where AI framing masked a values disagreement the team hadn\'t surfaced','How to make framing decisions transparent and accountable, not just fast','Framing decides whose problem counts. Choose it as if the people affected were in the room'] },
   { n:'Post 4', title:'HMW Generation with AI — and Its Hazards', hook:'"How Might We" prompts are powerful. AI can generate hundreds. That\'s exactly the problem.',
     beats:['The HMW format and why it works: reframing problems as design opportunities','What AI does well: generating range, inverting constraints, crossing domains','The specific hazard: volume without selection discipline produces noise, not direction','How to use AI-generated HMWs as input to a human convergence process — not as the output of one'] }
 ],
@@ -454,11 +467,11 @@ const POSTS = {
   { n:'Post 3', title:'Resonance vs. Cleverness', hook:'AI ideas tend to be clever. Good ideas tend to resonate. These are different things.',
     beats:['What "resonance" means in this context: an idea that connects to what you observed in the field, not just what seems interesting','Why AI overindexes on cleverness: it optimizes for novelty and coherence, not for human truth','The Build Studio teams\' sorting process: how they distinguished resonant ideas from clever ones','Building resonance as a selection criterion into the ideation process explicitly'] },
   { n:'Post 4', title:'Convergence Is Always Human', hook:'This is the principle the chapter is built on. Here\'s why it\'s non-negotiable.',
-    beats:['What convergence requires: judgment about what matters, which is always grounded in values and observation','Why AI convergence fails: it selects for internal coherence and pattern frequency, not human relevance','The specific failure mode of delegated convergence: plausible directions that no one can actually defend','How to structure the human convergence step so it\'s disciplined, not arbitrary'] }
+    beats:['What convergence requires: judgment about what matters, which is always grounded in values and observation','Why AI convergence fails: it selects for internal coherence and pattern frequency, not human relevance','The specific failure mode of delegated convergence: plausible directions that no one can actually defend','How to structure the human convergence step so it\'s disciplined, not arbitrary','Taste is formed slowly, by exposure and judgment. When you can generate twenty versions in an hour, knowing which one is good is the craft'] }
 ],
 'ch-6': [
   { n:'Post 1', title:'The Cost Collapse', hook:'Prototyping used to cost weeks and thousands of dollars. Now it costs an afternoon. That changes everything — including the discipline required.',
-    beats:['What the cost collapse actually means: the economic barrier to building is gone','What the cost collapse does not change: the epistemic value of a prototype depends on what it tests','Why cheaper prototypes create a new failure mode: more prototypes, less learning','The Build Studio teams who built fast and learned slowly — and what slowed them down'] },
+    beats:['What the cost collapse actually means: the economic barrier to building is gone','What the cost collapse does not change: the epistemic value of a prototype depends on what it tests','Why cheaper prototypes create a new failure mode: more prototypes, less learning','The Build Studio teams who built fast and learned slowly — and what slowed them down','When making is cheap, the scarce thing is knowing what is worth making, and for whom'] },
   { n:'Post 2', title:'Good Enough to Be Wrong', hook:'The right prototype is the one that can be falsified. Not the one that looks finished.',
     beats:['What "good enough to be wrong" means: enough fidelity to generate a testable hypothesis, no more','Why the standard is hard to hold when building is easy: the temptation to keep refining','The specific fidelity questions: what does this prototype need to demonstrate? What must it not hide?','How the Build Studio teams set and held the "good enough to be wrong" threshold — and when they failed to'] },
   { n:'Post 3', title:'Over-Refinement as Failure Mode', hook:'The most dangerous prototype is the one that looks too finished to test honestly.',
@@ -468,9 +481,9 @@ const POSTS = {
 ],
 'ch-7': [
   { n:'Post 1', title:'Who Is Responsible When AI Fails', hook:'This is not a legal question. It\'s a design question. And the design answer is clearer than the legal one.',
-    beats:['The legal framing of AI accountability — and why it\'s not useful for practitioners','The design framing: if you cannot explain why your system does what it does, you cannot improve it when it fails','What "responsible" means in this context: not blame, but the ability to iterate','Why the harness engineer framing resolves the accountability question — and what it requires'] },
+    beats:['The legal framing of AI accountability — and why it\'s not useful for practitioners','The design framing: if you cannot explain why your system does what it does, you cannot improve it when it fails','What "responsible" means in this context: not blame, but the ability to iterate','Why the harness engineer framing resolves the accountability question — and what it requires','The ownership rule: never ship what you can\'t explain. Own it as if you had typed every character','Stewardship over authorship: you\'re responsible for what is in your care, not only for what you personally produced'] },
   { n:'Post 2', title:'Harness Engineer Accountability in Practice', hook:'Accountability isn\'t about ownership. It\'s about explanation.',
-    beats:['What the harness engineer is accountable for: the behavior of the system, not just the decisions made in building it','The explanation requirement: can you narrate why the system does what it does at each decision point?','What this looks like in practice: documentation, design rationale, testable claims about system behavior','The Build Studio teams that built accountable systems — and what their documentation looked like'] },
+    beats:['What the harness engineer is accountable for: the behavior of the system, not just the decisions made in building it','The explanation requirement: can you narrate why the system does what it does at each decision point?','What this looks like in practice: documentation, design rationale, testable claims about system behavior','The Build Studio teams that built accountable systems — and what their documentation looked like','Cognitive ownership and epistemic debt (explanation-gate evidence)'] },
   { n:'Post 3', title:'Evals as Design Practice', hook:'Evaluation frameworks for AI behavior are usually treated as engineering problems. They are design problems.',
     beats:['What an eval is in the AI context: a structured test of whether the system does what you intended','Why evals are a design practice: they require judgment about what matters, which is always a design question','How to build evals into the design process rather than appending them at the end','The specific evals the Build Studio teams built — and what they discovered about their own systems'] },
   { n:'Post 4', title:'The Taxonomy of Systematic AI Failure', hook:'AI fails in patterns. Knowing the patterns is the first step to designing around them.',
@@ -478,9 +491,9 @@ const POSTS = {
 ],
 'ch-8': [
   { n:'Post 1', title:'The Stage AI Cannot Do', hook:'AI can simulate a user test. It cannot run one. Here\'s why that difference matters.',
-    beats:['What real validation requires: real users, real conditions, real behavior — not predicted behavior','Why AI simulation of user testing fails: it predicts what users should do, not what they actually do','The specific information that only comes from being in the room: non-verbal signals, workarounds, confusion','Why this stage justifies everything that comes before it — and what happens when teams skip it'] },
+    beats:['What real validation requires: real users, real conditions, real behavior — not predicted behavior','Why AI simulation of user testing fails: it predicts what users should do, not what they actually do','The specific information that only comes from being in the room: non-verbal signals, workarounds, confusion','Why this stage justifies everything that comes before it — and what happens when teams skip it','Honest validation: no dark patterns, no manufactured urgency, no metrics that count engagement as help'] },
   { n:'Post 2', title:'Testing a System, Not an Artifact', hook:'When your product includes a language model, you are not testing a stable thing. You are testing a system that behaves differently every time.',
-    beats:['The traditional assumption of validation: the thing being tested is fixed','What changes with AI products: behavior varies by context, phrasing, session state, user mental model','What this means for test design: you need more sessions, more variation, more systematic documentation','How the Build Studio teams adapted their validation protocols for non-deterministic products'] },
+    beats:['The traditional assumption of validation: the thing being tested is fixed','What changes with AI products: behavior varies by context, phrasing, session state, user mental model','What this means for test design: you need more sessions, more variation, more systematic documentation','How the Build Studio teams adapted their validation protocols for non-deterministic products','Test with the edge cases first. They\'re who gets designed out first'] },
   { n:'Post 3', title:'What You Miss When You\'re Not in the Room', hook:'The most important data from a user test is often the data you can\'t put in a transcript.',
     beats:['Non-verbal signals: hesitation, physical posture, micro-expressions, the moment someone gives up trying to explain','What AI post-processing of transcripts misses: everything that wasn\'t said','The discipline of in-person observation: what to watch for, how to note it, how to use it','Why remote testing is insufficient for AI products — and what hybrid protocols can recover'] },
   { n:'Post 4', title:'Synthesis After Testing', hook:'AI is genuinely good at synthesizing test findings. Here\'s how to use that capability without losing the judgment layer.',
@@ -488,11 +501,11 @@ const POSTS = {
 ],
 'ch-9': [
   { n:'Post 1', title:'Where Design Thinking Ends', hook:'Every design thinking framework ends at testing. Real products don\'t.',
-    beats:['The handoff problem: what happens when a co-created product leaves the studio and enters an organization','What the standard handoff looks like: a deck, a prototype, a recommendation — and then silence','Why the handoff is especially fragile for AI products: the conditions that made the product work rarely transfer','What the Build Studio teams discovered about handoff on the three cases'] },
+    beats:['The handoff problem: what happens when a co-created product leaves the studio and enters an organization','What the standard handoff looks like: a deck, a prototype, a recommendation — and then silence','Why the handoff is especially fragile for AI products: the conditions that made the product work rarely transfer','What the Build Studio teams discovered about handoff on the three cases','Shipping is a promise, not a handoff. The feedback loop is how you keep it'] },
   { n:'Post 2', title:'Three Patterns That Break Co-Created Products', hook:'Co-created products break in organizations in predictable ways. The patterns are learnable.',
     beats:['Pattern 1: The AI literacy gap — the team that built it can explain it; the team that inherits it cannot','Pattern 2: The governance void — no one owns the system\'s behavior once the builders are gone','Pattern 3: The iteration freeze — organizations stop updating what they don\'t understand','What each pattern costs — and when in the post-launch lifecycle it shows up'] },
   { n:'Post 3', title:'The Governance Layer', hook:'Every AI product ships with a governance layer, whether it was designed or not.',
-    beats:['What the governance layer is: the structures, roles, and protocols that determine what happens when the system fails','What an undesigned governance layer looks like: ad hoc escalation, no accountability assignment, no update protocol','What a designed governance layer includes: behavior documentation, failure protocols, update authority, review cadence','How to build the governance layer during the design process, not after shipping'] },
+    beats:['What the governance layer is: the structures, roles, and protocols that determine what happens when the system fails','What an undesigned governance layer looks like: ad hoc escalation, no accountability assignment, no update protocol','What a designed governance layer includes: behavior documentation, failure protocols, update authority, review cadence','How to build the governance layer during the design process, not after shipping','Fidelity after launch: who keeps listening once the team has moved on?'] },
   { n:'Post 4', title:'The Internal Build Studio Model', hook:'The alternative to the standard handoff is not a better handoff. It\'s a different organizational structure.',
     beats:['What an internal Build Studio is: a persistent team that retains design accountability after shipping','Why the alternative works: it keeps AI literacy and iteration capacity inside the organization','What this costs: it requires organizational investment in a function that doesn\'t map to existing job categories','How organizations that have built this have structured it — and what the minimum viable version looks like'] }
 ],
@@ -504,7 +517,7 @@ const POSTS = {
   { n:'Post 3', title:'Three Career Paths', hook:'The harness engineer role manifests differently depending on where you sit in an organization. Here are the three main configurations.',
     beats:['Path 1: The embedded practitioner — inside a product or engineering team, responsible for AI behavior at the component level','Path 2: The forward-deployed specialist — client-facing, responsible for fitting AI capability to organizational context','Path 3: The internal studio lead — building and maintaining a team that holds AI literacy organizationally','What each path requires, what it pays, and what it builds toward'] },
   { n:'Post 4', title:'Builder Identity', hook:'The professional identity of the AI era is not "AI user." It\'s builder.',
-    beats:['What builder identity means: orientation toward making things that work for people, with whatever tools are available','Why the identity matters: it determines what you optimize for when the tools change','The difference between builders and operators — and why the distinction is getting sharper','What it takes to develop and sustain builder identity in a labor market that is trying to make everyone an operator'] }
+    beats:['What builder identity means: orientation toward making things that work for people, with whatever tools are available','Why the identity matters: it determines what you optimize for when the tools change','The difference between builders and operators — and why the distinction is getting sharper','What it takes to develop and sustain builder identity in a labor market that is trying to make everyone an operator','A vocation, not just a job: the work forms you, so choose work that forms you well'] }
 ],
 'ch-epi': [
   { n:'Post 1', title:'What AI Can Simulate', hook:'The capabilities keep expanding. The gap keeps being the same gap.',
@@ -512,9 +525,9 @@ const POSTS = {
   { n:'Post 2', title:'Empathy vs. Simulation', hook:'The difference between empathy and its simulation is not philosophical. It is functional.',
     beats:['What empathy does that simulation doesn\'t: grounds design in the specific person in front of you, not the average of all similar people','Where simulation breaks: novel situations, high-stakes context, users who don\'t match the training distribution','The design risk of mistaking simulation for empathy: decisions made as if users were understood when they weren\'t','How to test whether you\'re working from simulation or real understanding'] },
   { n:'Post 3', title:'The Permanent Role', hook:'As AI gets more capable, the gap doesn\'t close. It moves.',
-    beats:['Why the gap is structural: empathy requires a subject, and AI has no subjectivity','The moving gap: as AI gets better at simulation, the human role shifts to the situations simulation can\'t reach','What the permanent role is: presence, accountability, and the willingness to be responsible for real people in real conditions','Why this is the argument the whole book was building toward'] },
+    beats:['Why the gap is structural: empathy requires a subject, and AI has no subjectivity','The moving gap: as AI gets better at simulation, the human role shifts to the situations simulation can\'t reach','What the permanent role is: presence, accountability, and the willingness to be responsible for real people in real conditions','Why this is the argument the whole book was building toward','Building with machines is building with what you received. That calls for humility, not pride of authorship'] },
   { n:'Post 4', title:'Where the Design Process Begins', hook:'AI can discover, frame, generate, build, and validate. The design process still begins with a human deciding it matters.',
-    beats:['The moment that starts everything: a human choosing to pay attention to another human\'s experience','Why that moment cannot be automated: it requires a decision about what is worth caring about','What this means for the future of human-centered design: not threatened, but clarified','The one thing that makes all the rest of the book possible — and what it asks of the designer'] }
+    beats:['The moment that starts everything: a human choosing to pay attention to another human\'s experience','Why that moment cannot be automated: it requires a decision about what is worth caring about','What this means for the future of human-centered design: not threatened, but clarified','The one thing that makes all the rest of the book possible — and what it asks of the designer','The final measure: whether the people you built for are better off, and whether you became someone worth trusting in the making'] }
 ]
 };
 
@@ -793,6 +806,45 @@ html: `<p class="fp-meta">Chapter 1 &middot; Build Studio, Summer 2026</p>
 }
 };
 
+// Published Building with Machines posts, by chapter (hard-coded; not fetched)
+const SUBSTACK = 'https://aronlindberg.substack.com/p/';
+const PUB = {
+  summer:      { title:'A Summer of Building Stuff', url:SUBSTACK+'a-summer-of-building-stuff', date:'2026-06-01' },
+  head:        { title:'Human-Embedded Agentic Design (HEAD)', url:SUBSTACK+'human-embedded-agentic-design-head', date:'2026-06-05' },
+  knowMore:    { title:'Know More, Build More', url:SUBSTACK+'know-more-build-more', date:'2026-06-19' },
+  dial:        { title:'The Abstraction Dial', url:SUBSTACK+'the-abstraction-dial', date:'2026-06-25' },
+  bestIdea:    { title:'Why Your AI\'s Best Idea Is Everyone\'s Idea', url:SUBSTACK+'why-your-ais-best-idea-is-everyones', date:'2026-07-17' },
+  ccc:         { title:'Context, Code, Criticism', url:SUBSTACK+'context-code-criticism', date:'2026-08-07' },
+  ggg:         { title:'Goals, Guidelines, Guardrails', url:SUBSTACK+'goals-guidelines-guardrails', date:'2026-09-04' },
+  usingTech:   { title:'Are You Using Technology, or Is Technology Using You?', url:SUBSTACK+'are-you-using-technology-or-is-technology', date:'2026-06-11' },
+  spaces:      { title:'Physical Spaces Matter More in the AI Era', url:SUBSTACK+'physical-spaces-matter-more-in-the', date:'2026-06-17' },
+  howToLearn:  { title:'How to Learn When AI Knows Everything', url:SUBSTACK+'how-to-learn-when-ai-knows-everything', date:'2026-07-10' },
+  learning:    { title:'Learning by Building', url:SUBSTACK+'learning-by-building', date:'2026-08-14' },
+  character:   { title:'Building Character', url:SUBSTACK+'building-character', date:'2026-08-29' },
+  empowering:  { title:'Empowering Employees to Create with AI', url:SUBSTACK+'empowering-employees-to-create-with', date:'2026-09-18' },
+  problemArch: { title:'Setting up Problem Architectures', url:SUBSTACK+'setting-up-problem-architectures', date:'2026-09-08' },
+  blindsight:  { title:'The Blindsight Problem', url:SUBSTACK+'the-blindsight-problem', date:'2026-05-29' },
+  thoughtTrials:{ title:'Constructing Heterogeneous Thought Trials', url:SUBSTACK+'constructing-heterogeneous-thought', date:'2026-09-09' },
+  generativity:{ title:'Testing for Generativity', url:SUBSTACK+'testing-for-generativity', date:'2026-09-10' },
+  water:       { title:'Reading the Water', url:SUBSTACK+'reading-the-water', date:'2026-07-03' },
+  portfolio:   { title:'Every Builder Needs a Portfolio', url:SUBSTACK+'every-builder-needs-a-portfolio', date:'2026-09-28' },
+  underdog:    { title:'Underdog State of Mind', url:SUBSTACK+'underdog-state-of-mind', date:'2026-05-23' }
+};
+const PUBLISHED = {
+  'ch-intro': [PUB.summer],
+  'ch-1':  [PUB.head, PUB.knowMore, PUB.dial, PUB.bestIdea, PUB.ccc, PUB.ggg],
+  'ch-2':  [PUB.summer, PUB.usingTech, PUB.spaces, PUB.howToLearn, PUB.learning, PUB.character, PUB.empowering],
+  'ch-3':  [PUB.ccc],
+  'ch-4':  [PUB.problemArch],
+  'ch-5':  [PUB.blindsight, PUB.bestIdea, PUB.thoughtTrials],
+  'ch-6':  [PUB.learning],
+  'ch-7':  [PUB.howToLearn, PUB.generativity, PUB.dial],
+  'ch-8':  [PUB.water],
+  'ch-9':  [PUB.empowering],
+  'ch-10': [PUB.portfolio, PUB.learning, PUB.character, PUB.underdog],
+  'ch-epi': [PUB.blindsight, PUB.character]
+};
+
 const P = {
 
 argument: {
@@ -843,6 +895,43 @@ argument: {
   `
 },
 
+throughline: {
+  label: 'The Through-Line',
+  left: `
+    <div class="dp-eyebrow">The Through-Line</div>
+    <h2 class="dp-title">Two things get built.</h2>
+    <div class="dp-subtitle">The artifact and the builder</div>
+    <div class="dp-sec">The Argument</div>
+    <p class="dp-txt">Every build produces two things: the artifact and the builder. AI absorbs much of the friction that used to form builders — syntax, debugging, toil. Some of that friction was just toil. Some of it built judgment.</p>
+    <p class="dp-txt" style="margin-top:8px">So the formation moves up a level: into attention, taste, ownership and fidelity. These are the things the machine can't do for you, because the machine wasn't in the room.</p>
+    <div class="dp-sec">The Question in Every Chapter</div>
+    <p class="dp-txt">What can the machine take over, and what has to stay with you because it forms you?</p>
+  `,
+  right: `
+    <div class="dp-block">
+      <div class="dp-block-hdr gold">Where Builders Are Formed Now</div>
+      <div class="dp-block-body">
+        <div class="dp-stage">
+          <div class="dp-stage-hdr"><span class="dp-stage-n">01</span><span class="dp-stage-t">Attention</span></div>
+          <div class="dp-stage-body">Really listening to the people you build for. Treat the user as a person, not a persona.</div>
+        </div>
+        <div class="dp-stage">
+          <div class="dp-stage-hdr"><span class="dp-stage-n">02</span><span class="dp-stage-t">Taste</span></div>
+          <div class="dp-stage-body">Knowing which of twenty versions is good — and which makes people more capable, not more passive.</div>
+        </div>
+        <div class="dp-stage">
+          <div class="dp-stage-hdr"><span class="dp-stage-n">03</span><span class="dp-stage-t">Ownership</span></div>
+          <div class="dp-stage-body">Standing behind what you ship even if you didn't type it. You're responsible for what's in your care, not only for what you typed.</div>
+        </div>
+        <div class="dp-stage">
+          <div class="dp-stage-hdr"><span class="dp-stage-n">04</span><span class="dp-stage-t">Fidelity</span></div>
+          <div class="dp-stage-body">Staying with users after launch. Shipping is a promise, not a handoff.</div>
+        </div>
+      </div>
+    </div>
+  `
+},
+
 framework: {
   label: 'The Five-Stage Model',
   left: `
@@ -856,7 +945,7 @@ framework: {
     <p class="dp-txt">In a co-creative process, you evaluate two things. First: the quality of the output — does it work for real users in real conditions? Second: the quality of the narrative — can you explain why your system does what it does, and what you would change if it failed?</p>
     <p class="dp-txt" style="margin-top:8px">The second evaluation is not secondary. It is how organizations learn.</p>
     <div class="dp-sec">Cases Drawn On</div>
-    <div class="pill-row"><span class="pill hi">Case A — Safety Drone</span><span class="pill hi">Case B — Off-Road Vehicle</span><span class="pill hi">Case C — Research Agent</span></div>
+    <div class="pill-row"><span class="pill hi">Case A — Safety Drone</span><span class="pill hi">Case B — Off-Road Vehicle</span><span class="pill hi">Case C — Research Agent</span><span class="pill hi">Case D — Documentary</span></div>
   `,
   right: `
     <div class="dp-block">
@@ -980,7 +1069,7 @@ author: {
   chNum: '00', chPart: 'Introduction', chTitle: 'A Summer at the Edge', chSub: 'Four teams. Ten weeks. A beta test.',
   chBody: 'Four teams enter a studio in June with one instruction: build something real for real users — with AI as a full partner in the process. By August, all four will have something working. The fourth team is documenting something different: a video project on how young people experience AI and how they imagine their futures in an AI-shaped world. This summer is a beta test — for a new kind of studio, a new kind of process, and a new set of ideas about what it means to build with machines while centering humans. The goal is not just to leverage AI\'s power. It is to do that while actively resisting its pitfalls: the hallucinations, the creativity reduction, the cognitive offloading, the moments where the tool leads you confidently in the wrong direction. This book names those pitfalls and works out ways around them.',
   chConcepts: ['Build culture: building constantly, entrepreneurial mindset, centering humans, embracing experimentation','The jagged edge of performance: powerful but unpredictable, sometimes wrong, sometimes creativity-restricting','The four pitfalls: hallucination, creativity reduction, cognitive offloading, confident misdirection','Build Studio Summer 2026 as beta test'],
-  chCases: ['A','B','C']
+  chCases: ['A','B','C','D']
 },
 'ch-1': {
   label: 'Chapter 1 — The Context Engineer',
@@ -994,7 +1083,7 @@ author: {
   chNum: '02', chPart: 'Stance', chTitle: 'Build Culture', chSub: 'The environment that makes co-creation possible',
   chBody: 'Mindset is individual; culture is collective. Three conditions make human-AI collaboration work: psychological safety to show half-finished work, iteration norms that don\'t confuse speed with progress, and a shared language for distinguishing AI-generated insight from human judgment. Organizations that mistake AI fluency for AI literacy build brittle processes that break when the AI is confidently wrong. The dual evaluation model is introduced here.',
   chConcepts: ['AI fluency vs. AI literacy','The dual evaluation model','Iteration culture'],
-  chCases: ['A','B','C']
+  chCases: ['A','B','C','D']
 },
 'ch-3': {
   label: 'Chapter 3 — Discover',
@@ -1036,7 +1125,7 @@ author: {
   chNum: '08', chPart: 'Design Arc', chTitle: 'Validate: Learning from Real People', chSub: 'The stage AI cannot do. The one that justifies everything else.',
   chBody: 'Real users don\'t interact with your intent. They interact with what you built. AI cannot tell you what real users will do; only real users can do that. This chapter addresses both the irreducible human role in validation and the new challenge created by AI products: when the product behavior is partly determined by a language model, you are not testing a stable artifact. You are testing a system.',
   chConcepts: ['Testing for robustness vs. usability','Non-verbal signals','Synthesis after testing'],
-  chCases: ['A','B','C']
+  chCases: ['A','B','C','D']
 },
 'ch-9': {
   label: 'Chapter 9 — Ship',
@@ -1050,14 +1139,14 @@ author: {
   chNum: '10', chPart: 'After', chTitle: 'Careers: Building as a Profession', chSub: 'The skills that matter when AI can build most things',
   chBody: 'A generation is graduating into a labor market where the skills they trained for are being automated. This chapter is addressed directly to them — and to the managers who will hire them. The harness engineer is the professional identity of the AI era: someone who builds judgment about what\'s worth building, can evaluate AI output rather than accept it, and can narrate the decisions behind what they made.',
   chConcepts: ['The dual portfolio','Three career paths','Builder identity'],
-  chCases: ['A','B','C']
+  chCases: ['A','B','C','D']
 },
 'ch-epi': {
   label: 'Epilogue — The Human Part',
   chNum: '—', chPart: 'Epilogue', chTitle: 'The Human Part', chSub: 'AI can discover, frame, generate, build, and validate. It cannot care.',
   chBody: 'The book ends where the design process begins: with people. AI can simulate empathy. It cannot have it. The gap between those two things is where human-centered design lives — and where it will continue to live regardless of how capable the machines become.',
   chConcepts: [],
-  chCases: []
+  chCases: ['D']
 }
 
 };
@@ -1100,8 +1189,13 @@ function renderPanel(key) {
       ${d.chCases.length ? `<div class="dp-sec">Cases</div><div class="pill-row">${d.chCases.map(c=>`<span class="pill hi">Case ${c}</span>`).join('')}</div>` : ''}
     `;
     const posts = POSTS[key] || [];
+    const published = PUBLISHED[key] || [];
     right = `
-      <div class="posts-sec-lbl">4 Substack Posts · ~1,250 words each</div>
+      <div class="posts-sec-lbl">Published on Substack</div>
+      <div class="dp-block">
+        ${published.length ? published.map(p => `<div class="dp-row"><span><a class="pub-link" href="${p.url}" target="_blank" rel="noopener">${p.title}</a></span><span>${fmtDate(p.date)}</span></div>`).join('') : '<div class="dp-row"><span>Not yet published.</span></div>'}
+      </div>
+      <div class="posts-sec-lbl">4 Planned Substack Posts · ~1,250 words each</div>
       ${posts.map(p => `
         <div class="post-block">
           <div class="post-hdr">
@@ -1132,6 +1226,17 @@ function renderPanel(key) {
   ` : '';
   document.getElementById('dp-body').innerHTML = '<div class="dp-left">'+left+'</div><div class="dp-right">'+right+'</div>'+fullPostHTML;
 }
+
+function fmtDate(iso) {
+  const [y, m, d] = iso.split('-').map(Number);
+  return ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][m-1] + ' ' + d + ', ' + y;
+}
+
+// Published-post count on each chapter card
+document.querySelectorAll('.ch[data-key]').forEach(el => {
+  const n = (PUBLISHED[el.dataset.key] || []).length;
+  el.querySelector('.ch-sub').insertAdjacentHTML('afterend', '<div class="ch-pub">' + (n ? n + ' published' : 'Not yet published') + '</div>');
+});
 
 function copyPost(key) {
   const text = FULLPOSTS[key].plain;
