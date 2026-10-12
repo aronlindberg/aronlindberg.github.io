@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MS Business + AI — Stevens</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0e1117;--cream:#faf8f3;--rule:#d8d3c8;--tag:#666;--red:#c0392b;--blue:#1a3a6b;--found-c:#3a7a4a;--found-bg:#f0f7ee;--build-c:#3a5fa0;--build-bg:#e8f0fb;--mgmt-c:#c0682b;--mgmt-bg:#fdf0e8;--studio-bg:#1a3a6b;--cert:#7a3fa0;--cert-bg:#f3ebf9;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);padding:44px 40px;max-width:1120px;margin:0 auto;}
+.hdr{border-top:3px solid var(--ink);border-bottom:1px solid var(--rule);padding:20px 0 18px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;}
+.prog-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--red);margin-bottom:6px;}
+.hdr h1{font-family:'DM Serif Display',serif;font-size:30px;line-height:1.15;}
+.meta{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--tag);line-height:1.9;text-align:right;}
+.meta strong{color:var(--ink);font-weight:500;}
+.sec-meta{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#999;margin:30px 0 10px;}
+/* OVERVIEW */
+.prog-ov{border:1px solid var(--rule);border-radius:3px;background:#fff;margin:18px 0 28px;overflow:hidden;}
+.pov-title{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;background:var(--ink);color:#fff;padding:8px 16px;}
+.pov-body{display:grid;grid-template-columns:1fr 1fr 1fr;}
+.pov-col{padding:18px 20px;border-right:1px solid var(--rule);}
+.pov-col:last-child{border-right:none;}
+.pov-lbl{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--tag);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--rule);}
+.pov-col ol,.pov-col ul{list-style:none;padding:0;counter-reset:c;}
+.pov-col li{font-size:12px;line-height:1.6;color:#333;padding:5px 0 5px 20px;border-bottom:1px solid rgba(0,0,0,.04);position:relative;}
+.pov-col li:last-child{border-bottom:none;}
+.pov-col ol li::before{content:counter(c);counter-increment:c;font-family:'DM Mono',monospace;font-size:9px;color:var(--tag);position:absolute;left:0;top:7px;}
+.pov-col ul li::before{content:'—';font-family:'DM Mono',monospace;font-size:9px;color:var(--tag);position:absolute;left:0;top:7px;}
+.pov-col p{font-size:12px;line-height:1.65;color:#333;margin-bottom:8px;}
+.pov-note{font-size:11px!important;color:var(--tag)!important;font-style:italic;}
+/* THESIS */
+.thesis{padding:0 0 22px;border-bottom:1px solid var(--rule);margin-bottom:6px;display:flex;gap:40px;align-items:flex-start;}
+.tstmt{font-family:'DM Serif Display',serif;font-style:italic;font-size:15.5px;line-height:1.55;flex:1.4;max-width:540px;}
+.pills{flex:1;display:flex;gap:8px;flex-wrap:wrap;padding-top:2px;}
+.pill{font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border:1px solid var(--rule);border-radius:2px;color:var(--tag);white-space:nowrap;}
+.pill.hi{background:var(--ink);color:#fff;border-color:var(--ink);}
+/* CURRICULUM GROUPS */
+.groups{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:12px;}
+.track{border-radius:3px;overflow:hidden;border:1px solid;}
+.t-lbl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;padding:7px 12px;font-weight:500;color:#fff;}
+.found{border-color:var(--found-c);background:var(--found-bg);} .found .t-lbl{background:var(--found-c);}
+.build{border-color:var(--build-c);background:var(--build-bg);} .build .t-lbl{background:var(--build-c);}
+.mgmt{border-color:var(--mgmt-c);background:var(--mgmt-bg);} .mgmt .t-lbl{background:var(--mgmt-c);}
+.cc{padding:11px 13px;border-bottom:1px solid rgba(0,0,0,.06);position:relative;cursor:pointer;transition:background .15s;}
+.cc:last-child{border-bottom:none;}
+.cc:hover{background:rgba(0,0,0,.03);}
+.cc.active{outline:2px solid var(--blue);outline-offset:-2px;}
+.cn{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.08em;color:var(--tag);margin-bottom:3px;display:flex;gap:6px;align-items:center;flex-wrap:wrap;}
+.ct{font-size:13px;font-weight:600;line-height:1.3;margin-bottom:4px;}
+.cd{font-size:10.5px;line-height:1.5;color:#555;}
+.src{display:inline-block;font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.06em;padding:2px 6px;border-radius:2px;margin-top:6px;background:rgba(0,0,0,.06);color:#444;}
+.cert{display:inline-block;font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.06em;padding:1px 6px;border-radius:2px;background:var(--cert-bg);color:var(--cert);border:1px solid #d9c4ea;}
+/* STUDIO */
+.spine{border:1.5px solid #0d2650;border-radius:3px;overflow:hidden;background:var(--studio-bg);margin-top:4px;}
+.spine-hdr{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 16px;background:rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.1);flex-wrap:wrap;}
+.spine-hdr-t{font-family:'DM Serif Display',serif;font-size:15px;color:#fff;}
+.spine-hdr-s{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.45);}
+.phases{display:grid;grid-template-columns:1fr 1fr 1fr;}
+.phase{padding:14px 16px;border-right:1px solid rgba(255,255,255,.1);cursor:pointer;transition:background .15s;}
+.phase:last-child{border-right:none;}
+.phase:hover{background:rgba(255,255,255,.06);}
+.phase.active{background:rgba(255,255,255,.12);}
+.ph-tag{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:5px;}
+.ph-num{font-family:'DM Mono',monospace;font-size:9px;color:rgba(255,255,255,.55);margin-bottom:3px;}
+.ph-title{font-size:13.5px;font-weight:600;color:#fff;margin-bottom:5px;line-height:1.25;}
+.ph-desc{font-size:10.5px;line-height:1.5;color:rgba(255,255,255,.65);}
+.phase.p0{border-top:2px solid #6fbf80;} .phase.p1{border-top:2px solid #7fa3e0;} .phase.p2{border-top:2px solid #e39a63;}
+/* FORMATS */
+.tabs{display:flex;gap:0;border:1px solid var(--ink);border-radius:3px;overflow:hidden;margin-bottom:14px;flex-wrap:wrap;}
+.tab{flex:1;min-width:180px;background:#fff;border:none;border-right:1px solid var(--ink);padding:10px 14px;text-align:left;cursor:pointer;font-family:inherit;color:var(--ink);}
+.tab:last-child{border-right:none;}
+.tab .tl{font-size:13px;font-weight:600;display:block;}
+.tab .ts{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--tag);}
+.tab.on{background:var(--ink);color:#fff;}
+.tab.on .ts{color:rgba(255,255,255,.6);}
+.fmt-intro{font-size:12.5px;line-height:1.6;color:#333;margin-bottom:14px;max-width:820px;}
+.terms{display:grid;gap:12px;}
+.term{border:1px solid var(--rule);border-radius:3px;background:#fff;overflow:hidden;display:flex;flex-direction:column;}
+.term.gap{background:transparent;border-style:dashed;}
+.term-h{display:flex;justify-content:space-between;align-items:baseline;padding:8px 12px;border-bottom:1px solid var(--rule);background:rgba(0,0,0,.025);}
+.term-n{font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;}
+.term-c{font-family:'DM Mono',monospace;font-size:9.5px;color:var(--tag);}
+.tc{padding:9px 12px;border-bottom:1px solid rgba(0,0,0,.05);border-left:3px solid transparent;cursor:pointer;}
+.tc:hover{background:rgba(0,0,0,.03);}
+.tc .cn{margin-bottom:1px;}
+.tc .ct{font-size:12px;margin-bottom:0;}
+.tc.g-found{border-left-color:var(--found-c);} .tc.g-build{border-left-color:var(--build-c);} .tc.g-mgmt{border-left-color:var(--mgmt-c);}
+.tc.g-studio{border-left-color:var(--studio-bg);background:#eef2f9;}
+.milestone{margin-top:auto;padding:7px 12px;font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;background:var(--cert-bg);color:var(--cert);border-top:1px solid #e3d3ef;}
+.milestone.deg{background:var(--ink);color:#fff;border-top:none;}
+.gap-note{padding:14px 12px;font-size:11px;color:var(--tag);font-style:italic;}
+.fmt-foot{display:flex;gap:24px;margin-top:14px;padding-top:12px;border-top:1px solid var(--rule);flex-wrap:wrap;}
+.ff{flex:1;min-width:200px;}
+.ff-l{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--tag);margin-bottom:4px;}
+.ff-v{font-family:'DM Serif Display',serif;font-size:26px;line-height:1.1;}
+.ff-s{font-size:11px;color:#555;line-height:1.5;margin-top:2px;}
+/* COMPARISON */
+.cmp{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--rule);font-size:12px;}
+.cmp th{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;text-align:left;padding:9px 10px;border-bottom:1px solid var(--rule);background:rgba(0,0,0,.025);color:var(--tag);font-weight:500;}
+.cmp th.me{background:var(--ink);color:#fff;}
+.cmp td{padding:8px 10px;border-bottom:1px solid rgba(0,0,0,.05);vertical-align:top;line-height:1.5;color:#333;}
+.cmp td:first-child{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--tag);white-space:nowrap;}
+.cmp td.me{background:#f6f4ee;font-weight:500;color:var(--ink);}
+.cmp-wrap{overflow-x:auto;}
+/* CERT */
+.certbox{border:1px solid #d9c4ea;background:var(--cert-bg);border-radius:3px;padding:16px 18px;display:grid;grid-template-columns:1.2fr 1fr;gap:24px;}
+.certbox h3{font-family:'DM Serif Display',serif;font-size:18px;font-weight:400;margin-bottom:6px;color:var(--cert);}
+.certbox p{font-size:12px;line-height:1.6;color:#333;margin-bottom:6px;}
+.certbox ul{list-style:none;}
+.certbox li{font-size:12px;padding:5px 0;border-bottom:1px solid #e3d3ef;color:#333;}
+.certbox li:last-child{border-bottom:none;}
+.certbox li span{font-family:'DM Mono',monospace;font-size:10px;color:var(--cert);margin-right:8px;}
+/* DETAIL */
+.detail{position:fixed;right:24px;bottom:24px;width:380px;max-width:calc(100vw - 32px);max-height:70vh;overflow-y:auto;background:#fff;border:1px solid var(--ink);border-radius:3px;box-shadow:0 12px 40px rgba(0,0,0,.18);padding:18px 20px;display:none;z-index:10;}
+.detail.open{display:block;}
+.d-close{position:absolute;top:10px;right:12px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border:1px solid var(--rule);background:#fff;padding:3px 8px;border-radius:2px;color:var(--tag);}
+.d-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--tag);margin-bottom:3px;}
+.d-title{font-family:'DM Serif Display',serif;font-size:20px;line-height:1.2;margin-bottom:8px;padding-right:50px;}
+.d-lbl{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--tag);border-bottom:1px solid var(--rule);padding-bottom:3px;margin:12px 0 6px;}
+.d-txt{font-size:12px;line-height:1.6;color:#333;}
+.d-where{font-size:11.5px;line-height:1.7;color:#333;}
+.d-where b{font-family:'DM Mono',monospace;font-size:9.5px;font-weight:500;color:var(--tag);text-transform:uppercase;letter-spacing:.06em;}
+/* FOOTER */
+.footer{margin-top:30px;padding-top:18px;border-top:1px solid var(--rule);display:flex;gap:28px;align-items:flex-start;}
+.f-lbl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--tag);flex-shrink:0;padding-top:4px;width:90px;}
+.outcomes{display:flex;flex-wrap:wrap;gap:7px;}
+.otag{font-size:11px;font-weight:500;padding:5px 12px;border:1px solid var(--rule);border-radius:2px;background:#fff;}
+.fine{margin-top:18px;font-size:10.5px;line-height:1.6;color:#888;}
+@media (max-width:860px){
+  body{padding:28px 16px;}
+  .hdr{flex-direction:column;align-items:flex-start;}
+  .meta{text-align:left;}
+  .pov-body,.groups,.phases,.certbox{grid-template-columns:1fr;}
+  .pov-col{border-right:none;border-bottom:1px solid var(--rule);}
+  .phase{border-right:none;border-bottom:1px solid rgba(255,255,255,.1);}
+  .thesis{flex-direction:column;gap:16px;}
+  .terms{grid-template-columns:1fr!important;}
+  .footer{flex-direction:column;gap:10px;}
+}
+</style>
+</head>
+<body>
+<div class="hdr">
+  <div>
+    <div class="prog-label">Stevens Institute of Technology &middot; School of Business</div>
+    <h1>MS in Business + AI</h1>
+  </div>
+  <div class="meta"><strong>30 credits</strong> &middot; 10 required courses, no electives<br><strong>3 formats</strong> &middot; Full-time &middot; Accelerated &middot; Part-time<br><strong>Management of AI certificate</strong> &middot; earned along the way<br><strong>Build Studio</strong> &middot; 3-phase sponsor project</div>
+</div>
+
+<div class="prog-ov">
+  <div class="pov-title">Program Overview</div>
+  <div class="pov-body">
+    <div class="pov-col">
+      <div class="pov-lbl">Program Educational Objectives</div>
+      <p class="pov-note">What graduates will achieve 3&ndash;5 years after graduation:</p>
+      <ol>
+        <li>Lead AI initiatives, from use case identification to deployed system, in enterprises, consulting firms, and technology organizations.</li>
+        <li>Combine analytical, technical, and organizational judgment to decide where AI creates value and how to build it.</li>
+        <li>Advance responsible AI practice, contributing to governance, accountability, and ethical use of AI in organizations.</li>
+        <li>Progress into senior roles, such as AI product lead, AI strategy director, or analytics and AI manager.</li>
+      </ol>
+    </div>
+    <div class="pov-col">
+      <div class="pov-lbl">Program Educational Outcomes</div>
+      <p class="pov-note">What students will be able to do upon graduation:</p>
+      <ol>
+        <li>Manage and prepare enterprise data for analytics and AI applications.</li>
+        <li>Build machine learning, deep learning, and generative AI solutions for business problems.</li>
+        <li>Develop AI strategy and redesign business processes around AI.</li>
+        <li>Govern AI projects responsibly, addressing fairness, accountability, transparency, ethics, and law.</li>
+        <li>Communicate AI designs, decisions, and impact to technical and non-technical audiences.</li>
+        <li>Deliver a working AI system for a real sponsor organization through the three-phase Build Studio.</li>
+      </ol>
+    </div>
+    <div class="pov-col">
+      <div class="pov-lbl">Intended Audience</div>
+      <p>The program sits between a management-of-IS degree and a quantitative analytics degree. It is for people who want to <em>build</em> with AI and lead its use in the business.</p>
+      <ul>
+        <li>Recent graduates in business, IS, CS, engineering, or analytics.</li>
+        <li>Early-career professionals in IT, consulting, product, or operations moving into AI roles.</li>
+        <li>Working professionals, including corporate cohorts, continuing from the Management of AI certificate.</li>
+      </ul>
+      <p class="pov-note" style="margin-top:8px;">Basic Python required; calculus not required. An optional pre-program bootcamp covers Python, SQL, and statistics.</p>
+    </div>
+  </div>
+</div>
+
+<div class="thesis">
+  <div class="tstmt">&ldquo;One degree, three ways to take it. Every student learns to manage data, build AI, and lead it in the business, and then ships a real system for a real sponsor.&rdquo;</div>
+  <div class="pills">
+    <span class="pill hi">Generative AI</span><span class="pill hi">Machine Learning</span><span class="pill hi">Build Studio</span>
+    <span class="pill">AI Strategy</span><span class="pill">Process Redesign</span><span class="pill">AI Governance</span><span class="pill">Data Management</span>
+  </div>
+</div>
+
+<div class="sec-meta">Curriculum &mdash; ten required courses, identical in every format &middot; click any course</div>
+<div class="groups" id="groups"></div>
+<div class="spine">
+  <div class="spine-hdr">
+    <div class="spine-hdr-t">Build Studio &mdash; Sponsor Project in Three Phases</div>
+    <div class="spine-hdr-s">MIS 676 &middot; MIS 702 &middot; MIS 678 &middot; 9 credits</div>
+  </div>
+  <div class="phases">
+    <div class="phase p0" data-code="MIS 676"><div class="ph-tag">Phase 0 &middot; Frame</div><div class="ph-num">MIS 676 &middot; Human-Centered Design of AI Artifacts</div><div class="ph-title">Orientation &amp; Problem Framing</div><div class="ph-desc">Meet the sponsor, research stakeholders and users, and frame the AI opportunity using human-centered design.</div></div>
+    <div class="phase p1" data-code="MIS 702"><div class="ph-tag">Phase I &middot; Build</div><div class="ph-num">MIS 702 &middot; Practicum in MIS</div><div class="ph-title">Architecture &amp; Prototype</div><div class="ph-desc">Validate the use case, design the system and data pipeline, and build a working prototype with the sponsor.</div></div>
+    <div class="phase p2" data-code="MIS 678"><div class="ph-tag">Phase II &middot; Deploy</div><div class="ph-num">MIS 678 &middot; Realization of AI Artifacts (Capstone)</div><div class="ph-title">Deployment, Governance &amp; Impact</div><div class="ph-desc">Deploy, govern, and measure the system, with a business model, governance framework, and change plan.</div></div>
+  </div>
+</div>
+
+<div class="sec-meta">Delivery formats &mdash; same 30 credits, three schedules</div>
+<div class="tabs" id="tabs"></div>
+<p class="fmt-intro" id="fmt-intro"></p>
+<div class="terms" id="terms"></div>
+<div class="fmt-foot" id="fmt-foot"></div>
+
+<div class="sec-meta">Management of AI certificate &mdash; built in</div>
+<div class="certbox">
+  <div>
+    <h3>Earn the certificate on the way to the degree</h3>
+    <p>The four Management of AI certificate courses are required courses in Business + AI. Every student completes the certificate before graduating. Part-time students complete it in their first two terms.</p>
+    <p>Professionals who complete the certificate first, including corporate cohorts, carry all 12 credits into the degree and need 18 more, including the full Build Studio. Their Build Studio project can be sponsored by their own employer.</p>
+  </div>
+  <ul>
+    <li><span>MIS 637</span>Data Analytics &amp; Machine Learning</li>
+    <li><span>BIA 662</span>Augmented Intelligence &amp; Generative AI</li>
+    <li><span>BIA 667</span>Deep Learning &amp; Business Applications</li>
+    <li><span>BIA 568</span>Management of AI Technologies</li>
+  </ul>
+</div>
+
+<div class="sec-meta">A middle ground &mdash; how Business + AI combines MSIS and MS Business Analytics &amp; AI</div>
+<div class="cmp-wrap">
+<table class="cmp">
+  <thead><tr><th></th><th>MS Information Systems</th><th class="me">MS Business + AI</th><th>MS Business Analytics &amp; AI</th></tr></thead>
+  <tbody>
+    <tr><td>Focus</td><td>Managing IT: data, strategy, process, architecture, finance</td><td class="me">Building AI and leading it in the business</td><td>Quantitative modeling: statistics, optimization, ML</td></tr>
+    <tr><td>Shared core</td><td colspan="3" style="text-align:center;">MIS 630 Managing the Data Resource &middot; MIS 637 Data Analytics &amp; ML &middot; BIA 568 Management of AI Technologies</td></tr>
+    <tr><td>Kept from</td><td>MIS 760 IT Strategy &middot; MIS 710 Process Innovation</td><td class="me">All three groups + Build Studio</td><td>BIA 662 Generative AI &middot; BIA 667 Deep Learning</td></tr>
+    <tr><td>Credits</td><td>33</td><td class="me">30</td><td>33</td></tr>
+    <tr><td>Electives</td><td>3 electives / concentrations</td><td class="me">None &mdash; one coherent curriculum</td><td>4 electives / concentrations</td></tr>
+    <tr><td>Capstone</td><td>Optional</td><td class="me">Required 3-phase Build Studio (9 cr)</td><td>Optional practicum</td></tr>
+    <tr><td>Admission</td><td>No quantitative prerequisite</td><td class="me">Basic Python; no calculus</td><td>Calculus and programming</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="footer">
+  <div class="f-lbl">Career targets</div>
+  <div class="outcomes">
+    <span class="otag">AI Product Manager</span><span class="otag">AI Consultant</span><span class="otag">AI Implementation Lead</span>
+    <span class="otag">Forward Deployed Engineer</span><span class="otag">Business &amp; Data Analyst</span><span class="otag">AI Governance Analyst</span>
+    <span class="otag">Digital Transformation Lead</span><span class="otag">IT &amp; Analytics Manager</span>
+  </div>
+</div>
+<p class="fine">Draft program design. Every course is an existing Stevens School of Business course; course numbers follow current program pages (the 2026&ndash;27 catalog lists MIS 637, BIA 662, and BIA 667 as MIS 537, BIA 562, and BIA 567). Tuition estimates use published 2026&ndash;27 graduate rates ($22,995 full-time flat rate for 9&ndash;12 credits; $2,152 per credit otherwise), tuition only, before fees and scholarships.</p>
+
+<div class="detail" id="detail"><button class="d-close" onclick="closeDetail()">&#10005; Close</button><div id="d-body"></div></div>
+
+<script>
+const C={
+'MIS 630':{t:'Managing the Data Resource',g:'found',cert:false,src:'Core in MSIS & BA&AI',d:'Enterprise data as a strategic resource — data modeling, repositories, and the planning of an enterprise-wide data management scheme.',cat:'Strategic uses of data, data structures, and file organizations as the basis for planning and implementing enterprise-wide data management: data as an enterprise resource, modeling an enterprise’s data requirements, data repositories, and the systems development life cycle.',role:'Gives every student the data foundation that AI systems depend on, from data models to data governance.'},
+'MIS 637':{t:'Data Analytics & Machine Learning',g:'found',cert:true,src:'Core in MSIS & BA&AI',d:'Data mining and machine learning applied to real business and operations problems.',cat:'Data mining and knowledge discovery algorithms applied to business and operations problems: data preprocessing, k-nearest neighbors, decision trees, neural networks, clustering, and model evaluation, with case studies throughout.',role:'The machine learning foundation. It is also a prerequisite for BIA 667, so it comes first in every format.'},
+'BIA 662':{t:'Augmented Intelligence & Generative AI',g:'build',cert:true,src:'From BA&AI',d:'Building generative AI applications: LLMs, NLP, retrieval, agents, and evaluation.',cat:'Cognitive computing and its implications for analytics and evidence-based decision making: design principles, natural language processing, knowledge representation, advanced analytics, and deep learning architectures. Students build AI applications.',role:'The core generative AI building course. Students use these tools in their Build Studio projects.'},
+'BIA 667':{t:'Deep Learning & Business Applications',g:'build',cert:true,src:'From BA&AI',d:'Neural networks, CNNs, RNNs, generative models, and reinforcement learning — hands-on, with business applications and risks.',cat:'Fundamentals of deep learning for business students: neural networks, convolutional and recurrent networks, generative models, and reinforcement learning, with extensive hands-on work, business cases, and the risks of applying deep learning and how to address them.',role:'The second building course: hands-on model development. Requires MIS 637.'},
+'BIA 568':{t:'Management of AI Technologies',g:'mgmt',cert:true,src:'Core in MSIS & BA&AI',d:'Managing AI projects with fairness, accountability, transparency, ethics, and law at the center.',cat:'A survey of AI applications in business and technology, focusing in each area on the management of AI projects, including fairness, accountability, transparency, ethics, and the law.',role:'The governance and responsible-AI anchor. It is required in both current programs and in the certificate.'},
+'MIS 760':{t:'IT Strategy',g:'mgmt',cert:false,src:'From MSIS',d:'Aligning business and technology strategy — applied to where to invest in AI and how to compete with it.',cat:'How to improve the alignment of business and information technology strategies: business strategy, IT strategy and infrastructure, strategic alignment, and methods and metrics for building strategies and achieving alignment.',role:'Covers AI strategy and investment, aligning what gets built with where the business is going.'},
+'MIS 710':{t:'Process Innovation & Management',g:'mgmt',cert:false,src:'From MSIS',d:'Reengineering business processes and organizational structures with technology — redesigning work around AI.',cat:'The role of information technology in reengineering and enhancing key business processes, and the implications for organizational structures and processes.',role:'Covers redesigning workflows around AI, so that AI systems actually change how work gets done.'},
+'MIS 676':{t:'Human-Centered Design of AI Artifacts',g:'studio',cert:false,src:'Build Studio · Phase 0',d:'Frame the sponsor problem and prototype an AI concept.',cat:'An end-to-end human-centered design process adapted to AI-enabled products and services, ending in a working prototype of an AI artifact.',role:'Build Studio Phase 0: meet the sponsor, research stakeholders and users, frame the opportunity, and define the project charter.'},
+'MIS 702':{t:'Practicum in MIS',g:'studio',cert:false,src:'Build Studio · Phase I',d:'Build the prototype with the sponsor.',cat:'A practical company project supervised by a faculty advisor and an industry mentor, with progress reports and a final report. It runs at 3 credits in one semester with Program Director approval.',role:'Build Studio Phase I: validate the use case, design the architecture and data pipeline, and build a working prototype.'},
+'MIS 678':{t:'Realization of AI Artifacts (Capstone)',g:'studio',cert:false,src:'Build Studio · Phase II',d:'Deploy, govern, and measure impact.',cat:'Designing, creating, and evaluating an AI-enabled product or service in the wild, including a business plan and model, a socio-technical architecture and governance framework, and change management plans for implementation.',role:'Build Studio Phase II: deploy the system, hand over governance, measure impact, and present to the sponsor.'}
+};
+const GROUPS=[
+ {cls:'found',lbl:'Data & ML Foundations',codes:['MIS 630','MIS 637']},
+ {cls:'build',lbl:'Building with AI',codes:['BIA 662','BIA 667']},
+ {cls:'mgmt',lbl:'Managing AI in the Business',codes:['BIA 568','MIS 760','MIS 710']}
+];
+const F={
+ ft:{lbl:'Full-time',sub:'4 semesters · ~20 months',intro:'Fall start, two academic years, with Build Studio starting in semester 2 and running one phase per semester. The summer is free for an internship.',
+  cols:5,terms:[
+   {n:'Fall 1',courses:['MIS 630','MIS 637','BIA 662']},
+   {n:'Spring 1',courses:['BIA 667','MIS 760','MIS 676']},
+   {n:'Summer',gap:'Optional internship'},
+   {n:'Fall 2',courses:['BIA 568','MIS 710','MIS 702'],ms:'Management of AI certificate'},
+   {n:'Spring 2',courses:['MIS 678'],ms:'Business + AI degree',deg:true}],
+  cost:'$75,400',costs:'3 full-time semesters at the 9–12 credit flat rate + 3 credits in the final term.',len:'~20 months',lens:'Fall start; finishes in May of year two.'},
+ acc:{lbl:'Accelerated',sub:'Summer → Fall → Spring · 12 months',intro:'A full-time cohort starting in summer. Build Studio runs Phase 0 in summer, Phase I in fall, and Phase II in spring. MIS 637 comes in summer because it is a prerequisite for BIA 667.',
+  cols:3,terms:[
+   {n:'Summer',courses:['MIS 637','MIS 676']},
+   {n:'Fall',courses:['MIS 630','BIA 662','BIA 667','MIS 702']},
+   {n:'Spring',courses:['BIA 568','MIS 760','MIS 710','MIS 678'],ms:'Certificate + degree',deg:true}],
+  cost:'$58,900',costs:'Summer at $2,152 per credit + two 12-credit semesters at the flat rate.',len:'12 months',lens:'Summer start; finishes in May.'},
+ pt:{lbl:'Part-time',sub:'Online or in person · 5 terms',intro:'Two courses per term, online or in person, for working professionals. The certificate courses come first, so terms 1–2 are the Management of AI certificate. Students who already hold the certificate start at term 3. Build Studio can run inside the student’s own employer.',
+  cols:5,terms:[
+   {n:'Term 1',courses:['MIS 637','BIA 662']},
+   {n:'Term 2',courses:['BIA 667','BIA 568'],ms:'Management of AI certificate'},
+   {n:'Term 3',courses:['MIS 630','MIS 676']},
+   {n:'Term 4',courses:['MIS 760','MIS 702']},
+   {n:'Term 5',courses:['MIS 710','MIS 678'],ms:'Business + AI degree',deg:true}],
+  cost:'$64,600',costs:'30 credits at $2,152 per credit, plus part-time fees.',len:'~20 months',lens:'Fall, spring, and summer terms; can be stretched.'}
+};
+function card(code,cls){
+  const c=C[code];
+  return '<div class="'+cls+'" data-code="'+code+'"><div class="cn">'+code+(c.cert?' <span class="cert">MGMT OF AI CERT</span>':'')+'</div><div class="ct">'+c.t+'</div>'+(cls==='cc'?'<div class="cd">'+c.d+'</div><span class="src">'+c.src+'</span>':'')+'</div>';
+}
+document.getElementById('groups').innerHTML=GROUPS.map(g=>'<div class="track '+g.cls+'"><div class="t-lbl">'+g.lbl+'</div>'+g.codes.map(c=>card(c,'cc')).join('')+'</div>').join('');
+document.getElementById('tabs').innerHTML=Object.entries(F).map(([k,f])=>'<button class="tab" data-f="'+k+'"><span class="tl">'+f.lbl+'</span><span class="ts">'+f.sub+'</span></button>').join('');
+function show(k){
+  const f=F[k];
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t.dataset.f===k));
+  document.getElementById('fmt-intro').textContent=f.intro;
+  const T=document.getElementById('terms');
+  T.style.gridTemplateColumns='repeat('+f.cols+',1fr)';
+  T.innerHTML=f.terms.map(t=>{
+    if(t.gap) return '<div class="term gap"><div class="term-h"><span class="term-n">'+t.n+'</span></div><div class="gap-note">'+t.gap+'</div></div>';
+    const cr=t.courses.length*3;
+    return '<div class="term"><div class="term-h"><span class="term-n">'+t.n+'</span><span class="term-c">'+cr+' cr</span></div>'+
+      t.courses.map(c=>card(c,'tc g-'+C[c].g)).join('')+
+      (t.ms?'<div class="milestone'+(t.deg?' deg':'')+'">★ '+t.ms+'</div>':'')+'</div>';
+  }).join('');
+  document.getElementById('fmt-foot').innerHTML=
+    '<div class="ff"><div class="ff-l">Est. tuition (2026–27 rates)</div><div class="ff-v">'+f.cost+'</div><div class="ff-s">'+f.costs+'</div></div>'+
+    '<div class="ff"><div class="ff-l">Length</div><div class="ff-v">'+f.len+'</div><div class="ff-s">'+f.lens+'</div></div>'+
+    '<div class="ff"><div class="ff-l">Credits</div><div class="ff-v">30</div><div class="ff-s">Same ten required courses as every other format.</div></div>';
+  try{localStorage.setItem('msbai-fmt',k);}catch(e){}
+}
+function where(code){
+  return Object.values(F).map(f=>{const t=f.terms.find(t=>t.courses&&t.courses.includes(code));return '<b>'+f.lbl+'</b> &nbsp;'+(t?t.n:'—');}).join('<br>');
+}
+function openDetail(code){
+  const c=C[code];
+  document.querySelectorAll('[data-code]').forEach(e=>e.classList.toggle('active',e.dataset.code===code));
+  document.getElementById('d-body').innerHTML='<div class="d-num">'+code+' &middot; 3 credits'+(c.cert?' &middot; <span class="cert">MGMT OF AI CERT</span>':'')+'</div><div class="d-title">'+c.t+'</div>'+
+   '<div class="d-lbl">Catalog course</div><p class="d-txt">'+c.cat+'</p>'+
+   '<div class="d-lbl">Role in Business + AI</div><p class="d-txt">'+c.role+'</p>'+
+   '<div class="d-lbl">When it is taken</div><p class="d-where">'+where(code)+'</p>';
+  document.getElementById('detail').classList.add('open');
+}
+function closeDetail(){document.getElementById('detail').classList.remove('open');document.querySelectorAll('[data-code].active').forEach(e=>e.classList.remove('active'));}
+document.addEventListener('click',e=>{
+  const tab=e.target.closest('.tab'); if(tab){show(tab.dataset.f);return;}
+  const el=e.target.closest('[data-code]'); if(el){openDetail(el.dataset.code);}
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDetail();});
+let start='ft';try{const s=localStorage.getItem('msbai-fmt');if(s&&F[s])start=s;}catch(e){}
+show(start);
+</script>
+</body>
+</html>
