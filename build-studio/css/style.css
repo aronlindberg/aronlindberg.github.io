@@ -239,6 +239,7 @@ p  { color: var(--muted); }
   z-index: 1;
 }
 .hero h1 { color: var(--white); margin-bottom: 20px; }
+.hero:has(+ .video-feature) { border-bottom: 0; padding-bottom: 32px; }
 .hero h1 .plus { color: var(--red-lift); }
 .hero p  { color: #C8CDD3; font-size: 19px; max-width: 580px; margin-bottom: 36px; }
 .hero .label { color: var(--ink-mute); }
@@ -260,6 +261,26 @@ p  { color: var(--muted); }
   color: var(--white);
   border: 1px solid var(--ink-line);
 }
+
+/* ---- Featured Video ---- */
+.video-feature {
+  background: var(--navy);
+  padding: 72px 0 88px;
+  border-bottom: 4px solid var(--red);
+}
+.video-feature__head { text-align: center; margin-bottom: 32px; }
+.video-feature__head .label { color: var(--red-lift); }
+.video-feature__head h2 { color: var(--white); }
+.video-frame {
+  position: relative;
+  max-width: 1040px;
+  margin: 0 auto;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border: 1px solid var(--ink-line);
+  box-shadow: 0 0 0 6px var(--ink-2), 0 24px 60px rgba(0,0,0,0.45);
+}
+.video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 
 /* ---- Cards ---- */
 .card {
