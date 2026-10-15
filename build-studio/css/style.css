@@ -303,6 +303,31 @@ p  { color: var(--muted); }
 .course-card__row { font-size: 14px; color: var(--text); padding: 10px 0; border-top: 1px solid var(--border); }
 .course-card__row span { display: block; font-family: var(--disp); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; font-size: 13px; color: var(--red); margin-bottom: 2px; }
 
+/* ---- Audience Split (Home) ---- */
+.audience-split { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.audience-panel {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--red);
+  border-radius: var(--radius);
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.audience-panel h3 { font-size: clamp(28px, 3.4vw, 40px); font-weight: 700; color: var(--navy); margin-bottom: 14px; }
+.audience-panel p { font-size: 17px; margin-bottom: 20px; }
+.audience-panel ul { list-style: none; margin-bottom: 28px; width: 100%; flex: 1; }
+.audience-panel li { padding: 12px 0; border-top: 1px solid var(--border); font-size: 15px; color: var(--text); }
+.audience-panel li strong { font-family: var(--disp); text-transform: uppercase; letter-spacing: 0.04em; font-size: 16px; color: var(--red); }
+.audience-panel--dark { background: var(--navy); border-color: var(--ink-line); border-top-color: var(--red); }
+.audience-panel--dark h3 { color: var(--white); }
+.audience-panel--dark p { color: #C8CDD3; }
+.audience-panel--dark .label { color: var(--red-lift); }
+.audience-panel--dark li { color: #E4E5E6; border-top-color: var(--ink-line); }
+.audience-panel--dark li strong { color: var(--red-lift); }
+@media (max-width: 960px) { .audience-split { grid-template-columns: 1fr; } .audience-panel { padding: 32px 24px; } }
+
 /* ---- Cards ---- */
 .card {
   background: var(--white);
