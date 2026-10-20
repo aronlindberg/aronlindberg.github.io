@@ -50,6 +50,17 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);p
 .ct{font-size:13px;font-weight:600;line-height:1.3;margin-bottom:4px;}
 .cd{font-size:10.5px;line-height:1.5;color:#555;}
 .src{display:inline-block;font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.06em;padding:2px 6px;border-radius:2px;margin-top:6px;background:rgba(0,0,0,.06);color:#444;}
+.tc.g-elec{border-left-color:#8a8a8a;background:repeating-linear-gradient(135deg,#fff,#fff 6px,#f6f4ee 6px,#f6f4ee 12px);}
+.tc.g-elec .ct{font-style:italic;font-weight:500;}
+.elecs{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:12px;}
+.is{border-color:#9a5b13;background:#fbf4ea;} .is .t-lbl{background:#9a5b13;}
+.an{border-color:#0f766e;background:#e9f6f4;} .an .t-lbl{background:#0f766e;}
+.elec-intro{font-size:12.5px;line-height:1.6;color:#333;margin-bottom:12px;max-width:860px;}
+.paths{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:4px 0 8px;}
+.path{border:1px solid var(--rule);background:#fff;border-radius:3px;padding:10px 12px;}
+.path-l{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--tag);margin-bottom:4px;}
+.path-t{font-size:12.5px;font-weight:600;margin-bottom:3px;}
+.path-d{font-size:11px;color:#555;line-height:1.5;}
 .cert{display:inline-block;font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.06em;padding:1px 6px;border-radius:2px;background:var(--cert-bg);color:var(--cert);border:1px solid #d9c4ea;}
 /* STUDIO */
 .spine{border:1.5px solid #0d2650;border-radius:3px;overflow:hidden;background:var(--studio-bg);margin-top:4px;}
@@ -131,7 +142,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);p
   body{padding:28px 16px;}
   .hdr{flex-direction:column;align-items:flex-start;}
   .meta{text-align:left;}
-  .pov-body,.groups,.phases,.certbox{grid-template-columns:1fr;}
+  .pov-body,.groups,.phases,.certbox,.elecs,.paths{grid-template-columns:1fr;}
   .pov-col{border-right:none;border-bottom:1px solid var(--rule);}
   .phase{border-right:none;border-bottom:1px solid rgba(255,255,255,.1);}
   .thesis{flex-direction:column;gap:16px;}
@@ -146,7 +157,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);p
     <div class="prog-label">Stevens Institute of Technology &middot; School of Business</div>
     <h1>MS in Business + AI</h1>
   </div>
-  <div class="meta"><strong>30 credits</strong> &middot; 10 required courses, no electives<br><strong>3 formats</strong> &middot; Full-time &middot; Accelerated &middot; Part-time<br><strong>Management of AI certificate</strong> &middot; earned along the way<br><strong>Build Studio</strong> &middot; 3-phase sponsor project</div>
+  <div class="meta"><strong>30 credits</strong> &middot; 8 required courses + 2 electives<br><strong>3 formats</strong> &middot; Full-time &middot; Accelerated &middot; Part-time<br><strong>Management of AI certificate</strong> &middot; earned along the way<br><strong>Build Studio</strong> &middot; 3-phase sponsor project</div>
 </div>
 
 <div class="prog-ov">
@@ -168,7 +179,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);p
       <ol>
         <li>Manage and prepare enterprise data for analytics and AI applications.</li>
         <li>Build machine learning, deep learning, and generative AI solutions for business problems.</li>
-        <li>Develop AI strategy and redesign business processes around AI.</li>
+        <li>Lead AI adoption in the business, with added depth in either IS strategy and process or advanced analytics.</li>
         <li>Govern AI projects responsibly, addressing fairness, accountability, transparency, ethics, and law.</li>
         <li>Communicate AI designs, decisions, and impact to technical and non-technical audiences.</li>
         <li>Deliver a working AI system for a real sponsor organization through the three-phase Build Studio.</li>
@@ -188,25 +199,34 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);p
 </div>
 
 <div class="thesis">
-  <div class="tstmt">&ldquo;One degree, three ways to take it. Every student learns to manage data, build AI, and lead it in the business, and then ships a real system for a real sponsor.&rdquo;</div>
+  <div class="tstmt">&ldquo;One degree, three ways to take it. Every student learns to manage data, build AI, and lead it in the business. Two electives let each student lean toward IS management or toward advanced analytics. Then every student ships a real system for a real sponsor.&rdquo;</div>
   <div class="pills">
     <span class="pill hi">Generative AI</span><span class="pill hi">Machine Learning</span><span class="pill hi">Build Studio</span>
     <span class="pill">AI Strategy</span><span class="pill">Process Redesign</span><span class="pill">AI Governance</span><span class="pill">Data Management</span>
   </div>
 </div>
 
-<div class="sec-meta">Curriculum &mdash; ten required courses, identical in every format &middot; click any course</div>
+<div class="sec-meta">Curriculum &mdash; eight required courses, identical in every format &middot; click any course</div>
 <div class="groups" id="groups"></div>
 <div class="spine">
   <div class="spine-hdr">
     <div class="spine-hdr-t">Build Studio &mdash; Sponsor Project in Three Phases</div>
-    <div class="spine-hdr-s">MIS 676 &middot; MIS 702 &middot; MIS 678 &middot; 9 credits</div>
+    <div class="spine-hdr-s">MIS 676 &middot; MIS 678 &middot; MIS 702 &middot; 9 credits &middot; required</div>
   </div>
   <div class="phases">
     <div class="phase p0" data-code="MIS 676"><div class="ph-tag">Phase 0 &middot; Frame</div><div class="ph-num">MIS 676 &middot; Human-Centered Design of AI Artifacts</div><div class="ph-title">Orientation &amp; Problem Framing</div><div class="ph-desc">Meet the sponsor, research stakeholders and users, and frame the AI opportunity using human-centered design.</div></div>
-    <div class="phase p1" data-code="MIS 702"><div class="ph-tag">Phase I &middot; Build</div><div class="ph-num">MIS 702 &middot; Practicum in MIS</div><div class="ph-title">Architecture &amp; Prototype</div><div class="ph-desc">Validate the use case, design the system and data pipeline, and build a working prototype with the sponsor.</div></div>
-    <div class="phase p2" data-code="MIS 678"><div class="ph-tag">Phase II &middot; Deploy</div><div class="ph-num">MIS 678 &middot; Realization of AI Artifacts (Capstone)</div><div class="ph-title">Deployment, Governance &amp; Impact</div><div class="ph-desc">Deploy, govern, and measure the system, with a business model, governance framework, and change plan.</div></div>
+    <div class="phase p1" data-code="MIS 678"><div class="ph-tag">Phase I &middot; Build</div><div class="ph-num">MIS 678 &middot; Realization of AI Artifacts</div><div class="ph-title">Build, Govern &amp; Evaluate</div><div class="ph-desc">Build and evaluate the AI system with real users, with a business model, a socio-technical architecture, a governance framework, and a change plan.</div></div>
+    <div class="phase p2" data-code="MIS 702"><div class="ph-tag">Phase II &middot; Deploy &middot; final term</div><div class="ph-num">MIS 702 &middot; Practicum in MIS</div><div class="ph-title">Field Deployment &amp; Practicum</div><div class="ph-desc">Deploy and measure the system inside the sponsor organization, or complete the practicum as an internship or in the student&rsquo;s own employer.</div></div>
   </div>
+</div>
+
+<div class="sec-meta">Electives &mdash; choose two &middot; lean toward MSIS or toward BA&amp;AI</div>
+<p class="elec-intro">Students choose two electives from a short list. Both from the IS list makes the degree closer to the MS in Information Systems. Both from the analytics list makes it closer to the MS in Business Analytics &amp; AI. One from each gives a balanced profile.</p>
+<div class="elecs" id="elecs"></div>
+<div class="paths">
+  <div class="path"><div class="path-l">Lean MSIS</div><div class="path-t">MIS 760 + MIS 710</div><div class="path-d">AI strategy and process redesign, for consulting, product, and transformation roles.</div></div>
+  <div class="path"><div class="path-l">Balanced</div><div class="path-t">MIS 760 + BIA 654</div><div class="path-d">AI strategy plus experimental design to prove impact, for AI product and implementation leads.</div></div>
+  <div class="path"><div class="path-l">Lean BA&amp;AI</div><div class="path-t">BIA 652 + BIA 656</div><div class="path-d">Multivariate statistics and advanced machine learning, for data science and ML-heavy roles.</div></div>
 </div>
 
 <div class="sec-meta">Delivery formats &mdash; same 30 credits, three schedules</div>
@@ -237,10 +257,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);p
   <tbody>
     <tr><td>Focus</td><td>Managing IT: data, strategy, process, architecture, finance</td><td class="me">Building AI and leading it in the business</td><td>Quantitative modeling: statistics, optimization, ML</td></tr>
     <tr><td>Shared core</td><td colspan="3" style="text-align:center;">MIS 630 Managing the Data Resource &middot; MIS 637 Data Analytics &amp; ML &middot; BIA 568 Management of AI Technologies</td></tr>
-    <tr><td>Kept from</td><td>MIS 760 IT Strategy &middot; MIS 710 Process Innovation</td><td class="me">All three groups + Build Studio</td><td>BIA 662 Generative AI &middot; BIA 667 Deep Learning</td></tr>
+    <tr><td>Required from</td><td>MIS 630 &middot; MIS 637 &middot; BIA 568</td><td class="me">8 required courses incl. Build Studio</td><td>MIS 630 &middot; MIS 637 &middot; BIA 568 &middot; BIA 662 &middot; BIA 667</td></tr>
+    <tr><td>Elective lists</td><td>MIS 760 &middot; MIS 710 &middot; MIS 730 &middot; MIS 699</td><td class="me">Choose 2 from either list</td><td>BIA 652 &middot; BIA 654 &middot; BIA 650 &middot; BIA 656</td></tr>
     <tr><td>Credits</td><td>33</td><td class="me">30</td><td>33</td></tr>
-    <tr><td>Electives</td><td>3 electives / concentrations</td><td class="me">None &mdash; one coherent curriculum</td><td>4 electives / concentrations</td></tr>
-    <tr><td>Capstone</td><td>Optional</td><td class="me">Required 3-phase Build Studio (9 cr)</td><td>Optional practicum</td></tr>
+    <tr><td>Electives</td><td>3 electives / concentrations</td><td class="me">2 limited electives</td><td>4 electives / concentrations</td></tr>
+    <tr><td>Capstone</td><td>Optional</td><td class="me">Required 3-phase Build Studio (9 cr), ending with a practicum</td><td>Optional practicum</td></tr>
     <tr><td>Admission</td><td>No quantitative prerequisite</td><td class="me">Basic Python; no calculus</td><td>Calculus and programming</td></tr>
   </tbody>
 </table>
@@ -254,7 +275,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);p
     <span class="otag">Digital Transformation Lead</span><span class="otag">IT &amp; Analytics Manager</span>
   </div>
 </div>
-<p class="fine">Draft program design. Every course is an existing Stevens School of Business course; course numbers follow current program pages (the 2026&ndash;27 catalog lists MIS 637, BIA 662, and BIA 667 as MIS 537, BIA 562, and BIA 567). Tuition estimates use published 2026&ndash;27 graduate rates ($22,995 full-time flat rate for 9&ndash;12 credits; $2,152 per credit otherwise), tuition only, before fees and scholarships.</p>
+<p class="fine">Draft program design. Every course is an existing Stevens School of Business course; elective prerequisites are to be confirmed; course numbers follow current program pages (the 2026&ndash;27 catalog lists MIS 637, BIA 662, and BIA 667 as MIS 537, BIA 562, and BIA 567). Tuition estimates use published 2026&ndash;27 graduate rates ($22,995 full-time flat rate for 9&ndash;12 credits; $2,152 per credit otherwise), tuition only, before fees and scholarships.</p>
 
 <div class="detail" id="detail"><button class="d-close" onclick="closeDetail()">&#10005; Close</button><div id="d-body"></div></div>
 
@@ -265,46 +286,56 @@ const C={
 'BIA 662':{t:'Augmented Intelligence & Generative AI',g:'build',cert:true,src:'From BA&AI',d:'Building generative AI applications: LLMs, NLP, retrieval, agents, and evaluation.',cat:'Cognitive computing and its implications for analytics and evidence-based decision making: design principles, natural language processing, knowledge representation, advanced analytics, and deep learning architectures. Students build AI applications.',role:'The core generative AI building course. Students use these tools in their Build Studio projects.'},
 'BIA 667':{t:'Deep Learning & Business Applications',g:'build',cert:true,src:'From BA&AI',d:'Neural networks, CNNs, RNNs, generative models, and reinforcement learning — hands-on, with business applications and risks.',cat:'Fundamentals of deep learning for business students: neural networks, convolutional and recurrent networks, generative models, and reinforcement learning, with extensive hands-on work, business cases, and the risks of applying deep learning and how to address them.',role:'The second building course: hands-on model development. Requires MIS 637.'},
 'BIA 568':{t:'Management of AI Technologies',g:'mgmt',cert:true,src:'Core in MSIS & BA&AI',d:'Managing AI projects with fairness, accountability, transparency, ethics, and law at the center.',cat:'A survey of AI applications in business and technology, focusing in each area on the management of AI projects, including fairness, accountability, transparency, ethics, and the law.',role:'The governance and responsible-AI anchor. It is required in both current programs and in the certificate.'},
-'MIS 760':{t:'IT Strategy',g:'mgmt',cert:false,src:'From MSIS',d:'Aligning business and technology strategy — applied to where to invest in AI and how to compete with it.',cat:'How to improve the alignment of business and information technology strategies: business strategy, IT strategy and infrastructure, strategic alignment, and methods and metrics for building strategies and achieving alignment.',role:'Covers AI strategy and investment, aligning what gets built with where the business is going.'},
-'MIS 710':{t:'Process Innovation & Management',g:'mgmt',cert:false,src:'From MSIS',d:'Reengineering business processes and organizational structures with technology — redesigning work around AI.',cat:'The role of information technology in reengineering and enhancing key business processes, and the implications for organizational structures and processes.',role:'Covers redesigning workflows around AI, so that AI systems actually change how work gets done.'},
+ELEC:{t:'Elective',g:'elec',cert:false,src:'Choose from the IS or analytics list',d:'',cat:'',role:''},
+'MIS 760':{t:'IT Strategy',g:'is',cert:false,src:'Elective \u00b7 lean MSIS (MSIS core)',d:'Aligning business and technology strategy, applied to AI investment and competition.',cat:'How to improve the alignment of business and information technology strategies: business strategy, IT strategy and infrastructure, strategic alignment, and methods and metrics for building strategies and achieving alignment.',role:'An IS elective covering AI strategy and investment.'},
+'MIS 710':{t:'Process Innovation & Management',g:'is',cert:false,src:'Elective \u00b7 lean MSIS (MSIS core)',d:'Reengineering business processes and organizational structures with technology, applied to work redesigned around AI.',cat:'The role of information technology in reengineering and enhancing key business processes, and the implications for organizational structures and processes.',role:'An IS elective covering workflow redesign around AI.'},
+'MIS 730':{t:'Integrating IS Technologies',g:'is',cert:false,src:'Elective \u00b7 lean MSIS (MSIS core)',d:'Enterprise architecture across network, hardware, data, and applications, and how AI fits into it.',cat:'The design of an overall information technology architecture, focusing on the interdependencies among network, hardware, data, and application architectures; designing in the large and making architecture choices aligned with organizational goals.',role:'An IS elective covering enterprise and AI systems architecture.'},
+'MIS 699':{t:'Digital Innovation',g:'is',cert:false,src:'Elective \u00b7 lean MSIS (MSIS core)',d:'Assessing, selecting, and adopting emerging technologies in organizations.',cat:'How organizations assess trends and emerging technologies in data and knowledge management, networks, and application systems, and how to define, select, and adopt new information technologies.',role:'An IS elective covering technology scouting and adoption.'},
+'BIA 652':{t:'Multivariate Data Analysis',g:'an',cert:false,src:'Elective \u00b7 lean BA&AI (BA&AI core)',d:'PCA, factor analysis, SEM, clustering, MANOVA, discriminant analysis, and logistic regression in R.',cat:'Methods of multivariate analysis through computer applications in R: principal components, factor analysis, structural equation modeling, multidimensional scaling, correspondence and cluster analysis, MANOVA, discriminant analysis, and logistic regression.',role:'An analytics elective covering statistical depth for modeling.'},
+'BIA 654':{t:'Experimental Design',g:'an',cert:false,src:'Elective \u00b7 lean BA&AI (BA&AI core)',d:'Hypotheses, measurement, randomization, and analysis: designing experiments that prove impact.',cat:'Fundamental concepts of experimentation, including hypothesis development, operational definitions, reliability and validity, measurement, sampling, randomization, and counterbalancing, plus the analysis of different designs, ending in a student experiment project.',role:'An analytics elective on A/B tests and causal evidence for measuring the impact of AI.'},
+'BIA 650':{t:'Optimization & Process Analytics',g:'an',cert:false,src:'Elective \u00b7 lean BA&AI (BA&AI core)',d:'Optimization and heuristic search applied to process improvement, supply chain, and capital allocation.',cat:'Basic concepts in optimization and heuristic search with an emphasis on process improvement, applied to healthcare, logistics and supply chain, capital budgeting, asset management, and portfolio analysis.',role:'An analytics elective covering prescriptive analytics and optimization.'},
+'BIA 656':{t:'Advanced Data Analytics & Machine Learning',g:'an',cert:false,src:'Elective \u00b7 lean BA&AI (BA&AI concentration)',d:'Statistical learning, time series, and graphical models for prediction and inference.',cat:'Time series, statistical, and graphical models for inference and prediction, emphasizing the learning capability of the algorithms and their application to finance, direct marketing, operations, and biomedicine.',role:'An analytics elective covering advanced machine learning beyond MIS 637.'},
 'MIS 676':{t:'Human-Centered Design of AI Artifacts',g:'studio',cert:false,src:'Build Studio · Phase 0',d:'Frame the sponsor problem and prototype an AI concept.',cat:'An end-to-end human-centered design process adapted to AI-enabled products and services, ending in a working prototype of an AI artifact.',role:'Build Studio Phase 0: meet the sponsor, research stakeholders and users, frame the opportunity, and define the project charter.'},
-'MIS 702':{t:'Practicum in MIS',g:'studio',cert:false,src:'Build Studio · Phase I',d:'Build the prototype with the sponsor.',cat:'A practical company project supervised by a faculty advisor and an industry mentor, with progress reports and a final report. It runs at 3 credits in one semester with Program Director approval.',role:'Build Studio Phase I: validate the use case, design the architecture and data pipeline, and build a working prototype.'},
-'MIS 678':{t:'Realization of AI Artifacts (Capstone)',g:'studio',cert:false,src:'Build Studio · Phase II',d:'Deploy, govern, and measure impact.',cat:'Designing, creating, and evaluating an AI-enabled product or service in the wild, including a business plan and model, a socio-technical architecture and governance framework, and change management plans for implementation.',role:'Build Studio Phase II: deploy the system, hand over governance, measure impact, and present to the sponsor.'}
+'MIS 702':{t:'Practicum in MIS',g:'studio',cert:false,src:'Build Studio \u00b7 Phase II \u00b7 final term',d:'Deploy in the field, at the sponsor or as an internship.',cat:'A practical company project supervised by a faculty advisor and an industry mentor, with progress reports and a final report. It runs at 3 credits in one semester with Program Director approval.',role:'Build Studio Phase II, always in the final term: deploy and measure the system inside the sponsor organization. It can also be completed as an internship or, for part-time students, in their own employer.'},
+'MIS 678':{t:'Realization of AI Artifacts',g:'studio',cert:false,src:'Build Studio \u00b7 Phase I',d:'Build, govern, and evaluate the AI system.',cat:'Designing, creating, and evaluating an AI-enabled product or service in the wild, including a business plan and model, a socio-technical architecture and governance framework, and change management plans for implementation.',role:'Build Studio Phase I: build and evaluate the system with real users, with a governance framework and a change plan ready for deployment.'}
 };
 const GROUPS=[
  {cls:'found',lbl:'Data & ML Foundations',codes:['MIS 630','MIS 637']},
  {cls:'build',lbl:'Building with AI',codes:['BIA 662','BIA 667']},
- {cls:'mgmt',lbl:'Managing AI in the Business',codes:['BIA 568','MIS 760','MIS 710']}
+ {cls:'mgmt',lbl:'Managing AI',codes:['BIA 568']}
 ];
+const ELECS=[{cls:'is',lbl:'IS list \u00b7 lean MSIS',codes:['MIS 760','MIS 710','MIS 730','MIS 699']},{cls:'an',lbl:'Analytics list \u00b7 lean BA&AI',codes:['BIA 652','BIA 654','BIA 650','BIA 656']}];
 const F={
- ft:{lbl:'Full-time',sub:'4 semesters · ~20 months',intro:'Fall start, two academic years, with Build Studio starting in semester 2 and running one phase per semester. The summer is free for an internship.',
+ ft:{lbl:'Full-time',sub:'4 semesters \u00b7 ~20 months',intro:'Fall start over two academic years. Build Studio starts in semester 2 and runs one phase per semester, with the MIS 702 practicum in the final semester alongside one elective. The summer is free for an internship.',
   cols:5,terms:[
    {n:'Fall 1',courses:['MIS 630','MIS 637','BIA 662']},
-   {n:'Spring 1',courses:['BIA 667','MIS 760','MIS 676']},
+   {n:'Spring 1',courses:['BIA 667','ELEC','MIS 676']},
    {n:'Summer',gap:'Optional internship'},
-   {n:'Fall 2',courses:['BIA 568','MIS 710','MIS 702'],ms:'Management of AI certificate'},
-   {n:'Spring 2',courses:['MIS 678'],ms:'Business + AI degree',deg:true}],
-  cost:'$75,400',costs:'3 full-time semesters at the 9–12 credit flat rate + 3 credits in the final term.',len:'~20 months',lens:'Fall start; finishes in May of year two.'},
- acc:{lbl:'Accelerated',sub:'Summer → Fall → Spring · 12 months',intro:'A full-time cohort starting in summer. Build Studio runs Phase 0 in summer, Phase I in fall, and Phase II in spring. MIS 637 comes in summer because it is a prerequisite for BIA 667.',
+   {n:'Fall 2',courses:['BIA 568','MIS 678'],ms:'Management of AI certificate'},
+   {n:'Spring 2',courses:['ELEC','MIS 702'],ms:'Business + AI degree',deg:true}],
+  cost:'$71,800',costs:'Two full-time semesters at the flat rate + two 6-credit semesters at $2,152 per credit.',len:'~20 months',lens:'Fall start; finishes in May of year two.'},
+ acc:{lbl:'Accelerated',sub:'Summer \u2192 Fall \u2192 Spring \u00b7 12 months',intro:'A full-time cohort starting in summer. Build Studio runs Phase 0 in summer, Phase I in fall, and the MIS 702 practicum in the final spring. MIS 637 comes in summer because it is a prerequisite for BIA 667.',
   cols:3,terms:[
    {n:'Summer',courses:['MIS 637','MIS 676']},
-   {n:'Fall',courses:['MIS 630','BIA 662','BIA 667','MIS 702']},
-   {n:'Spring',courses:['BIA 568','MIS 760','MIS 710','MIS 678'],ms:'Certificate + degree',deg:true}],
+   {n:'Fall',courses:['MIS 630','BIA 662','BIA 667','MIS 678']},
+   {n:'Spring',courses:['BIA 568','ELEC','ELEC','MIS 702'],ms:'Certificate + degree',deg:true}],
   cost:'$58,900',costs:'Summer at $2,152 per credit + two 12-credit semesters at the flat rate.',len:'12 months',lens:'Summer start; finishes in May.'},
- pt:{lbl:'Part-time',sub:'Online or in person · 5 terms',intro:'Two courses per term, online or in person, for working professionals. The certificate courses come first, so terms 1–2 are the Management of AI certificate. Students who already hold the certificate start at term 3. Build Studio can run inside the student’s own employer.',
+ pt:{lbl:'Part-time',sub:'Online or in person \u00b7 5 terms',intro:'Two courses per term, online or in person, for working professionals. Terms 1\u20132 are the Management of AI certificate. Students who already hold the certificate start at term 3. The final-term MIS 702 practicum can be completed in the student\u2019s own employer.',
   cols:5,terms:[
    {n:'Term 1',courses:['MIS 637','BIA 662']},
    {n:'Term 2',courses:['BIA 667','BIA 568'],ms:'Management of AI certificate'},
    {n:'Term 3',courses:['MIS 630','MIS 676']},
-   {n:'Term 4',courses:['MIS 760','MIS 702']},
-   {n:'Term 5',courses:['MIS 710','MIS 678'],ms:'Business + AI degree',deg:true}],
+   {n:'Term 4',courses:['ELEC','MIS 678']},
+   {n:'Term 5',courses:['ELEC','MIS 702'],ms:'Business + AI degree',deg:true}],
   cost:'$64,600',costs:'30 credits at $2,152 per credit, plus part-time fees.',len:'~20 months',lens:'Fall, spring, and summer terms; can be stretched.'}
 };
 function card(code,cls){
   const c=C[code];
+  if(code==='ELEC') return '<div class="'+cls+'" data-code="ELEC"><div class="cn">ELECTIVE</div><div class="ct">IS or analytics list</div></div>';
   return '<div class="'+cls+'" data-code="'+code+'"><div class="cn">'+code+(c.cert?' <span class="cert">MGMT OF AI CERT</span>':'')+'</div><div class="ct">'+c.t+'</div>'+(cls==='cc'?'<div class="cd">'+c.d+'</div><span class="src">'+c.src+'</span>':'')+'</div>';
 }
 document.getElementById('groups').innerHTML=GROUPS.map(g=>'<div class="track '+g.cls+'"><div class="t-lbl">'+g.lbl+'</div>'+g.codes.map(c=>card(c,'cc')).join('')+'</div>').join('');
+document.getElementById('elecs').innerHTML=ELECS.map(g=>'<div class="track '+g.cls+'"><div class="t-lbl">'+g.lbl+'</div>'+g.codes.map(c=>card(c,'cc')).join('')+'</div>').join('');
 document.getElementById('tabs').innerHTML=Object.entries(F).map(([k,f])=>'<button class="tab" data-f="'+k+'"><span class="tl">'+f.lbl+'</span><span class="ts">'+f.sub+'</span></button>').join('');
 function show(k){
   const f=F[k];
@@ -326,9 +357,11 @@ function show(k){
   try{localStorage.setItem('msbai-fmt',k);}catch(e){}
 }
 function where(code){
-  return Object.values(F).map(f=>{const t=f.terms.find(t=>t.courses&&t.courses.includes(code));return '<b>'+f.lbl+'</b> &nbsp;'+(t?t.n:'—');}).join('<br>');
+  const k=C[code].g==='is'||C[code].g==='an'?'ELEC':code;
+  return Object.values(F).map(f=>{const ts=f.terms.filter(t=>t.courses&&t.courses.includes(k)).map(t=>t.n);return '<b>'+f.lbl+'</b> &nbsp;'+(ts.length?[...new Set(ts)].join(' or '):'\u2014')+(k==='ELEC'?' (elective slot)':'');}).join('<br>');
 }
 function openDetail(code){
+  if(code==='ELEC'){document.querySelector('.elecs').scrollIntoView({behavior:'smooth',block:'center'});return;}
   const c=C[code];
   document.querySelectorAll('[data-code]').forEach(e=>e.classList.toggle('active',e.dataset.code===code));
   document.getElementById('d-body').innerHTML='<div class="d-num">'+code+' &middot; 3 credits'+(c.cert?' &middot; <span class="cert">MGMT OF AI CERT</span>':'')+'</div><div class="d-title">'+c.t+'</div>'+
