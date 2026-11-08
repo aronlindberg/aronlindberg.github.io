@@ -1,0 +1,52 @@
+/* =========================================================
+   aronlindberg.com — Media archive (media.html)
+   Loaded after cv.css, which supplies the colors, fonts,
+   toolbar, masthead, section headings and footer.
+   ========================================================= */
+
+.media-page-intro {
+  color: var(--muted);
+  max-width: 62ch;
+  margin: 1rem 0 0.75rem;
+}
+
+.media-entries { list-style: none; }
+
+/* Date on the left, outlet + headline on the right */
+.media-entries li {
+  display: grid;
+  grid-template-columns: 8rem 1fr;
+  gap: 0.15rem 1.25rem;
+  padding: 0.95rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.media-entries li:last-child { border-bottom: none; }
+
+.media-when {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  line-height: 1.9;
+}
+
+.media-source {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  line-height: 1.9;
+}
+
+.media-headline {
+  font-family: var(--serif);
+  font-size: 1.12rem;
+  line-height: 1.35;
+}
+
+/* Narrow screens: stack outlet, headline, then date */
+@media (max-width: 640px) {
+  .media-entries li { grid-template-columns: 1fr; }
+  .media-when { order: 1; }
+}

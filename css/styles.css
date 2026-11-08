@@ -536,6 +536,10 @@ nav a.active {
   color: var(--muted);
 }
 
+.media-more {
+  margin-bottom: 1.5rem;
+}
+
 .media-inquiry {
   font-size: 0.875rem;
   color: var(--muted);
