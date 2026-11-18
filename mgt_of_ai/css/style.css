@@ -192,8 +192,8 @@ p  { color: var(--muted); }
 .track .btn { align-self: flex-start; }
 
 /* ---- Journey (management track) ---- */
-.journey { display: grid; grid-template-columns: repeat(3, 1fr); position: relative; counter-reset: step; }
-.journey::before { content: ''; position: absolute; top: 25px; left: 25px; right: calc(100% / 3 - 26px); height: 2px; background: var(--border); }
+.journey { display: grid; grid-template-columns: repeat(4, 1fr); position: relative; counter-reset: step; }
+.journey::before { content: ''; position: absolute; top: 25px; left: 25px; right: calc(25% - 26px); height: 2px; background: var(--border); }
 .step { position: relative; padding-right: 24px; }
 .step__num {
   width: 52px; height: 52px; border-radius: 50%; background: var(--navy); color: var(--white);
@@ -306,7 +306,7 @@ p  { color: var(--muted); }
   .intro, .tracks, .org, .contact { grid-template-columns: 1fr; gap: 32px; }
   .track-map { grid-template-columns: 1fr; }
   .tm-col + .tm-col { border-left: none; border-top: 1px solid var(--border); }
-  .journey { grid-template-columns: 1fr; gap: 36px 0; }
+  .journey { grid-template-columns: 1fr 1fr; gap: 36px 0; }
   .journey::before { display: none; }
   .outcomes { grid-template-columns: 1fr; }
   .footer__inner { grid-template-columns: 1fr 1fr; gap: 32px; }
