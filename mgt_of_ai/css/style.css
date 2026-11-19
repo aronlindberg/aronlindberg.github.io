@@ -208,6 +208,29 @@ p  { color: var(--muted); }
 .step p { font-size: 15px; }
 .step__out { margin-top: 12px; font-size: 13px; font-weight: 600; color: var(--text); padding-top: 10px; border-top: 1px solid var(--border); }
 
+/* ---- Graduate spotlight ---- */
+.spotlight { display: grid; grid-template-columns: 1.4fr 1fr; gap: 64px; align-items: start; }
+.spotlight h2 { color: var(--white); margin-bottom: 22px; }
+.spotlight p { font-size: 17px; margin-bottom: 16px; color: #C8CDD3; }
+.spotlight p strong { color: var(--white); font-weight: 600; }
+.spotlight__quote {
+  font-family: var(--disp); text-transform: uppercase; font-weight: 600;
+  font-size: clamp(24px, 2.8vw, 32px); line-height: 1.25; letter-spacing: 0.01em;
+  color: var(--white); border-left: 4px solid var(--red); padding-left: 24px; margin: 32px 0;
+}
+.spotlight__quote cite {
+  display: block; margin-top: 12px; font-family: var(--body); text-transform: none; letter-spacing: 0;
+  font-size: 14px; font-style: normal; font-weight: 500; color: var(--ink-mute);
+}
+.spotlight__card { background: var(--ink-2); border: 1px solid var(--ink-line); border-top: 4px solid var(--red); border-radius: var(--radius); }
+.spotlight__card-head { padding: 22px 26px; border-bottom: 1px solid var(--ink-line); font-size: 14px; color: var(--ink-mute); }
+.spotlight__card-head span { display: block; font-family: var(--disp); font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; font-size: 28px; line-height: 1.1; color: var(--white); margin-bottom: 4px; }
+.spotlight__stat { padding: 22px 26px; border-bottom: 1px solid var(--ink-line); }
+.spotlight__stat:last-child { border-bottom: none; }
+.spotlight__num { font-family: var(--disp); font-weight: 700; font-size: 48px; line-height: 1; color: var(--white); margin-bottom: 6px; }
+.spotlight__num small { font-size: 22px; font-weight: 600; color: var(--red-lift); text-transform: uppercase; letter-spacing: 0.04em; }
+.spotlight__stat p { font-size: 14px; margin: 0; color: var(--ink-mute); }
+
 /* ---- Course cards ---- */
 .course-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 .course-card {
@@ -303,7 +326,7 @@ p  { color: var(--muted); }
   .nav__hamburger { display: block; }
 }
 @media (max-width: 960px) {
-  .intro, .tracks, .org, .contact { grid-template-columns: 1fr; gap: 32px; }
+  .intro, .tracks, .org, .contact, .spotlight { grid-template-columns: 1fr; gap: 32px; }
   .track-map { grid-template-columns: 1fr; }
   .tm-col + .tm-col { border-left: none; border-top: 1px solid var(--border); }
   .journey { grid-template-columns: 1fr 1fr; gap: 36px 0; }
